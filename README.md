@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Godot C++ Helper Plugin Template
 
 ### Prerequisites
@@ -31,3 +32,6 @@ If you get a green checkmark on the `C++ Build` button, the build succeeded! Now
 
 Be sure to look at the [Godot documentation page on GDNative C++](https://docs.godotengine.org/en/stable/tutorials/plugins/gdnative/gdnative-cpp-example.html) to learn more about writing the code itself.
 
+=======
+# crash-bandicoot-godot
+>>>>>>> d5655d2c731f33667a20d500ce7234f27ee3fcbb
