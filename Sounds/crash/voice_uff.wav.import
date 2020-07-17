@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/voice_uff.wav-16753ccc614cb1d3c2d410c68dbd426c.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/voice_uff.wav"
+dest_files=[ "res://.import/voice_uff.wav-16753ccc614cb1d3c2d410c68dbd426c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

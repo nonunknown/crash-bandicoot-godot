@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/item_droped.wav-4a8996c1d1c698878252880e96690dd2.sample"
+
+[deps]
+
+source_file="res://Sounds/gameplay/item/item_droped.wav"
+dest_files=[ "res://.import/item_droped.wav-4a8996c1d1c698878252880e96690dd2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

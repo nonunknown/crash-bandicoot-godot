@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/step_2.wav-08a3845964bdc6d3c42e8a59271b2f9e.sample"
+
+[deps]
+
+source_file="res://Sounds/gameplay/footstep/metal/step_2.wav"
+dest_files=[ "res://.import/step_2.wav-08a3845964bdc6d3c42e8a59271b2f9e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

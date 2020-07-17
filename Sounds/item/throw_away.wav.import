@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/throw_away.wav-604379e5002011428921c00d78d18836.sample"
+
+[deps]
+
+source_file="res://Sounds/item/throw_away.wav"
+dest_files=[ "res://.import/throw_away.wav-604379e5002011428921c00d78d18836.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

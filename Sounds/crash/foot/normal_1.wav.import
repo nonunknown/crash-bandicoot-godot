@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/normal_1.wav-4ca962d170d9f5b44d72f2201df93517.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/foot/normal_1.wav"
+dest_files=[ "res://.import/normal_1.wav-4ca962d170d9f5b44d72f2201df93517.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

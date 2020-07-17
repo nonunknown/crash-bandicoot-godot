@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fx_cb3_WarpBall_expand_01.ogg-9dbab2cdbd6c295edb352e714ff0c432.oggstr"
+
+[deps]
+
+source_file="res://Sounds/gameplay/portal/fx_cb3_WarpBall_expand_01.ogg"
+dest_files=[ "res://.import/fx_cb3_WarpBall_expand_01.ogg-9dbab2cdbd6c295edb352e714ff0c432.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/c++_helper/delete_dialog/delete_dialog.gd" type="Script" id=1]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog"]
+margin_right = 232.0
+margin_bottom = 96.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteSourceFiles" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 216.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="VBoxContainer/DeleteSourceFiles"]
+margin_top = 5.0
+margin_right = 188.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Delete Source Files"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/DeleteSourceFiles"]
+margin_left = 192.0
+margin_right = 216.0
+margin_bottom = 24.0
+pressed = true
+
+[node name="DeleteScript" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 216.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="VBoxContainer/DeleteScript"]
+margin_top = 5.0
+margin_right = 188.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Delete Script"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/DeleteScript"]
+margin_left = 192.0
+margin_right = 216.0
+margin_bottom = 24.0
+pressed = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RemoveFromVcxproj" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 56.0
+margin_right = 216.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="VBoxContainer/RemoveFromVcxproj"]
+margin_top = 5.0
+margin_right = 188.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Remove from .vcxproj"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/RemoveFromVcxproj"]
+margin_left = 192.0
+margin_right = 216.0
+margin_bottom = 24.0
+pressed = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="about_to_show" from="." to="." method="_on_ConfirmationDialog_about_to_show"]
+[connection signal="confirmed" from="." to="." method="_on_ConfirmationDialog_confirmed"]

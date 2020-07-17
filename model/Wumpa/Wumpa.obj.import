@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wumpa.obj-15998e99ba54bb606e48fa3c9331e319.mesh"
+
+[deps]
+
+files=[ "res://.import/Wumpa.obj-15998e99ba54bb606e48fa3c9331e319.mesh" ]
+
+source_file="res://model/Wumpa/Wumpa.obj"
+dest_files=[ "res://.import/Wumpa.obj-15998e99ba54bb606e48fa3c9331e319.mesh", "res://.import/Wumpa.obj-15998e99ba54bb606e48fa3c9331e319.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

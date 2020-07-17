@@ -1,0 +1,19 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "CrashSpin2"
+length = 1.12
+tracks/0/type = "transform"
+tracks/0/path = NodePath("CrashSpin")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.19879, 0.776494, 1.19879, 0.0416667, 1, 0, 0, 0, 0, 0, 0, 1, 1.19851, 0.776809, 1.19851, 0.0833333, 1, 0, 0, 0, 0, 0, 0, 1, 1.19768, 0.777741, 1.19768, 0.125, 1, 0, 0, 0, 0, 0, 0, 1, 1.1963, 0.779291, 1.1963, 0.166667, 1, 0, 0, 0, 0, 0, 0, 1, 1.19438, 0.781459, 1.19438, 0.25, 1, 0, 0, 0, 0, 0, 0, 1, 1.18887, 0.787648, 1.18887, 1.12, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("CrashSpin")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.19879, 0.776494, 1.19879, 0.0416667, 1, 0, 0, 0, 0, 0, 0, 1, 1.19851, 0.776809, 1.19851, 0.0833333, 1, 0, 0, 0, 0, 0, 0, 1, 1.19768, 0.777741, 1.19768, 0.125, 1, 0, 0, 0, 0, 0, 0, 1, 1.1963, 0.779291, 1.1963, 0.166667, 1, 0, 0, 0, 0, 0, 0, 1, 1.19438, 0.781459, 1.19438, 0.25, 1, 0, 0, 0, 0, 0, 0, 1, 1.18887, 0.787648, 1.18887, 1.12, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )

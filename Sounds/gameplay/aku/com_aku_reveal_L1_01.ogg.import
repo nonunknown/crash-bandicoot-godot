@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/com_aku_reveal_L1_01.ogg-f422d08504d05b1fe30552ab6cbe7916.oggstr"
+
+[deps]
+
+source_file="res://Sounds/gameplay/aku/com_aku_reveal_L1_01.ogg"
+dest_files=[ "res://.import/com_aku_reveal_L1_01.ogg-f422d08504d05b1fe30552ab6cbe7916.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

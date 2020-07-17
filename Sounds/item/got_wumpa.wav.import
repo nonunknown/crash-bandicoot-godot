@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/got_wumpa.wav-266209a745d8d85ffc62d042ac6e5563.sample"
+
+[deps]
+
+source_file="res://Sounds/item/got_wumpa.wav"
+dest_files=[ "res://.import/got_wumpa.wav-266209a745d8d85ffc62d042ac6e5563.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

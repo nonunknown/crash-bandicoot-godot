@@ -1,0 +1,12 @@
+.import/
+.sconsign.dblite
+**/*.so
+**/*.dylib
+**/*.dll
+**/*.os
+bin/win32
+bin/win64
+bin/x11
+bin/osx
+**/*.pdb
+**/*.idb

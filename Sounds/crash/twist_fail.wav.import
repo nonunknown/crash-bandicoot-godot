@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/twist_fail.wav-3abcdb675af6240c74d886f14054c6d3.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/twist_fail.wav"
+dest_files=[ "res://.import/twist_fail.wav-3abcdb675af6240c74d886f14054c6d3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

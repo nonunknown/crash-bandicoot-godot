@@ -1,0 +1,584 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/c++_helper/initial_setup/line_edit_setting.gd" type="Script" id=1]
+[ext_resource path="res://addons/c++_helper/initial_setup/setup_dialog.gd" type="Script" id=2]
+[ext_resource path="res://addons/c++_helper/initial_setup/set_setting_path_button.gd" type="Script" id=3]
+[ext_resource path="res://addons/c++_helper/initial_setup/enum_setting.gd" type="Script" id=4]
+[ext_resource path="res://addons/c++_helper/initial_setup/bool_setting.gd" type="Script" id=5]
+
+[node name="SetupC++Dialog" type="AcceptDialog"]
+margin_right = 853.0
+margin_bottom = 820.0
+popup_exclusive = true
+window_title = "Setup C++"
+resizable = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 837.0
+margin_bottom = 834.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+margin_right = 825.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+rect_clip_content = false
+focus_mode = 2
+size_flags_vertical = 5
+bbcode_enabled = true
+bbcode_text = "Looks like the C++ helper plugin hasn't been initialized yet.
+This dialog will set up some initial settings for you. To change preferences later, open \"Project->Project Settings\" and scroll down to \"C++\".
+
+If you haven't yet, please read the readme in the plugin folder or at [url]https://gitlab.com/turtlewit/godot_cpp_helper_plugin/[/url]
+
+If you run into any issues, please open an issue on gitlab here: [url]https://gitlab.com/turtlewit/godot_cpp_helper_plugin/-/issues[/url]
+
+Finally, [b]PLEASE[/b] use source control! This plugin modifies and can delete source files, so there is always the possibility of losing work."
+text = "Looks like the C++ helper plugin hasn't been initialized yet.
+This dialog will set up some initial settings for you. To change preferences later, open \"Project->Project Settings\" and scroll down to \"C++\".
+
+If you haven't yet, please read the readme in the plugin folder or at https://gitlab.com/turtlewit/godot_cpp_helper_plugin/
+
+If you run into any issues, please open an issue on gitlab here: https://gitlab.com/turtlewit/godot_cpp_helper_plugin/-/issues
+
+Finally, PLEASE use source control! This plugin modifies and can delete source files, so there is always the possibility of losing work."
+selection_enabled = true
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 825.0
+margin_bottom = 208.0
+
+[node name="Files" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 212.0
+margin_right = 825.0
+margin_bottom = 243.0
+text = "Files
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SrcPath" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 247.0
+margin_right = 825.0
+margin_bottom = 295.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/SrcPath"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SrcPath/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Path to C++ Source Code"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/SrcPath/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://src/"
+editable = false
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/SrcPath"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/source_path"
+mode = 2
+access = 2
+
+[node name="HeaderDir" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 299.0
+margin_right = 825.0
+margin_bottom = 323.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HeaderDir"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HeaderDir/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Header Subdirectory"
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/HeaderDir/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "(optional)"
+caret_blink = true
+script = ExtResource( 1 )
+project_setting_name = "c++/files/header_subdirectory"
+
+[node name="SourceSubdir" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 327.0
+margin_right = 825.0
+margin_bottom = 351.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/SourceSubdir"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SourceSubdir/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = ".cpp Subdirectory"
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/SourceSubdir/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "(optional)"
+caret_blink = true
+script = ExtResource( 1 )
+project_setting_name = "c++/files/cpp_subdirectory"
+
+[node name="LibraryPath" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 355.0
+margin_right = 825.0
+margin_bottom = 403.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/LibraryPath"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/LibraryPath/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Library Resource"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/LibraryPath/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://library.gdnlib
+"
+editable = false
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/LibraryPath"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/library_path"
+mode = 4
+filters = PoolStringArray( "*.gdnlib,*.res,*.tres ; GDNative Library Resource" )
+
+[node name="GdlibraryCppPath" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 407.0
+margin_right = 825.0
+margin_bottom = 455.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/GdlibraryCppPath"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/GdlibraryCppPath/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Entry Point Source File"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/GdlibraryCppPath/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://src/gdlibrary.cpp"
+editable = false
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/GdlibraryCppPath"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/gdlibrary_source_file_path"
+mode = 4
+access = 2
+filters = PoolStringArray( "*.cpp,*.cxx,*.cc ; C++ Source File" )
+
+[node name="vcxproj" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 459.0
+margin_right = 825.0
+margin_bottom = 507.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/vcxproj"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/vcxproj/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = ".vcxproj path"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/vcxproj/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+editable = false
+placeholder_text = "(optional)"
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/vcxproj"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/vcxproj_path"
+access = 2
+filters = PoolStringArray( "*.vcxproj ; Visual Studio Project" )
+
+[node name="ScriptsPath" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 511.0
+margin_right = 825.0
+margin_bottom = 559.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ScriptsPath"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ScriptsPath/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Scripts Directory"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/ScriptsPath/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://scripts/"
+editable = false
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/ScriptsPath"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/scripts_directory"
+mode = 2
+
+[node name="ClassName" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 563.0
+margin_right = 825.0
+margin_bottom = 587.0
+hint_tooltip = "Enables automatically setting the \"script class\" field in gdnative scripts, which makes the class name available for gdscript scripts to use."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ClassName"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Use Script Class Name"
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/ClassName"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+pressed = true
+script = ExtResource( 5 )
+project_setting_name = "c++/files/use_script_class_name"
+
+[node name="Data Directory" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 591.0
+margin_right = 825.0
+margin_bottom = 639.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Data Directory"]
+margin_right = 825.0
+margin_bottom = 24.0
+hint_tooltip = "Directory used for generated data about the current project, such as template files and data to keep track of class info.
+Change this if you are using this plugin as a git submodule."
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Data Directory/HBoxContainer"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Data Directory"
+
+[node name="Label2" type="LineEdit" parent="ScrollContainer/VBoxContainer/Data Directory/HBoxContainer"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://addons/c++_helper_data/"
+editable = false
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Data Directory"]
+margin_left = 754.0
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+text = "Browse..."
+script = ExtResource( 3 )
+project_setting_name = "c++/files/c++_data_directory"
+mode = 2
+
+[node name="SnakeCase" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 643.0
+margin_right = 825.0
+margin_bottom = 667.0
+hint_tooltip = "Enforces snake_case filenames, even when the class names are PascalCase"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SnakeCase"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Use snake_case filenames"
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/SnakeCase"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+pressed = true
+script = ExtResource( 5 )
+project_setting_name = "c++/files/snake_case_file_names"
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+margin_top = 671.0
+margin_right = 825.0
+margin_bottom = 675.0
+
+[node name="Style" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 679.0
+margin_right = 825.0
+margin_bottom = 710.0
+text = "Style
+"
+align = 1
+
+[node name="Style2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 714.0
+margin_right = 825.0
+margin_bottom = 834.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="pragma" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Style2"]
+margin_right = 825.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Style2/pragma"]
+margin_top = 5.0
+margin_right = 410.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Use #pragma once"
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Style2/pragma"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+pressed = true
+script = ExtResource( 5 )
+project_setting_name = "c++/style/use_pragma_once"
+
+[node name="brace-style" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Style2"]
+margin_top = 28.0
+margin_right = 825.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Style2/brace-style"]
+margin_top = 3.0
+margin_right = 410.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Brace Style"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Style2/brace-style"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "K&R"
+items = [ "K&R", null, false, 0, null, "1TBS", null, false, 1, null, "Allman", null, false, 2, null ]
+selected = 0
+
+[node name="Node" type="Node" parent="ScrollContainer/VBoxContainer/Style2/brace-style/OptionButton"]
+script = ExtResource( 4 )
+options = "K&R,1TBS,Allman"
+project_settings_name = "c++/style/brace_style"
+
+[node name="header_ext" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Style2"]
+margin_top = 52.0
+margin_right = 825.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Style2/header_ext"]
+margin_top = 3.0
+margin_right = 410.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Header Extension"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Style2/header_ext"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = ".hpp"
+items = [ ".hpp", null, false, 0, null, ".h", null, false, 1, null, ".hxx", null, false, 2, null, ".hh", null, false, 3, null ]
+selected = 0
+
+[node name="Node2" type="Node" parent="ScrollContainer/VBoxContainer/Style2/header_ext/OptionButton"]
+script = ExtResource( 4 )
+options = ".hpp,.h,.hxx,.hh"
+project_settings_name = "c++/style/header_extension"
+
+[node name="src_ext" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Style2"]
+margin_top = 76.0
+margin_right = 825.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Style2/src_ext"]
+margin_top = 3.0
+margin_right = 410.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Source Extension"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Style2/src_ext"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = ".cpp"
+items = [ ".cpp", null, false, 0, null, ".cxx", null, false, 1, null, ".cc", null, false, 2, null ]
+selected = 0
+
+[node name="Node3" type="Node" parent="ScrollContainer/VBoxContainer/Style2/src_ext/OptionButton"]
+script = ExtResource( 4 )
+options = ".cpp,.cxx,.cc"
+project_settings_name = "c++/style/source_extension"
+
+[node name="indentation" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Style2"]
+margin_top = 100.0
+margin_right = 825.0
+margin_bottom = 120.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Style2/indentation"]
+margin_top = 3.0
+margin_right = 410.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Indentation"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Style2/indentation"]
+margin_left = 414.0
+margin_right = 825.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Spaces"
+items = [ "Spaces", null, false, 0, null, "Tabs", null, false, 1, null ]
+selected = 0
+
+[node name="Node4" type="Node" parent="ScrollContainer/VBoxContainer/Style2/indentation/OptionButton"]
+script = ExtResource( 4 )
+options = "Spaces,Tabs"
+project_settings_name = "c++/style/indentation"
+[connection signal="popup_hide" from="." to="." method="_on_SetupCDialog_popup_hide"]
+[connection signal="text_entered" from="ScrollContainer/VBoxContainer/HeaderDir/HBoxContainer/LineEdit" to="ScrollContainer/VBoxContainer/HeaderDir/HBoxContainer/LineEdit" method="_on_LineEdit_text_entered"]
+[connection signal="text_entered" from="ScrollContainer/VBoxContainer/SourceSubdir/HBoxContainer/LineEdit" to="ScrollContainer/VBoxContainer/SourceSubdir/HBoxContainer/LineEdit" method="_on_LineEdit_text_entered"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/ClassName/CheckBox" to="ScrollContainer/VBoxContainer/ClassName/CheckBox" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/SnakeCase/CheckBox" to="ScrollContainer/VBoxContainer/SnakeCase/CheckBox" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/Style2/pragma/CheckBox" to="ScrollContainer/VBoxContainer/Style2/pragma/CheckBox" method="_on_CheckBox_toggled"]

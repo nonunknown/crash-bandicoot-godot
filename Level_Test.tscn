@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gameplay/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/base_crate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/cameras/CameraSide.gd" type="Script" id=4]
+[ext_resource path="res://gameplay/obj_death_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://OST/lev_dark.ogg" type="AudioStream" id=8]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+ambient_light_color = Color( 0.972549, 0.972549, 0.972549, 1 )
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 482.5
+fog_depth_curve = 6.9644
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.75
+adjustment_enabled = true
+adjustment_saturation = 0.43
+
+[node name="Level_Test" type="Spatial"]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+
+[node name="obj_player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.667477, 1.12181, -0.311995 )
+
+[node name="Ray" parent="obj_player" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266639, -0.000102639 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1.59905e-09, -0.00191529, 0.00981487, -3.1204e-10, 0.00981487, 0.00191529, -0.01, 0, -1.62921e-09, 3.80867, 2.23321, -0.499965 )
+current = true
+fov = 51.0
+far = 2582.0
+script = ExtResource( 4 )
+
+[node name="DeathArea" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.43217, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="base_crate" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -0.450405 )
+
+[node name="base_crate2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -1.05041 )
+
+[node name="base_crate3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -1.65041 )
+
+[node name="base_crate4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -2.25041 )
+
+[node name="base_crate5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -2.85041 )
+
+[node name="base_crate6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -3.45041 )
+
+[node name="base_crate7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -4.05041 )
+
+[node name="base_crate8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726, 0, -4.65041 )
+
+[editable path="obj_player"]
+
+[editable path="DeathArea"]

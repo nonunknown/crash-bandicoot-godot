@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://model/Wumpa/Wumpa.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://model/Wumpa/mat_wumpa.material" type="Material" id=3]
+
+[node name="obj_item_wumpa" groups=[
+"I_WUMPA",
+] instance=ExtResource( 2 )]
+
+[node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
+transform = Transform( 0.027, 0, 0, 0, 0.027, 0, 0, 0, 0.027, 0, -0.185593, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/aku_hu.wav-a91301456dd42c02a9b8318518b7c640.sample"
+
+[deps]
+
+source_file="res://Sounds/gameplay/aku/aku_hu.wav"
+dest_files=[ "res://.import/aku_hu.wav-a91301456dd42c02a9b8318518b7c640.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

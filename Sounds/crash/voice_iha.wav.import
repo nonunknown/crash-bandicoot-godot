@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/voice_iha.wav-afeed4d2bb6da5b74570c6a41b14ca7f.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/voice_iha.wav"
+dest_files=[ "res://.import/voice_iha.wav-afeed4d2bb6da5b74570c6a41b14ca7f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

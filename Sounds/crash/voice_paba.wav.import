@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/voice_paba.wav-198a21e604ea0548c7917b41cc568377.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/voice_paba.wav"
+dest_files=[ "res://.import/voice_paba.wav-198a21e604ea0548c7917b41cc568377.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_common.wav-92d1fdd3abdb5d83c081a29db0dfe4ab.sample"
+
+[deps]
+
+source_file="res://Sounds/crash/death_common.wav"
+dest_files=[ "res://.import/death_common.wav-92d1fdd3abdb5d83c081a29db0dfe4ab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

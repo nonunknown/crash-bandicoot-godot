@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/foot5.ogg-7433169081492c00fe17eb0079642956.oggstr"
+
+[deps]
+
+source_file="res://Sounds/crash/foot/foot5.ogg"
+dest_files=[ "res://.import/foot5.ogg-7433169081492c00fe17eb0079642956.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

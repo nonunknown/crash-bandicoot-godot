@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gameplay/base_crate_wumpa.tscn" type="PackedScene" id=1]
+[ext_resource path="res://model/crate/crate/mat_top.tres" type="Material" id=2]
+
+[node name="obj_crate_normal" instance=ExtResource( 1 )]
+amt_wumpa = 1
+
+[node name="ItmPowderBox" parent="." index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )

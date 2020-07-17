@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/com_aku_lose_01.ogg-5bca750562c5696651cfb78272e0abbd.oggstr"
+
+[deps]
+
+source_file="res://Sounds/gameplay/aku/com_aku_lose_01.ogg"
+dest_files=[ "res://.import/com_aku_lose_01.ogg-5bca750562c5696651cfb78272e0abbd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

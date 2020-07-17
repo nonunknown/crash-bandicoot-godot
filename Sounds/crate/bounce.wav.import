@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bounce.wav-3e406055adc5bd0c9cb0d9d3100fab49.sample"
+
+[deps]
+
+source_file="res://Sounds/crate/bounce.wav"
+dest_files=[ "res://.import/bounce.wav-3e406055adc5bd0c9cb0d9d3100fab49.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

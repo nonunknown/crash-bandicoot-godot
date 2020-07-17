@@ -1,0 +1,241 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/c++_helper/add_existing_class/header_file_line.gd" type="Script" id=1]
+[ext_resource path="res://addons/c++_helper/add_existing_class/add_existing_class.gd" type="Script" id=2]
+[ext_resource path="res://addons/c++_helper/add_existing_class/script_file_line.gd" type="Script" id=3]
+[ext_resource path="res://addons/c++_helper/add_existing_class/source_file_line.gd" type="Script" id=4]
+[ext_resource path="res://addons/c++_helper/add_existing_class/browse_button.gd" type="Script" id=5]
+
+[node name="AddExistingClass" type="AcceptDialog"]
+margin_right = 551.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+window_title = "Add Existing Class"
+dialog_hide_on_ok = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+margin_right = 535.0
+margin_bottom = 218.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClassName" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/ClassName"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Class Name"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/ClassName"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Enter Name"
+caret_blink = true
+
+[node name="Subdir" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 28.0
+margin_right = 535.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Subdir"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Subdirectory"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Subdir"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Enter Subdirectory"
+caret_blink = true
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 56.0
+margin_right = 535.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Header"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Header File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Header"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Header/HBoxContainer"]
+margin_right = 191.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://src/.hpp"
+caret_blink = true
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="VBoxContainer2/VBoxContainer/Header/HBoxContainer"]
+margin_left = 195.0
+margin_right = 266.0
+margin_bottom = 24.0
+text = "Browse..."
+script = ExtResource( 5 )
+access = 2
+filters = PoolStringArray( "*.hpp,*.h,*.hxx,*.hh ; C++ header file" )
+
+[node name="HeaderError" type="Label" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 84.0
+margin_right = 535.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Header File Not Found!"
+align = 2
+
+[node name="Source" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 102.0
+margin_right = 535.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Source"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Source File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Source"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Source/HBoxContainer"]
+margin_right = 191.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://src/.cpp"
+caret_blink = true
+script = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="VBoxContainer2/VBoxContainer/Source/HBoxContainer"]
+margin_left = 195.0
+margin_right = 266.0
+margin_bottom = 24.0
+text = "Browse..."
+script = ExtResource( 5 )
+access = 2
+filters = PoolStringArray( "*.cpp,*.cxx,*.cc ; C++ Source File" )
+
+[node name="SourceError" type="Label" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 130.0
+margin_right = 535.0
+margin_bottom = 144.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Source File Not Found!"
+align = 2
+
+[node name="Script" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 148.0
+margin_right = 535.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Script"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Script File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Script"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Script/HBoxContainer"]
+margin_right = 191.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "res://scripts/.gdns"
+caret_blink = true
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="VBoxContainer2/VBoxContainer/Script/HBoxContainer"]
+margin_left = 195.0
+margin_right = 266.0
+margin_bottom = 24.0
+text = "Browse..."
+script = ExtResource( 5 )
+access = 2
+filters = PoolStringArray( "*.gdns,*.res,*.tres ; GDNative Script File" )
+
+[node name="ScriptError" type="Label" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 176.0
+margin_right = 535.0
+margin_bottom = 190.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Script File Not Found!"
+align = 2
+
+[node name="IsTool" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 194.0
+margin_right = 535.0
+margin_bottom = 218.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/IsTool"]
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Tool"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer2/VBoxContainer/IsTool"]
+margin_left = 269.0
+margin_right = 535.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+[connection signal="about_to_show" from="." to="." method="reset"]
+[connection signal="confirmed" from="." to="." method="_on_Button_pressed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/ClassName/LineEdit" to="VBoxContainer2/VBoxContainer/Script/HBoxContainer/LineEdit" method="_on_ClassName_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/ClassName/LineEdit" to="VBoxContainer2/VBoxContainer/Header/HBoxContainer/LineEdit" method="_on_ClassName_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/ClassName/LineEdit" to="VBoxContainer2/VBoxContainer/Source/HBoxContainer/LineEdit" method="_on_ClassName_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/Subdir/LineEdit" to="VBoxContainer2/VBoxContainer/Script/HBoxContainer/LineEdit" method="_on_Subdir_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/Subdir/LineEdit" to="VBoxContainer2/VBoxContainer/Header/HBoxContainer/LineEdit" method="_on_Subdir_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/Subdir/LineEdit" to="VBoxContainer2/VBoxContainer/Source/HBoxContainer/LineEdit" method="_on_Subdir_LineEdit_text_changed"]

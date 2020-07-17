@@ -1,0 +1,12 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Armature/Skeleton/Cube")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )

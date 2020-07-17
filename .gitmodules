@@ -1,0 +1,6 @@
+[submodule "addons/c++_helper"]
+	path = addons/c++_helper
+	url = https://gitlab.com/turtlewit/godot_cpp_helper_plugin.git
+[submodule "godot-cpp"]
+	path = thirdparty/godot-cpp
+	url = https://github.com/godotengine/godot-cpp.git

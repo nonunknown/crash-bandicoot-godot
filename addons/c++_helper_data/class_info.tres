@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/c++_helper/class_info/class_info.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+class_info = [ {
+"header": "native_state_machine.hpp",
+"is_tool": false,
+"name": "NativeStateMachine",
+"script_path": "res://scripts/native_state_machine.gdns",
+"source_path": "res://src/native_state_machine.cpp",
+"subdir": ""
+} ]

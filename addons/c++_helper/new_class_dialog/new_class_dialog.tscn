@@ -1,0 +1,128 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/c++_helper/new_class_dialog/new_class_dialog.gd" type="Script" id=1]
+
+[node name="NewClassDialog" type="AcceptDialog"]
+margin_right = 411.0
+margin_bottom = 152.0
+size_flags_horizontal = 13
+size_flags_vertical = 13
+window_title = "New Class"
+dialog_hide_on_ok = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+margin_right = 395.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Class Name" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_right = 395.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Class Name"]
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Class Name"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Class Name"]
+margin_left = 199.0
+margin_right = 395.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Enter Class Name"
+caret_blink = true
+
+[node name="Inherits From" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 28.0
+margin_right = 395.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Inherits From"]
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Inherits From"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Inherits From"]
+margin_left = 199.0
+margin_right = 395.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Node"
+placeholder_text = "Enter Node Name"
+caret_blink = true
+
+[node name="Subdirectory" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 56.0
+margin_right = 395.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/Subdirectory"]
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Subdirectory"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer/Subdirectory"]
+margin_left = 199.0
+margin_right = 395.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Enter Subdirectory (optional)"
+caret_blink = true
+
+[node name="IsTool" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 84.0
+margin_right = 395.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/IsTool"]
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Tool"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer2/VBoxContainer/IsTool"]
+margin_left = 199.0
+margin_right = 395.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 403.0
+margin_bottom = 116.0
+[connection signal="confirmed" from="." to="." method="_on_CreateButton_button_down"]
+[connection signal="visibility_changed" from="." to="." method="_on_NewClassDialog_visibility_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/Class Name/LineEdit" to="." method="_on_ClassName_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/Inherits From/LineEdit" to="." method="_on_Inherits_text_changed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

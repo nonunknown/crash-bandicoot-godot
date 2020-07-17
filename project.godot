@@ -1,0 +1,219 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "SmartAudioStream",
+"class": "CrashAudio",
+"language": "GDScript",
+"path": "res://scripts/CrashAudio.gd"
+}, {
+"base": "StaticBody",
+"class": "Crate",
+"language": "GDScript",
+"path": "res://scripts/crates/Crate.gd"
+}, {
+"base": "CrateWumpa",
+"class": "CrateBounce",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateBounce.gd"
+}, {
+"base": "CrateWumpa",
+"class": "CrateCollection",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateCollection.gd"
+}, {
+"base": "CrateWumpa",
+"class": "CrateEnforced",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateEnforced.gd"
+}, {
+"base": "Crate",
+"class": "CrateIron",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateIron.gd"
+}, {
+"base": "Crate",
+"class": "CrateItem",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateItem.gd"
+}, {
+"base": "CrateItem",
+"class": "CrateWumpa",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateWumpa.gd"
+}, {
+"base": "",
+"class": "CustomHello",
+"language": "NativeScript",
+"path": "res://scripts/custom_hello.gdns"
+}, {
+"base": "",
+"class": "Hello",
+"language": "NativeScript",
+"path": "res://scripts/hello.gdns"
+}, {
+"base": "StaticBody",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scripts/items/Item.gd"
+}, {
+"base": "",
+"class": "NativeStateMachine",
+"language": "NativeScript",
+"path": "res://scripts/native_state_machine.gdns"
+}, {
+"base": "KinematicBody",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scripts/gameplay/Player.gd"
+}, {
+"base": "Player",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://scripts/gameplay/PlayerState.gd"
+}, {
+"base": "AudioStreamPlayer3D",
+"class": "SmartAudioStream",
+"language": "GDScript",
+"path": "res://addons/smart_audio_stream/SmartAudioStream.gd"
+}, {
+"base": "Reference",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/StateMachine.gd"
+} ]
+_global_script_class_icons={
+"CrashAudio": "",
+"Crate": "",
+"CrateBounce": "",
+"CrateCollection": "",
+"CrateEnforced": "",
+"CrateIron": "",
+"CrateItem": "",
+"CrateWumpa": "",
+"CustomHello": "",
+"Hello": "",
+"Item": "",
+"NativeStateMachine": "",
+"Player": "",
+"PlayerState": "",
+"SmartAudioStream": "",
+"StateMachine": ""
+}
+
+[application]
+
+config/name="cpp-helper-template"
+run/main_scene="res://scenes/hello.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
+LevelManager="*res://scripts/Singletons/LevelManager.gd"
+
+[c++]
+
+build_settings/X11/build_command="if ! test -f thirdparty/godot-cpp/bin/libgodot-cpp.linux.debug.64.a; then
+    cd thirdparty/godot-cpp
+    scons generate_bindings=yes -j$(nproc)
+	cd ../..
+fi
+scons platform=linux -j$(nproc)"
+build_settings/Windows/build_command="build.bat"
+build_settings/OSX/build_command="if ! test -f thirdparty/godot-cpp/bin/libgodot-cpp.osx.debug.64.a; then
+    cd thirdparty/godot-cpp
+    scons generate_bindings=yes -j$(nproc)
+	cd ../..
+fi
+scons platform=osx -j$(nproc)"
+plugin/plugin_set_up=true
+
+[debug]
+
+settings/fps/force_fps=30
+
+[display]
+
+window/size/width=720
+window/size/height=480
+window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "c++_helper", "screen_debugger", "smart_audio_stream" )
+
+[input]
+
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_time={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_dash={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_spin={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":74,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/physics_fps=30
+2d/thread_model=2
+
+[rendering]
+
+threads/thread_model=2
+quality/filters/anisotropic_filter_level=1
+quality/directional_shadow/size=256
+quality/directional_shadow/size.mobile=256
+quality/shadow_atlas/size=256
+quality/shadow_atlas/size.mobile=256
+quality/shadows/filter_mode=0
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
+quality/reflections/irradiance_max_size=64
+quality/filters/use_nearest_mipmap_filter=true
+quality/subsurface_scattering/quality=0
+quality/reflections/atlas_subdiv=4
+environment/default_environment="res://default_env.tres"
