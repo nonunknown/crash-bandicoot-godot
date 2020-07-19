@@ -1,16 +1,19 @@
 extends Player
 class_name PlayerState
 
-enum STATE {IDLE,WALK,JUMP,SPIN,DASH,DASH_WALK}
+
+
+enum STATE {IDLE,WALK,JUMP,SPIN,DASH,DASH_WALK,FALL}
 #enum IDLE {IDLE_NORMAL,IDLE_EXTRA}
 #enum ID {IDLE}
+
+export var stream_spin:AudioStream
 
 var machine:NativeStateMachine = NativeStateMachine.new()
 #var m_idle:StateMachine = StateMachine.new(self)
 var _delta:float
 
 onready var p_smoke:Particles = $P_Smoke
-onready var audio:CrashAudio = $SmartAudioStream
 onready var spin_area:Area = $SpinArea
 onready var animation:AnimationPlayer = $crash/AnimationPlayer
 
@@ -37,6 +40,7 @@ func _physics_process(delta):
 	ScreenDebugger.dict["STATE"] = STATE.keys()[machine.get_current_state()]
 #	ScreenDebugger.dict["Machine_Idle"] = IDLE.keys()[m_idle.get_current_state()]
 	ScreenDebugger.dict["Y VEL"] = velocity.y
+	ScreenDebugger.dict["Dir"] = dir
 #	ScreenDebugger.dict["idle_time"] = idle_time
 #	ScreenDebugger.dict["hor_speed"] = hor_speed
 #	ScreenDebugger.dict["contact"] = has_contact
@@ -49,6 +53,7 @@ func animation_almost_finished():
 	return animation.current_animation_position >= animation.current_animation_length - .05
 
 func emit_little_smoke():
+	print("test")
 	p_smoke.emitting = true
 	yield(get_tree().create_timer(.1,false),"timeout")
 	p_smoke.emitting = false
@@ -71,6 +76,10 @@ func cd_jump():
 	if abs(velocity.y) > 2 && !has_contact:
 		machine.change_state(STATE.JUMP)
 
+func cd_fall():
+	if velocity.y < 0 && !has_contact:
+		machine.change_state(STATE.FALL)
+
 func cd_spin():
 	if Input.is_action_just_pressed("cmd_spin") && !machine.state_is(STATE.SPIN):
 		machine.change_state(STATE.SPIN)
@@ -82,9 +91,15 @@ func cd_dash():
 ## ========== MAIN STATE MACHINE ========== ##
 
 func st_init_IDLE():
+	if machine.last_state_was(STATE.FALL) or machine.last_state_was(STATE.JUMP):
+		animation.animation_set_next("Land","Idle1")
+		animation.play("Land")
+		emit_little_smoke()
+	else:
+		animation.play("Idle1")
+		
 	idle_time = 5
 #	m_idle.change_state(IDLE.IDLE_NORMAL)
-	animation.play("Idle1")
 	
 	pass
 
@@ -104,7 +119,6 @@ func st_exit_IDLE():
 func st_init_WALK():
 	if machine.last_state_was(STATE.JUMP):
 		emit_little_smoke()
-		audio.emit_step()
 	$crash/AnimationPlayer.play("Run")
 	pass
 
@@ -113,14 +127,28 @@ func st_update_WALK():
 	cd_jump()
 	cd_spin()
 	cd_dash()
+	cd_fall()
 	pass
 	
 func st_exit_WALK():
 	
 	pass
 
+func st_init_FALL():
+	animation.play("Fall")
+	pass
+
+func st_update_FALL():
+	cd_idle()
+	cd_walk()
+	pass
+
+func st_exit_FALL():
+	
+	pass
+
 func st_init_JUMP():
-	audio.emit_jump()
+#	audio.emit_jump()
 	if hor_speed < 2 or machine.last_state_was(STATE.SPIN):
 		animation.play("Jump")
 #	else:
@@ -134,6 +162,7 @@ func st_update_JUMP():
 	cd_walk()
 	cd_idle()
 	cd_spin()
+	cd_fall()
 	pass
 
 func st_exit_JUMP():
@@ -141,7 +170,7 @@ func st_exit_JUMP():
 
 func st_init_SPIN():
 	enable_spin_area(true)
-	audio.emit_spin()
+	SoundManager.layer_play(SoundManager.bus_player,stream_spin,global_transform.origin )
 	$crash/CrashSpin.visible = true
 	$crash/CrashArmature001.visible = false
 	animation.play("CrashSpin1")
@@ -151,6 +180,7 @@ func st_init_SPIN():
 func st_update_SPIN():
 	if animation_almost_finished():
 		cd_idle()
+		cd_spin()
 		cd_walk()
 		cd_jump()
 	pass
@@ -166,7 +196,7 @@ var slide:bool = false
 func st_init_DASH():
 	rotate_shape(true)
 	if hor_speed > 1:
-		audio.emit_dash()
+#		audio.emit_dash()
 		input_enabled = false
 		p_smoke.emitting = true
 		animation.play("Slide")
@@ -241,7 +271,6 @@ func st_exit_DASH_WALK():
 func st_init_IDLE_NORMAL():
 	if machine.last_state_was(STATE.JUMP):
 		animation.animation_set_next("Land","Idle1")
-		audio.emit_step()
 		animation.play("Land")
 		emit_little_smoke()
 	else:

@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/crates/Crate.gd"
 }, {
+"base": "Crate",
+"class": "CrateActivator",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateActivator.gd"
+}, {
 "base": "CrateWumpa",
 "class": "CrateBounce",
 "language": "GDScript",
@@ -35,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://scripts/crates/CrateEnforced.gd"
 }, {
 "base": "Crate",
+"class": "CrateHide",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateHide.gd"
+}, {
+"base": "Crate",
 "class": "CrateIron",
 "language": "GDScript",
 "path": "res://scripts/crates/CrateIron.gd"
@@ -43,6 +53,21 @@ _global_script_classes=[ {
 "class": "CrateItem",
 "language": "GDScript",
 "path": "res://scripts/crates/CrateItem.gd"
+}, {
+"base": "Crate",
+"class": "CrateNitro",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateNitro.gd"
+}, {
+"base": "CrateWumpa",
+"class": "CrateNormal",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateNormal.gd"
+}, {
+"base": "Crate",
+"class": "CrateTNT",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateTNT.gd"
 }, {
 "base": "CrateItem",
 "class": "CrateWumpa",
@@ -92,11 +117,16 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CrashAudio": "",
 "Crate": "",
+"CrateActivator": "",
 "CrateBounce": "",
 "CrateCollection": "",
 "CrateEnforced": "",
+"CrateHide": "",
 "CrateIron": "",
 "CrateItem": "",
+"CrateNitro": "",
+"CrateNormal": "",
+"CrateTNT": "",
 "CrateWumpa": "",
 "CustomHello": "",
 "Hello": "",
@@ -111,13 +141,23 @@ _global_script_class_icons={
 [application]
 
 config/name="cpp-helper-template"
-run/main_scene="res://scenes/hello.tscn"
+run/main_scene="res://Level_Test.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[audio]
+
+mix_rate=22000
+output_latency=50
+channel_disable_threshold_db=0.0
+channel_disable_time=5.0
 
 [autoload]
 
 ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
 LevelManager="*res://scripts/Singletons/LevelManager.gd"
+SoundManager="*res://scripts/Singletons/SoundManager.gd"
+God="*res://scripts/GOD.gd"
 
 [c++]
 

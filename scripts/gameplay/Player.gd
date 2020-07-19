@@ -38,10 +38,10 @@ func _update_physics(delta):
 	
 	if input_enabled:
 		dir = Vector3()
-		dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-		dir.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		dir.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+		dir.z = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 		last_dir = dir
-	else: dir = last_dir
+#	else: dir = last_dir
 	
 	var cam_basis = cam.global_transform.basis
 	var basis = cam_basis.rotated(cam_basis.x, -cam_basis.get_euler().x)
@@ -80,9 +80,9 @@ func _update_physics(delta):
 	
 	pass
 
-func action_jump():
+func action_jump(high:int=0):
 	time_to_jump = TIME_JUMP
-	velocity.y = JUMP_SPEED
+	velocity.y = JUMP_SPEED + ( high * int(Input.is_action_pressed("ui_select")) * 250 )
 	has_contact = false
 
 var new_angle:float = 0

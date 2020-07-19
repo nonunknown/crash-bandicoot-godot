@@ -1,4 +1,4 @@
-extends AudioStreamPlayer3D
+extends Node
 
 
 export(Array,AudioStreamSample) var streams = []
@@ -11,6 +11,6 @@ func emit_step():
 		emit_step()
 		return
 	last_stream = index
-	stream = streams[index]
-	play()
+	var stream = streams[index]
+	SoundManager.layer_play(SoundManager.bus_step,stream,get_parent().global_transform.origin)
 	pass

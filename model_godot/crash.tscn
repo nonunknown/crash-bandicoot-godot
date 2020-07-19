@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://crash_model/crash.gltf" type="PackedScene" id=1]
-[ext_resource path="res://Sounds/walk/step_1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/crash/foot/iron/iron_foot1.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/RandomStep.gd" type="Script" id=3]
 [ext_resource path="res://Sounds/walk/step_2.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Sounds/walk/step_3.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Sounds/walk/step_4.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/crash/foot/iron/iron_foot3.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/crash/foot/iron/iron_foot2.wav" type="AudioStream" id=6]
 
 [node name="crash" instance=ExtResource( 1 )]
 
@@ -48,4 +48,4 @@ playback_process_mode = 0
 stream = ExtResource( 4 )
 unit_db = 15.0
 script = ExtResource( 3 )
-streams = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+streams = [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 5 ) ]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gameplay/base_crate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://textures/crate/common/boxes-crate-top.png" type="Texture" id=2]
+[ext_resource path="res://textures/crate/common/boxes-checkpoint-crate.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_name = "mat_side"
+params_cull_mode = 2
+albedo_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_name = "mat_top"
+params_cull_mode = 2
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="obj_crate_checkpoint" instance=ExtResource( 1 )]
+destroyable = true
+is_animated = false
+
+[node name="MeshInstance" parent="Model" index="0"]
+material/0 = SubResource( 15 )
+material/1 = SubResource( 2 )

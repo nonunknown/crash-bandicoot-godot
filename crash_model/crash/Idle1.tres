@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "Idle1"
-length = 2.12
+length = 2.05
 loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CrashArmature001/Skeleton 3:knee_r")

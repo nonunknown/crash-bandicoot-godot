@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://gameplay/base_crate_wumpa.tscn" type="PackedScene" id=1]
-
-[node name="obj_crate_question" instance=ExtResource( 1 )]

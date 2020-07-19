@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/activator.wav-e101b684c4341de7ef2103f11d9c1ada.sample"
+
+[deps]
+
+source_file="res://Sounds/crate/activator.wav"
+dest_files=[ "res://.import/activator.wav-e101b684c4341de7ef2103f11d9c1ada.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

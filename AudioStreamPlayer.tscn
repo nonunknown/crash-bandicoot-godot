@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sounds/crash/foot/normal/foot_step3.wav" type="AudioStream" id=1]
+
+[node name="AudioStreamPlayer" type="Node"]
+
+[node name="Player" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+unit_db = 40.0
+max_distance = 10000.0
+bus = "Player"
+
+[node name="Step" type="AudioStreamPlayer3D" parent="."]
+unit_db = 40.0
+max_distance = 10000.0
+bus = "Step"
+
+[node name="Enemies" type="AudioStreamPlayer3D" parent="."]
+unit_db = 40.0
+max_distance = 10000.0
+bus = "Enemies"
+
+[node name="Crates" type="AudioStreamPlayer3D" parent="."]
+unit_db = 40.0
+max_distance = 10000.0
+bus = "Crates"

@@ -2,7 +2,9 @@
 
 [resource]
 resource_name = "Fall"
-length = 1.56
+length = 1.54
+loop = true
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CrashArmature001/Skeleton 3:knee_r")
 tracks/0/interp = 1

@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://models/crate/final_crate.gltf" type="PackedScene" id=1]
 [ext_resource path="res://models/crate/final_crate/mat_top.tres" type="Material" id=2]
 [ext_resource path="res://models/crate/final_crate/mat_side.tres" type="Material" id=3]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+onready var side = $Armature/Skeleton/Cube.get_surface_material(0)
+onready var top = $Armature/Skeleton/Cube.get_surface_material(1)
+
+func set_mat_side(material:SpatialMaterial):
+	$Armature/Skeleton/Cube.set_surface_material(0,material);
+
+func set_mat_top(material:SpatialMaterial):
+	$Armature/Skeleton/Cube.set_surface_material(1,material)
+"
+
 [node name="crate" instance=ExtResource( 1 )]
+script = SubResource( 1 )
 
 [node name="Cube" parent="Armature/Skeleton" index="0"]
 material/0 = ExtResource( 3 )

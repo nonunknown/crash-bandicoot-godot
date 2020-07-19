@@ -15,12 +15,12 @@ func _ready():
 
 func _enter_tree():
 	print("test")
-	if throwable:
-		throwable = false
-		while(_time_god_mode > 0):
-			_time_god_mode -= 0.1
-			yield(get_tree(),"idle_frame")
-		throwable = true
+#	if throwable:
+#		throwable = false
+#		while(_time_god_mode > 0):
+#			_time_god_mode -= 0.1
+#			yield(get_tree(),"idle_frame")
+#		throwable = true
 
 func _physics_process(delta):
 	global_translate(global_transform.basis.z * delta * 50)

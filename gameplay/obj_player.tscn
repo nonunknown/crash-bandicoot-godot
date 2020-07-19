@@ -5,59 +5,71 @@
 [ext_resource path="res://gameplay/particles/obj_P_Smoke.tscn" type="PackedScene" id=3]
 [ext_resource path="res://model_godot/crash.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sounds/crash/spin.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Sounds/crash/jump.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Sounds/crash/dash.ogg" type="AudioStream" id=7]
-[ext_resource path="res://scripts/CrashAudio.gd" type="Script" id=8]
-[ext_resource path="res://Sounds/walk/step_1.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/crash/foot/normal/foot_step1.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/crash/foot/normal/foot_step5.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/crash/foot/normal/foot_step4.wav" type="AudioStream" id=12]
+[ext_resource path="res://crash_model/CrashSpin.png" type="Texture" id=13]
 [ext_resource path="res://Sounds/crash/foot/normal/foot_step2.wav" type="AudioStream" id=14]
+[ext_resource path="res://model/CrashPantsLower.material" type="Material" id=15]
+[ext_resource path="res://model/Material_009.material" type="Material" id=16]
 
 [sub_resource type="BoxShape" id=1]
 margin = 0.2
 extents = Vector3( 0.243805, 0.180622, 0.550856 )
 
 [sub_resource type="SpatialMaterial" id=2]
+params_diffuse_mode = 4
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_color = Color( 0.701961, 0.447059, 0.00392157, 1 )
+albedo_texture = ExtResource( 13 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0.878431, 0.580392, 0.113725, 1 )
+emission_energy = 0.04
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.72549, 0.72549, 0.72549, 1 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=4]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, -4.90909 ), 0.0, 0.0, 0, 0, Vector2( 1, 132.545 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
+[sub_resource type="CurveTexture" id=5]
 width = 512
-curve = SubResource( 3 )
+curve = SubResource( 4 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.518519, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0.00390625, 0.00379944, 0.00379944, 1 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 width = 32
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
 emission_box_extents = Vector3( 0.3, 0, 0 )
 direction = Vector3( 10, 0, 0 )
 spread = 88.45
 gravity = Vector3( 0, 2, 0 )
-angle_curve = SubResource( 4 )
-scale = 0.5
-color_ramp = SubResource( 6 )
+angle_curve = SubResource( 5 )
+scale = 46.48
+color_ramp = SubResource( 7 )
 
-[sub_resource type="QuadMesh" id=8]
+[sub_resource type="QuadMesh" id=9]
 material = ExtResource( 2 )
 
-[sub_resource type="BoxShape" id=9]
-extents = Vector3( 0.853699, 0.179798, 1 )
-
 [sub_resource type="BoxShape" id=10]
-extents = Vector3( 0.311525, 0.6184, 0.611893 )
+extents = Vector3( 0.716398, 0.114384, 0.785678 )
 
 [sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.330862, 0.6184, 0.3627 )
+
+[sub_resource type="BoxShape" id=12]
 extents = Vector3( 0.308235, 0.565954, 0.334854 )
 
 [node name="obj_player" type="KinematicBody" groups=[
@@ -67,6 +79,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8132, 1.12181, 0 )
 collision_mask = 15
 collision/safe_margin = 0.04
 script = ExtResource( 1 )
+stream_spin = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.548819, 0 )
@@ -79,20 +92,22 @@ cast_to = Vector3( 0, -0.398, 0 )
 
 [node name="crash" parent="." instance=ExtResource( 4 )]
 
+[node name="CrashSpin" parent="crash" index="1"]
+material/0 = SubResource( 2 )
+material/6 = ExtResource( 15 )
+material/7 = ExtResource( 16 )
+
 [node name="Bazooka" parent="crash" index="4"]
 transform = Transform( 0.0103608, 0.00332317, -0.00775806, 0.00119947, -0.0127389, -0.00385484, -0.00835418, 0.00229238, -0.010175, 0.0764031, -0.100458, -0.15902 )
 
 [node name="CrashMesh001" parent="crash/CrashArmature001/Skeleton 3" index="0"]
-material/4 = SubResource( 2 )
+material/4 = SubResource( 3 )
 
 [node name="AnimationPlayer" parent="crash" index="12"]
-playback_default_blend_time = 0.1
-method_call_mode = 1
+playback_process_mode = 1
+playback_default_blend_time = 0.05
 
 [node name="sfx_step" parent="crash" index="13"]
-unit_db = 80.0
-unit_size = 12.3
-max_distance = 1000.0
 streams = [ ExtResource( 10 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 11 ) ]
 
 [node name="P_Smoke" parent="." instance=ExtResource( 3 )]
@@ -102,14 +117,8 @@ lifetime = 0.77
 preprocess = 5.98
 randomness = 1.0
 fract_delta = false
-process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 8 )
-
-[node name="SmartAudioStream" type="AudioStreamPlayer3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.870845, 0 )
-unit_db = 20.0
-script = ExtResource( 8 )
-samples = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 9 ) ]
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 9 )
 
 [node name="SpinArea" type="Area" parent="." groups=[
 "Spin",
@@ -120,11 +129,11 @@ collision_mask = 12
 
 [node name="CollisionShape" type="CollisionShape" parent="SpinArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662916, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="SpinArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537834, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="BodyArea" type="Area" parent="."]
 collision_layer = 0
@@ -132,7 +141,7 @@ collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="BodyArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509198, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 [connection signal="area_entered" from="BodyArea" to="." method="_on_BodyArea_area_entered"]
 
 [editable path="crash"]

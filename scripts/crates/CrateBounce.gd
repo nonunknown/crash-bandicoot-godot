@@ -7,3 +7,4 @@ func event_player_touched(player:Player):
 	animation.play("bounce")
 	player.action_jump()
 	pass
+

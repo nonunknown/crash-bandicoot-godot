@@ -2,35 +2,33 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.s3tc.stex"
-path.etc2="res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.etc2.stex"
+path="res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/crate/common/boxes-tnt-3.png"
-dest_files=[ "res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.s3tc.stex", "res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.etc2.stex" ]
+dest_files=[ "res://.import/boxes-tnt-3.png-acc733cecccba8a181702fca49182f9c.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=2
+flags/repeat=true
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
