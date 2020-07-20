@@ -10,6 +10,9 @@ var _time_god_mode:float = 3
 onready var initial_pos:Vector3 = global_transform.origin
 onready var area:Area = $Area
 
+func _init():
+	add_to_group(str(Groups.ITEMS))
+
 func _ready():
 	set_physics_process(false)
 
@@ -62,7 +65,7 @@ func _enable():
 	global_transform.origin = initial_pos
 
 func _on_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group(str(Groups.PLAYER)):
 		event_touched(body)
 	
 	pass # Replace with function body.

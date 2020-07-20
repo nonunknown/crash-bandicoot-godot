@@ -9,11 +9,10 @@ func event_destroy(player):
 	$Area/CollisionShape.disabled = true	
 	if player!= null :player.action_jump(1)
 	$AnimationPlayer.play("activate")
+	destroyed = true
 
 func event_reenable():
 	.event_reenable()
-	set_process(false)
-	timer = 0.5
 	$ExplosionArea/CollisionShape.disabled = true
 	$Model.visible = true
 #	$AnimationPlayer.seek(0.0,false)
@@ -30,15 +29,8 @@ func event_explode():
 	$Area/CollisionShape.disabled = true
 	$CollisionShape.disabled = true
 	$ExplosionArea/CollisionShape.disabled = false
-	set_process(true)
-
-var timer = 0.5
-
-func _process(delta):
-	timer -= delta
-	if timer < 0:
-		$ExplosionArea/CollisionShape.disabled = true
-		set_process(false)
+	yield(get_tree().create_timer(0.3,false),"timeout")
+	$ExplosionArea/CollisionShape.disabled = true
 
 func _on_animation_finished(anim_name):
 	event_explode()
@@ -47,9 +39,9 @@ func _on_animation_finished(anim_name):
 
 func _on_ExplosionArea_body_entered(body):
 	print("found "+body.name)
-	if body.is_in_group("Player"):
+	if body.is_in_group(str(Groups.PLAYER)):
 		body.die()
-	if body.is_in_group("C_CRATE"):
+	if body.is_in_group(str(Groups.CRATES)):
 		print("test")
 		body.event_destroy(null)
 	pass # Replace with function body.

@@ -4,9 +4,7 @@
 [ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=2]
 [ext_resource path="res://model/Wumpa/mat_wumpa.material" type="Material" id=3]
 
-[node name="obj_item_wumpa" groups=[
-"I_WUMPA",
-] instance=ExtResource( 2 )]
+[node name="obj_item_wumpa" instance=ExtResource( 2 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
 transform = Transform( 0.027, 0, 0, 0, 0.027, 0, 0, 0, 0.027, 0, -0.185593, 0 )

@@ -13,7 +13,7 @@
 [ext_resource path="res://materials/crates/mat_tnt_top.tres" type="Material" id=11]
 [ext_resource path="res://particles/explosion.png" type="Texture" id=12]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -29,8 +29,8 @@ emission_energy = 0.06
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="QuadMesh" id=5]
-material = SubResource( 4 )
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "activate"
@@ -63,28 +63,28 @@ tracks/1/keys = {
 "values": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ) ]
 }
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.533333, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 width = 128
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0.227273 ), 0.0, 0.0, 0, 0, Vector2( 0.512658, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
+[sub_resource type="CurveTexture" id=7]
 width = 128
-curve = SubResource( 8 )
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=8]
 gravity = Vector3( 0, 0, 0 )
 scale = 4.25
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 7 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -96,20 +96,19 @@ params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 12 )
 
-[sub_resource type="PlaneMesh" id=12]
-material = SubResource( 11 )
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 9 )
 
-[sub_resource type="BoxShape" id=13]
+[sub_resource type="BoxShape" id=11]
 extents = Vector3( 1.21167, 1.23751, 1.412 )
 
 [node name="obj_crate_tnt" instance=ExtResource( 1 )]
 script = ExtResource( 10 )
-_name = ""
 destroyable = true
 is_animated = false
 
 [node name="Particles" parent="." index="2"]
-draw_pass_1 = SubResource( 5 )
+draw_pass_1 = SubResource( 2 )
 
 [node name="MeshInstance" parent="Model" index="0"]
 material/0 = ExtResource( 3 )
@@ -128,15 +127,15 @@ emitting = false
 amount = 1
 lifetime = 0.31
 one_shot = true
-process_material = SubResource( 10 )
-draw_pass_1 = SubResource( 12 )
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )
 
 [node name="ExplosionArea" type="Area" parent="." index="7"]
 collision_layer = 0
 collision_mask = 31
 
 [node name="CollisionShape" type="CollisionShape" parent="ExplosionArea" index="0"]
-shape = SubResource( 13 )
+shape = SubResource( 11 )
 disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_ExplosionArea_body_entered"]

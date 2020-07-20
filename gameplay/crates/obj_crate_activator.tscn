@@ -27,7 +27,6 @@ emission_on_uv2 = false
 
 [node name="obj_crate_activator" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
-_name = ""
 destroyable = true
 activator_id = 0
 

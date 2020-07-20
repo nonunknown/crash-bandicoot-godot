@@ -26,9 +26,13 @@ var time_to_jump = TIME_JUMP
 onready var _initial_speed = max_speed
 
 
+func _init():
+	add_to_group(str(Groups.PLAYER))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$SpinArea.add_to_group(str(Groups.SPIN))
+	
 	cam = get_viewport().get_camera()
 	pass # Replace with function body.
 

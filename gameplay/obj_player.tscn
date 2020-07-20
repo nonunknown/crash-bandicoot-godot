@@ -72,9 +72,7 @@ extents = Vector3( 0.330862, 0.6184, 0.3627 )
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 0.308235, 0.565954, 0.334854 )
 
-[node name="obj_player" type="KinematicBody" groups=[
-"Player",
-]]
+[node name="obj_player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8132, 1.12181, 0 )
 collision_mask = 15
 collision/safe_margin = 0.04
@@ -120,9 +118,7 @@ fract_delta = false
 process_material = SubResource( 8 )
 draw_pass_1 = SubResource( 9 )
 
-[node name="SpinArea" type="Area" parent="." groups=[
-"Spin",
-]]
+[node name="SpinArea" type="Area" parent="."]
 monitoring = false
 collision_layer = 16
 collision_mask = 12

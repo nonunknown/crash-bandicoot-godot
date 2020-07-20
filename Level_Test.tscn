@@ -80,10 +80,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, -0.6 )
 
 [node name="obj_crate_iron10" parent="Base_Crates" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 2.60468, -0.6 )
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 4.8, 3.20468, -0.6 )
 
 [node name="obj_crate_iron11" parent="Base_Crates" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 2.66339, -0.6 )
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 7.2, 3.26339, -0.6 )
 
 [node name="obj_crate_iron6" parent="Base_Crates" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -0.6 )

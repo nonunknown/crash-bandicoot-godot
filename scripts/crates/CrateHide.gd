@@ -1,6 +1,11 @@
 extends Crate
 class_name CrateHide
 
+func _init():
+	._init()
+	add_to_group(str(Groups.HIDE))
+	
+
 export var spawn_id = -1
 export var activator_id = -1
 export var crate:PackedScene

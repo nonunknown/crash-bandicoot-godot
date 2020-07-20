@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/crates/CrateBounce.gd"
 }, {
+"base": "Crate",
+"class": "CrateCheckpoint",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateCheckpoint.gd"
+}, {
 "base": "CrateWumpa",
 "class": "CrateCollection",
 "language": "GDScript",
@@ -119,6 +124,7 @@ _global_script_class_icons={
 "Crate": "",
 "CrateActivator": "",
 "CrateBounce": "",
+"CrateCheckpoint": "",
 "CrateCollection": "",
 "CrateEnforced": "",
 "CrateHide": "",
@@ -155,9 +161,10 @@ channel_disable_time=5.0
 [autoload]
 
 ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
-LevelManager="*res://scripts/Singletons/LevelManager.gd"
-SoundManager="*res://scripts/Singletons/SoundManager.gd"
 God="*res://scripts/GOD.gd"
+SoundManager="*res://scripts/Singletons/SoundManager.gd"
+LevelManager="*res://scripts/Singletons/LevelManager.gd"
+Groups="*res://scripts/Singletons/Groups.gd"
 
 [c++]
 

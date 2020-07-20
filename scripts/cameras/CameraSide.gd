@@ -1,7 +1,7 @@
 extends Camera
 
 
-onready var target:Spatial = get_tree().get_nodes_in_group("Player")[0]
+onready var target:Spatial = Groups.get_first(Groups.PLAYER)
 
 func _process(delta):
 	var target_pos = target.global_transform.origin

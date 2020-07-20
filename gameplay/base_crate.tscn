@@ -49,13 +49,10 @@ emission_on_uv2 = false
 [sub_resource type="QuadMesh" id=7]
 material = SubResource( 6 )
 
-[node name="base_crate" type="StaticBody" groups=[
-"C_CRATE",
-]]
+[node name="base_crate" type="StaticBody"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource( 2 )
-_name = "Question"
 destroyable = false
 is_animated = true
 
@@ -91,6 +88,11 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 mesh = ExtResource( 5 )
 material/0 = ExtResource( 6 )
 material/1 = ExtResource( 4 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114863, -0.0881877, 0 )
+enabled = true
+collision_mask = 8
 [connection signal="area_entered" from="Area" to="." method="_on_Area_entered"]
 [connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_body_exited"]
