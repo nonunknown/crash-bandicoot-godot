@@ -16,7 +16,6 @@ emission_on_uv2 = false
 
 [node name="obj_crate_normal" instance=ExtResource( 3 )]
 script = ExtResource( 2 )
-_name = ""
 destroyable = true
 is_animated = false
 amt_wumpa = 1

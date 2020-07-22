@@ -215,7 +215,7 @@ func st_init_DASH():
 	pass
 
 func st_update_DASH():
-	var pressed = Input.is_action_pressed("cmd_dash")
+#	var pressed = Input.is_action_pressed("cmd_dash")
 	if slide: 
 		max_speed = 10
 	if slide && animation_almost_finished():
@@ -313,6 +313,6 @@ func st_exit_IDLE_EXTRA():
 	pass
 
 
-func _on_BodyArea_area_entered(area):
+func _on_BodyArea_area_entered(_area):
 	die()
 	pass # Replace with function body.

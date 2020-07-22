@@ -1,0 +1,18 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://model/Wumpa/Wumpa.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/items/ItemWumpa.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/item/got_wumpa.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/item/wumpa_hud.wav" type="AudioStream" id=5]
+[ext_resource path="res://model/Wumpa/mat_wumpa.material" type="Material" id=6]
+
+[node name="obj_item_Wumpa" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+picked = ExtResource( 4 )
+added = ExtResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
+transform = Transform( 0.0240193, 0, 0, 0, 0.0240193, 0, 0, 0, 0.0240193, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 6 )

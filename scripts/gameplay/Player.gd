@@ -71,7 +71,7 @@ func _update_physics(delta):
 	
 	if ( has_contact and !is_on_floor() ):
 #		print("test")
-		var n = $Ray.get_collision_normal()
+#		var n = $Ray.get_collision_normal()
 		move_and_collide(Vector3(0,-1,0))
 	
 	velocity.x = dir.x * max_speed

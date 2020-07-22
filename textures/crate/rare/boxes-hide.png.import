@@ -2,28 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.s3tc.stex"
-path.etc2="res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.etc2.stex"
+path="res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/crate/rare/boxes-hide.png"
-dest_files=[ "res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.s3tc.stex", "res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.etc2.stex" ]
+dest_files=[ "res://.import/boxes-hide.png-5ea63a01a6a6ef6cce5bc81a7b55a91f.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=1
 process/fix_alpha_border=true

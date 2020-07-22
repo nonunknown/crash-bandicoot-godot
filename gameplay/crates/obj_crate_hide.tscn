@@ -9,14 +9,19 @@ extents = Vector3( 0.230389, 0.332363, 0.33591 )
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
+flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_specular_mode = 4
 params_blend_mode = 1
 params_cull_mode = 2
-albedo_color = Color( 0.996078, 0.996078, 0.996078, 0.231373 )
+albedo_color = Color( 0.988235, 0.980392, 0.980392, 1 )
 albedo_texture = ExtResource( 2 )
+metallic_specular = 0.0
+roughness = 0.0
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.39
 emission_operator = 0
 emission_on_uv2 = false
 

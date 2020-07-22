@@ -1,4 +1,4 @@
-extends StaticBody
+extends KinematicBody
 class_name Item
 
 export var throwable:bool = true
@@ -68,6 +68,7 @@ func _enable():
 	global_transform.origin = initial_pos
 
 func _on_body_entered(body):
+	print("entered")
 	if body.is_in_group(str(Groups.PLAYER)):
 		event_touched(body)
 	

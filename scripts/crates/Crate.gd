@@ -52,7 +52,7 @@ func event_player_touched(player:Player):
 	event_destroy(player)
 	pass
 
-func event_player_untouched(body):
+func event_player_untouched(_body):
 	pass
 
 

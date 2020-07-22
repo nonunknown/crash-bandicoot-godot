@@ -38,7 +38,7 @@ func event_explode():
 	yield(get_tree().create_timer(0.3,false),"timeout")
 	$ExplosionArea/CollisionShape.disabled = true
 
-func _on_animation_finished(anim_name):
+func _on_animation_finished(_anim_name):
 	event_explode()
 	
 

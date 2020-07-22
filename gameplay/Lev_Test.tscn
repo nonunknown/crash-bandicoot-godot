@@ -12,7 +12,7 @@
 [ext_resource path="res://gameplay/crates/obj_crate_activator.tscn" type="PackedScene" id=10]
 [ext_resource path="res://particles/explosion.png" type="Texture" id=11]
 [ext_resource path="res://gameplay/crates/obj_crate_nitro.tscn" type="PackedScene" id=12]
-[ext_resource path="res://gameplay/obj_item_wumpa.tscn" type="PackedScene" id=13]
+[ext_resource path="res://gameplay/items/obj_item_wumpa.tscn" type="PackedScene" id=13]
 [ext_resource path="res://textures/crate/rare/boxes-particles.png" type="Texture" id=14]
 [ext_resource path="res://gameplay/crates/obj_crate_iron_bounce.tscn" type="PackedScene" id=15]
 
@@ -51,16 +51,15 @@ material = SubResource( 4 )
 background_mode = 1
 ambient_light_color = Color( 0.972549, 0.972549, 0.972549, 1 )
 ambient_light_sky_contribution = 0.0
+fog_enabled = true
 fog_color = Color( 0, 0, 0, 1 )
-fog_sun_color = Color( 0.105882, 0.12549, 0.635294, 1 )
-fog_sun_amount = 0.11
+fog_sun_amount = 0.06
 fog_depth_begin = 0.0
-fog_depth_end = 365.8
-fog_depth_curve = 1.31951
-fog_transmit_enabled = true
-fog_transmit_curve = 0.901249
-fog_height_min = 210.0
-fog_height_max = -1400.4
+fog_depth_end = 397.6
+fog_depth_curve = 2.54913
+fog_transmit_curve = 2.29739
+fog_height_min = -1313.8
+fog_height_max = -505.4
 ssao_enabled = true
 glow_enabled = true
 glow_intensity = 1.75
@@ -126,10 +125,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.620071, 1.30816, -0.24352 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266639, -0.000102639 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-09, -0.000871558, 0.00996195, 0, 0.00996195, 0.000871558, -0.01, 1.41995e-10, -1.62301e-09, 2.617, 2, -0.5 )
+transform = Transform( -1.62921e-09, -0.000871558, 0.00996195, 0, 0.00996195, 0.000871558, -0.01, 1.41995e-10, -1.62301e-09, 2.617, 2, -18.7069 )
 current = true
 fov = 81.5
-far = 348.4
+far = 1260.1
 script = ExtResource( 1 )
 
 [node name="Listener" type="Listener" parent="Camera"]
@@ -1031,8 +1030,8 @@ visible = false
 destroyable = false
 is_animated = true
 
-[node name="obj_item_wumpa" parent="." instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05258, 0 )
+[node name="obj_item_Wumpa" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40866, 1.54229, -2.44328 )
 
 [editable path="obj_player"]
 

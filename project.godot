@@ -99,7 +99,7 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://scripts/hello.gdns"
 }, {
-"base": "StaticBody",
+"base": "KinematicBody",
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/items/Item.gd"
@@ -203,6 +203,12 @@ plugin/plugin_set_up=true
 [debug]
 
 settings/fps/force_fps=30
+gdscript/warnings/treat_warnings_as_errors=true
+gdscript/warnings/exclude_addons=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/shadowed_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
