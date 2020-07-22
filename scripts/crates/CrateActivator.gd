@@ -7,7 +7,7 @@ onready var stream_sfx = load("res://Sounds/crate/activator.wav") as AudioStream
 func event_destroy(player):
 	print("test")
 	animation.play("Smash")
-	SoundManager.layer_play(SoundManager.bus_crates,stream_sfx,global_transform.origin)
+	SoundManager.layer_play(SoundManager.bus_step,stream_sfx,global_transform.origin)
 	LevelManager.activate_hided_crates(activator_id)
 	$Area/CollisionShape.disabled = true
 	pass

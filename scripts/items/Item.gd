@@ -15,6 +15,7 @@ func _init():
 
 func _ready():
 	set_physics_process(false)
+	LevelManager.connect("event_restart",self,"_on_event_restart")
 
 func _enter_tree():
 	print("test")
@@ -25,24 +26,27 @@ func _enter_tree():
 #			yield(get_tree(),"idle_frame")
 #		throwable = true
 
-func _physics_process(delta):
-	global_translate(global_transform.basis.z * delta * 50)
-	_time_to_destroy -= delta
-	if _time_to_destroy < 0:
-		set_physics_process(false)
-		_time_to_destroy = 1
-		_disable()
+#func _physics_process(delta):
+#	global_translate(global_transform.basis.z * delta * 50)
+#	_time_to_destroy -= delta
+#	if _time_to_destroy < 0:
+#		set_physics_process(false)
+#		_time_to_destroy = 1
+#		_disable()
 		
 
 func event_touched(player:Player):
-	_disable()
-	print("got a wumpa")
+#	_disable()
 	pass
 
 func event_spinned(player:Player):
-	if !throwable: return
-	rotation_degrees.y = rand_range(0,360)
-	set_physics_process(true)
+	if !throwable and !can_respawn:
+		queue_free()
+	elif can_respawn:
+		visible = false
+		
+#	rotation_degrees.y = rand_range(0,360)
+#	set_physics_process(true)
 
 
 func event_reenable():
@@ -60,7 +64,6 @@ func _destroy():
 	
 func _enable():
 	visible = true
-	set_physics_process(false)
 	$Area/CollisionShape.disabled = false
 	global_transform.origin = initial_pos
 
@@ -70,7 +73,10 @@ func _on_body_entered(body):
 	
 	pass # Replace with function body.
 
-
 func _on_area_entered(area):
 	event_spinned(area)
 	pass # Replace with function body.
+
+func _on_event_restart():
+	queue_free()
+	pass

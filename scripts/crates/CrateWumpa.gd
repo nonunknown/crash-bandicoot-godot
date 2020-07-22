@@ -10,4 +10,4 @@ func on_crate_destroy():
 	for i in range(amt_wumpa):
 		var wumpa:Item = ps_wumpa.instance()
 		get_parent().add_child(wumpa)
-		wumpa.global_transform.origin = global_transform.origin
+		wumpa.global_transform.origin = global_transform.origin + Vector3(0,10,0)

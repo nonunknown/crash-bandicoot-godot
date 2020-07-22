@@ -10,12 +10,11 @@ void NativeStateMachine::_register_methods()
     register_method("get_current_state", &NativeStateMachine::get_current_state);
     register_method("last_state_was", &NativeStateMachine::last_state_was);
     register_method("state_is", &NativeStateMachine::state_is);
-    register_method("register_child", &NativeStateMachine::register_child);
+    // register_method("register_child", &NativeStateMachine::register_child);
 }
 
 void NativeStateMachine::_init()
 {
-    is_changing = false;
 }
 
 uint8_t NativeStateMachine::get_current_state()
@@ -66,16 +65,13 @@ void NativeStateMachine::register_state(Node* _target, Array keys)
     _call("st_update_"+states[0]);
 }
 
-void NativeStateMachine::register_child(NativeStateMachine* _child)
-{
-    child = _child;
-}
+
 
 void NativeStateMachine::_call(String name)
 {
     func->set_function(name);
     func->call_func();
-    Godot::print(name);
+    // Godot::print(name);
 }
 
 NativeStateMachine::NativeStateMachine()

@@ -24,3 +24,6 @@ bus = "Enemies"
 unit_db = 40.0
 max_distance = 10000.0
 bus = "Crates"
+
+[node name="Items" type="AudioStreamPlayer" parent="."]
+bus = "Items"

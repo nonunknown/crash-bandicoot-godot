@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://crash_model/crash/CrashLeftShoe.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://crash_model/crash/CrashRightEye.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://crash_model/crash/CrashTexturedAlpha_001.material" type="Material" id=3]
+[ext_resource path="res://crash_model/crash/CrashRightShoe.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://crash_model/crashtex.png" type="Texture" id=5]
+[ext_resource path="res://crash_model/crash/CrashLeftEye.tres" type="ArrayMesh" id=6]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Spatial
+
+func _enter_tree():
+	for child in get_children():
+		child.add_central_force(Vector3(0,30000,0))
+		child.add_torque(Vector3.ONE * 5)
+"
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.106667, 0.112922, 0.158631 )
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.0365601
+
+[node name="obj_feet_eye" type="Spatial"]
+script = SubResource( 5 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.230445, 0, 0 )
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 100.0
+
+[node name="CrashLeftShoe" type="MeshInstance" parent="RigidBody"]
+use_in_baked_light = true
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+material/1 = null
+material/2 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102931, 0 )
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="."]
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 100.0
+
+[node name="CrashRightShoe" type="MeshInstance" parent="RigidBody3"]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+material/1 = null
+material/2 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000274405, 0 )
+shape = SubResource( 4 )
+
+[node name="RigidBody4" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301837, 0 )
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 100.0
+
+[node name="CrashLeftEye" type="MeshInstance" parent="RigidBody4"]
+transform = Transform( 0.0357135, 0, 0, 0, 0.0357135, 0, 0, 0, 0.0357135, 0, 0, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000274405, 0 )
+shape = SubResource( 4 )
+
+[node name="RigidBody5" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233176, 0.24459, 0 )
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 100.0
+
+[node name="CrashRightEye" type="MeshInstance" parent="RigidBody5"]
+transform = Transform( 0.0357135, 0, 0, 0, 0, -0.0357135, 0, 0.0357135, 0, 0, 0, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000274405, 0 )
+shape = SubResource( 4 )

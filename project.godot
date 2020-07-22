@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/CrashAudio.gd"
 }, {
-"base": "StaticBody",
+"base": "KinematicBody",
 "class": "Crate",
 "language": "GDScript",
 "path": "res://scripts/crates/Crate.gd"
@@ -55,6 +55,11 @@ _global_script_classes=[ {
 "path": "res://scripts/crates/CrateIron.gd"
 }, {
 "base": "Crate",
+"class": "CrateIronBounce",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateIronBounce.gd"
+}, {
+"base": "Crate",
 "class": "CrateItem",
 "language": "GDScript",
 "path": "res://scripts/crates/CrateItem.gd"
@@ -84,6 +89,11 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://scripts/custom_hello.gdns"
 }, {
+"base": "Node",
+"class": "GravityCrateManager",
+"language": "GDScript",
+"path": "res://scripts/crates/GravityCrateManager.gd"
+}, {
 "base": "",
 "class": "Hello",
 "language": "NativeScript",
@@ -93,6 +103,11 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/items/Item.gd"
+}, {
+"base": "Item",
+"class": "ItemWumpa",
+"language": "GDScript",
+"path": "res://scripts/items/ItemWumpa.gd"
 }, {
 "base": "",
 "class": "NativeStateMachine",
@@ -129,14 +144,17 @@ _global_script_class_icons={
 "CrateEnforced": "",
 "CrateHide": "",
 "CrateIron": "",
+"CrateIronBounce": "",
 "CrateItem": "",
 "CrateNitro": "",
 "CrateNormal": "",
 "CrateTNT": "",
 "CrateWumpa": "",
 "CustomHello": "",
+"GravityCrateManager": "",
 "Hello": "",
 "Item": "",
+"ItemWumpa": "",
 "NativeStateMachine": "",
 "Player": "",
 "PlayerState": "",
@@ -146,8 +164,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="cpp-helper-template"
-run/main_scene="res://Level_Test.tscn"
+config/name="Crash Is Doomed"
 run/low_processor_mode=true
 config/icon="res://icon.png"
 

@@ -46,12 +46,10 @@ tracks/1/keys = {
 
 [node name="obj_crate_nitro" instance=ExtResource( 2 )]
 script = ExtResource( 4 )
-_name = ""
 destroyable = true
 is_animated = false
 
 [node name="MeshInstance" parent="Model" index="0"]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
 

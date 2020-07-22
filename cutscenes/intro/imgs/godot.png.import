@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/asd.jpg-72c4c78b3ad587d6ae15ecce2b2ed62a.s3tc.stex"
-path.etc2="res://.import/asd.jpg-72c4c78b3ad587d6ae15ecce2b2ed62a.etc2.stex"
+path.s3tc="res://.import/godot.png-bcac9ead45a57d354766d693d3eca738.s3tc.stex"
+path.etc2="res://.import/godot.png-bcac9ead45a57d354766d693d3eca738.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://asd.jpg"
-dest_files=[ "res://.import/asd.jpg-72c4c78b3ad587d6ae15ecce2b2ed62a.s3tc.stex", "res://.import/asd.jpg-72c4c78b3ad587d6ae15ecce2b2ed62a.etc2.stex" ]
+source_file="res://cutscenes/intro/imgs/godot.png"
+dest_files=[ "res://.import/godot.png-bcac9ead45a57d354766d693d3eca738.s3tc.stex", "res://.import/godot.png-bcac9ead45a57d354766d693d3eca738.etc2.stex" ]
 
 [params]
 

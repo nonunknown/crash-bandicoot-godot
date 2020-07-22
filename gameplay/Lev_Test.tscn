@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/cameras/CameraSide.gd" type="Script" id=1]
 [ext_resource path="res://OST/lev_dark.ogg" type="AudioStream" id=2]
@@ -11,16 +11,20 @@
 [ext_resource path="res://gameplay/crates/obj_crate_hide.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gameplay/crates/obj_crate_activator.tscn" type="PackedScene" id=10]
 [ext_resource path="res://particles/explosion.png" type="Texture" id=11]
+[ext_resource path="res://gameplay/crates/obj_crate_nitro.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gameplay/obj_item_wumpa.tscn" type="PackedScene" id=13]
+[ext_resource path="res://textures/crate/rare/boxes-particles.png" type="Texture" id=14]
+[ext_resource path="res://gameplay/crates/obj_crate_iron_bounce.tscn" type="PackedScene" id=15]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.525773, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 0.96875, 0.96875, 1, 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 width = 128
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 1.0
 emission_shape = 2
 emission_box_extents = Vector3( 100, 50, 50 )
@@ -30,20 +34,20 @@ initial_velocity = 43.1
 angular_velocity = -111.73
 scale = 3.24
 scale_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 2 )
 hue_variation = 1.0
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
 albedo_texture = ExtResource( 11 )
 
-[sub_resource type="QuadMesh" id=7]
-material = SubResource( 6 )
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=6]
 background_mode = 1
 ambient_light_color = Color( 0.972549, 0.972549, 0.972549, 1 )
 ambient_light_sky_contribution = 0.0
@@ -63,18 +67,60 @@ glow_intensity = 1.75
 adjustment_enabled = true
 adjustment_saturation = 0.66
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=7]
 script/source = "extends WorldEnvironment
 
 func _ready():
 	environment.fog_enabled = true
 "
 
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.299246, 0.302956, 0.312068 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 0.289012, 0.321688, 0.28451 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0.0126582, 0.461364 ), 0.0, 0.0, 0, 0, Vector2( 0.21519, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+width = 128
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+spread = 180.0
+flatness = 0.81
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 19.98
+angular_velocity = 720.0
+damping = 95.4
+scale = 0.54
+scale_curve = SubResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=13]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 0.585938, 0, 0.807843 )
+albedo_texture = ExtResource( 14 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0.917969, 0.723909, 0.54863, 1 )
+emission_energy = 0.06
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=14]
+material = SubResource( 13 )
+
 [node name="Level_Test" type="Spatial"]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="obj_player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.576921, 1.30816, -13.2631 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.620071, 1.30816, -0.24352 )
 
 [node name="Ray" parent="obj_player" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266639, -0.000102639 )
@@ -97,18 +143,18 @@ lifetime = 6.05
 randomness = 1.0
 visibility_aabb = AABB( -59.1537, -72.6709, -63.9743, 118.307, 145.342, 129.595 )
 local_coords = false
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
 
 [node name="DeathArea" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.43217, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95731, 0 )
 
 [node name="CollisionShape" parent="DeathArea" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.0748 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-script = SubResource( 2 )
+environment = SubResource( 6 )
+script = SubResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
@@ -160,12 +206,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, -0.6 )
 [node name="obj_crate_iron10" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 2.60468, -0.6 )
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 4.8, 3.13303, -0.6 )
 
 [node name="obj_crate_iron11" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 2.66339, -0.6 )
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 7.2, 3.19174, -0.6 )
 
 [node name="obj_crate_iron6" parent="Base_Crates" groups=[
 "C_CRATE",
@@ -200,17 +246,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4, 0, -0.599999 )
 [node name="obj_crate_iron23" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 14.4, 1.8, -0.599999 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 14.4, 1.80839, -0.599999 )
+gravity_type = 1
+
+[node name="CollisionShape" parent="Base_Crates/obj_crate_iron23" index="0"]
+shape = SubResource( 8 )
+
+[node name="CollisionShape" parent="Base_Crates/obj_crate_iron23/Area" index="0"]
+shape = SubResource( 9 )
+
+[node name="Particles" parent="Base_Crates/obj_crate_iron23" index="2"]
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 14 )
+
+[node name="MeshInstance" parent="Base_Crates/obj_crate_iron23/Model" index="0"]
+transform = Transform( 0.3, 0, -8.88178e-16, 0, 0.3, 0, 8.88178e-16, 0, 0.3, 0, 0, 0 )
 
 [node name="obj_crate_iron24" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 1.8, -0.6 )
+gravity_type = 1
 
 [node name="obj_crate_iron25" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 1.8, -0.6 )
+gravity_type = 1
 
 [node name="obj_crate_iron18" parent="Base_Crates" groups=[
 "C_CRATE",
@@ -347,6 +409,56 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4, 0, -1.2 )
 ] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -1.2 )
 
+[node name="obj_crate_iron69" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 24, 0, -8.4 )
+
+[node name="obj_crate_iron70" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 24, 0, -7.8 )
+
+[node name="obj_crate_iron72" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 21, 0, -7.8 )
+
+[node name="obj_crate_iron73" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 20.4, 0, -7.8 )
+
+[node name="obj_crate_iron74" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.8, 0, -7.8 )
+
+[node name="obj_crate_iron75" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.2, 0, -7.8 )
+
+[node name="obj_crate_iron76" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 20.4, 0.6, -7.8 )
+
+[node name="obj_crate_iron77" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.8, 1.2, -7.8 )
+
+[node name="obj_crate_iron78" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.2, 1.8, -7.8 )
+
+[node name="obj_crate_iron71" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 24, 0, -7.2 )
+
 [node name="obj_crate_iron34" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
@@ -385,294 +497,542 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.2, 0, -0.599998 )
 [node name="obj_crate_iron51" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -1.2 )
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 45, 0, -1.2 )
 
 [node name="obj_crate_iron52" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.6, 0, -1.2 )
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 45.6, 0, -1.2 )
 
 [node name="obj_crate_iron53" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.2, 0, -1.2 )
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 46.2, 0, -1.2 )
 
-[node name="Spatial" type="Spatial" parent="."]
+[node name="obj_crate_iron54" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45, 0, -7.2 )
+
+[node name="obj_crate_iron55" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45.6, 0, -7.2 )
+
+[node name="obj_crate_iron56" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.2, 0, -7.2 )
+
+[node name="obj_crate_iron57" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45, 0, -7.8 )
+
+[node name="obj_crate_iron63" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 0, -7.8 )
+
+[node name="obj_crate_iron64" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 0.6, -7.8 )
+
+[node name="obj_crate_iron65" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 1.2, -7.8 )
+
+[node name="obj_crate_iron66" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 1.8, -7.8 )
+
+[node name="obj_crate_iron67" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 2.4, -7.8 )
+
+[node name="obj_crate_iron68" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 3, -7.8 )
+
+[node name="obj_crate_iron58" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45.6, 0, -7.8 )
+
+[node name="obj_crate_iron59" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.2, 0, -7.8 )
+
+[node name="obj_crate_iron60" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45, 0, -8.4 )
+
+[node name="obj_crate_iron61" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45.6, 0, -8.4 )
+
+[node name="obj_crate_iron62" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.2, 0, -8.4 )
+
+[node name="Dyncamic_Crates" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.2, 0, 0 )
 
-[node name="base_crate" parent="Spatial" groups=[
+[node name="base_crate" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0, -0.6 )
 
-[node name="base_crate2" parent="Spatial" groups=[
+[node name="base_crate2" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.2, -0.6 )
 
-[node name="base_crate4" parent="Spatial" groups=[
+[node name="base_crate4" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.2, -0.6 )
 
-[node name="base_crate3" parent="Spatial" groups=[
+[node name="base_crate3" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, -7.62939e-08, -0.6 )
 
-[node name="base_crate5" parent="Spatial" groups=[
+[node name="base_crate5" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, -7.62939e-08, -0.6 )
 
-[node name="base_crate6" parent="Spatial" groups=[
+[node name="base_crate6" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4, 0.6, -0.6 )
 
-[node name="base_crate7" parent="Spatial" groups=[
+[node name="base_crate7" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0.6, -0.6 )
 
-[node name="base_crate8" parent="Spatial" groups=[
+[node name="base_crate8" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 0.6, -0.6 )
 
-[node name="base_crate9" parent="Spatial" groups=[
+[node name="base_crate9" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.6, -0.599999 )
 
-[node name="base_crate10" parent="Spatial" groups=[
+[node name="base_crate10" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6, -7.62939e-08, -0.599999 )
 
-[node name="base_crate11" parent="Spatial" groups=[
+[node name="base_crate11" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6, 0.6, -0.599999 )
 
-[node name="base_crate12" parent="Spatial" groups=[
+[node name="base_crate12" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, 1.2, -0.599999 )
 
-[node name="base_crate14" parent="Spatial" groups=[
+[node name="base_crate14" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8, -0.6, -0.599999 )
 
-[node name="base_crate15" parent="Spatial" groups=[
+[node name="base_crate15" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.4, -7.62939e-08, -0.599999 )
 
-[node name="base_crate16" parent="Spatial" groups=[
+[node name="base_crate16" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0.6, -0.599999 )
 
-[node name="base_crate17" parent="Spatial" groups=[
+[node name="base_crate18" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 42.6, 3.00747, -7.80021 )
+
+[node name="base_crate19" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 40.2, 1.80747, -7.80021 )
+
+[node name="base_crate20" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 39, 1.80747, -7.80021 )
+
+[node name="base_crate21" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 39.6, 1.80747, -7.80021 )
+
+[node name="base_crate17" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.6, 1.2, -0.599999 )
 
-[node name="base_crate13" parent="Spatial" groups=[
+[node name="base_crate13" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, 1.8, -0.599999 )
 
-[node name="obj_crate_normal" parent="Spatial" groups=[
+[node name="obj_crate_normal" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8, 0.6, -0.6 )
 
-[node name="obj_crate_normal2" parent="Spatial" groups=[
+[node name="obj_crate_normal2" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8, 1.2, -0.6 )
 
-[node name="obj_crate_normal4" parent="Spatial" groups=[
+[node name="obj_crate_normal4" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4, 1.2, -0.599999 )
 
-[node name="obj_crate_normal5" parent="Spatial" groups=[
+[node name="obj_crate_normal5" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 1.2, -0.599999 )
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 15.6, 1.2, -0.599999 )
 
-[node name="obj_crate_normal6" parent="Spatial" groups=[
+[node name="obj_crate_normal6" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 1.2, -0.599999 )
 
-[node name="obj_crate_normal7" parent="Spatial" groups=[
+[node name="obj_crate_normal31" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.2, 1.2, -7.8 )
+
+[node name="obj_crate_normal32" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.2, 0.6, -7.8 )
+
+[node name="obj_crate_normal7" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8, -7.62939e-08, -0.599999 )
 
-[node name="obj_crate_normal8" parent="Spatial" groups=[
+[node name="obj_crate_normal8" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4, -7.62939e-08, -0.599999 )
 
-[node name="obj_crate_normal9" parent="Spatial" groups=[
+[node name="obj_crate_normal9" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -7.62939e-08, -0.599999 )
 
-[node name="obj_crate_normal10" parent="Spatial" groups=[
+[node name="obj_crate_normal10" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8, 0.6, -0.599999 )
 
-[node name="obj_crate_normal12" parent="Spatial" groups=[
+[node name="obj_crate_normal12" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4, 0.6, -0.599999 )
 
-[node name="obj_crate_normal11" parent="Spatial" groups=[
+[node name="obj_crate_normal11" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4, 1.2, -0.599999 )
 
-[node name="obj_crate_normal13" parent="Spatial" groups=[
+[node name="obj_crate_normal13" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8, 1.8, -0.599998 )
 
-[node name="obj_crate_normal14" parent="Spatial" groups=[
+[node name="obj_crate_normal14" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.4, 1.8, -0.599998 )
 
-[node name="obj_crate_normal15" parent="Spatial" groups=[
+[node name="obj_crate_normal15" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.4, 2.4, -0.599998 )
 
-[node name="obj_crate_normal16" parent="Spatial" groups=[
+[node name="obj_crate_normal17" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 39.6, 3.6, -7.8 )
+
+[node name="obj_crate_normal27" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33, 3.6, -7.8 )
+
+[node name="obj_crate_normal28" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 32.4, 3.6, -7.8 )
+
+[node name="obj_crate_normal29" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33.6, 3, -7.8 )
+
+[node name="obj_crate_normal30" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33.6, 2.4, -7.8 )
+
+[node name="obj_crate_normal16" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8, 2.4, -0.599998 )
 
-[node name="obj_crate_normal3" parent="Spatial" groups=[
+[node name="obj_crate_normal3" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 0.6, -0.6 )
+amt_wumpa = 5
 
-[node name="obj_crate_normal17" parent="Spatial" groups=[
-"C_CRATE",
-] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23916, 0.6, -0.6 )
-
-[node name="obj_crate_checkpoint2" parent="Spatial" groups=[
+[node name="obj_crate_checkpoint2" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.6, 0.6, -0.599998 )
 
-[node name="obj_crate_hide" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6, 0.937029, -0.599998 )
 crate = ExtResource( 3 )
 
-[node name="obj_crate_hide2" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide20" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 31.2005, 0.0814192, -7.72523 )
+activator_id = 2
+crate = ExtResource( 3 )
+
+[node name="obj_crate_hide21" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 29.4005, 0.0814192, -7.72523 )
+activator_id = 2
+crate = ExtResource( 3 )
+
+[node name="obj_crate_hide22" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 18.6005, -0.00481164, -7.78752 )
+activator_id = 3
+crate = ExtResource( 3 )
+
+[node name="obj_crate_hide2" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 58.8, 1.53703, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide4" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide4" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.4, 0.337029, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide5" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide5" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.6, 0.937029, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide3" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide3" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57.6, 0.937029, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide6" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide6" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 1.53703, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide7" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide7" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53.4, 2.13703, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide8" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide8" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2, 1.53703, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide9" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide9" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.53703, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide10" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide10" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.345, 1.98576, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_hide11" parent="Spatial" instance=ExtResource( 9 )]
+[node name="obj_crate_hide11" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.145, 2.58576, -0.599998 )
 crate = ExtResource( 7 )
 
-[node name="obj_crate_normal18" parent="Spatial" groups=[
+[node name="obj_crate_hide13" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -1.8 )
+activator_id = 1
+crate = ExtResource( 7 )
+
+[node name="obj_crate_hide14" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -2.42826 )
+activator_id = 1
+crate = ExtResource( 7 )
+
+[node name="obj_crate_hide16" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -3.68826 )
+activator_id = 1
+crate = ExtResource( 7 )
+
+[node name="obj_crate_hide17" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -4.285 )
+activator_id = 1
+crate = ExtResource( 7 )
+
+[node name="obj_crate_hide18" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -4.91874 )
+activator_id = 1
+crate = ExtResource( 7 )
+
+[node name="obj_crate_hide15" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -3.05741 )
+activator_id = 1
+crate = ExtResource( 12 )
+
+[node name="obj_crate_hide19" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 46.1536, 0.0244414, -5.56409 )
+activator_id = 1
+crate = ExtResource( 12 )
+
+[node name="obj_crate_hide12" parent="Dyncamic_Crates" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 45.005, 0.60576, -0.599998 )
+hided_activator_id = 1
+crate = ExtResource( 10 )
+
+[node name="obj_crate_normal18" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, -0.599998 )
 
-[node name="obj_crate_normal19" parent="Spatial" groups=[
+[node name="obj_crate_normal19" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.8, -0.6, -0.599998 )
 
-[node name="obj_crate_normal20" parent="Spatial" groups=[
+[node name="obj_crate_normal20" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2, 3.8147e-08, -0.599998 )
 
-[node name="obj_crate_normal21" parent="Spatial" groups=[
+[node name="obj_crate_normal21" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, -1.2, -0.599998 )
 
-[node name="obj_crate_normal22" parent="Spatial" groups=[
+[node name="obj_crate_normal22" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8, -0.6, -0.599998 )
 
-[node name="obj_crate_normal23" parent="Spatial" groups=[
+[node name="obj_crate_normal23" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.4, -0.6, -0.599998 )
 
-[node name="obj_crate_normal24" parent="Spatial" groups=[
+[node name="obj_crate_normal24" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57, -0.6, -0.599998 )
 
-[node name="obj_crate_normal25" parent="Spatial" groups=[
+[node name="obj_crate_normal25" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 58.8169, -0.263164, -0.599998 )
 
-[node name="obj_crate_normal26" parent="Spatial" groups=[
+[node name="obj_crate_normal26" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6169, -0.263164, -0.599998 )
 
-[node name="obj_crate_activator" parent="Spatial" groups=[
+[node name="obj_crate_activator" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 62.6206, -0.0949522, -0.754664 )
 
-[node name="obj_crate_tnt" parent="." groups=[
+[node name="obj_crate_activator2" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 10 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33.606, 0.00650242, -7.78934 )
+activator_id = 2
+
+[node name="obj_crate_activator3" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 10 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 19.806, 0.606502, -7.78934 )
+activator_id = 4
+
+[node name="obj_crate_activator4" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 10 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.606, -0.593498, -7.78934 )
+activator_id = 3
+
+[node name="obj_crate_iron_bounce" parent="Dyncamic_Crates" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 42.6, -0.6, -7.8 )
+destroyable = false
+is_animated = true
+
+[node name="base_crate22" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 36.6, 3.00747, -7.80021 )
+
+[node name="base_crate23" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 34.2, 3.60747, -7.80021 )
+
+[node name="base_crate25" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33, 0.00746918, -7.80021 )
+
+[node name="base_crate24" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 33.6, 3.60747, -7.80021 )
+
+[node name="obj_crate_iron_bounce2" parent="Dyncamic_Crates" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 36.6, -0.6, -7.8 )
+destroyable = false
+is_animated = true
+
+[node name="base_crate26" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 27, 3.00747, -7.80021 )
+
+[node name="base_crate27" parent="Dyncamic_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.6, 0.607469, -7.80021 )
+
+[node name="obj_crate_iron_bounce3" parent="Dyncamic_Crates" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 27, -0.6, -7.8 )
+destroyable = false
+is_animated = true
+
+[node name="obj_crate_iron_bounce4" parent="Dyncamic_Crates" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.6, 3.8147e-08, -7.8 )
+visible = false
+destroyable = false
+is_animated = true
+
+[node name="obj_item_wumpa" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05258, 0 )
 
 [editable path="obj_player"]
 

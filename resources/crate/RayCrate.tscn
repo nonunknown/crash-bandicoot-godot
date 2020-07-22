@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="RayCrate" type="RayCast"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0792373, 0.0121553, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.052, 0 )
+collision_mask = 8

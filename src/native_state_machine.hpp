@@ -17,7 +17,7 @@ private:
     uint8_t last_state = -1;
     Node* target;
     String* states;
-    NativeStateMachine* child;
+    // NativeStateMachine* child;
     FuncRef* func = FuncRef::_new();
     void _call(String name);
     

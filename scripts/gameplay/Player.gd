@@ -32,6 +32,7 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$SpinArea.add_to_group(str(Groups.SPIN))
+	LevelManager.save_checkpoint()
 	
 	cam = get_viewport().get_camera()
 	pass # Replace with function body.
@@ -84,9 +85,10 @@ func _update_physics(delta):
 	
 	pass
 
-func action_jump(high:int=0):
+func action_jump(high:int=0,value:int=250,high_value:int = 0):
 	time_to_jump = TIME_JUMP
-	velocity.y = JUMP_SPEED + ( high * int(Input.is_action_pressed("ui_select")) * 250 )
+	velocity.y = JUMP_SPEED + ( high * int(Input.is_action_pressed("ui_select")) *  value )
+	velocity.y += int(high_value > 0) * high_value + 1
 	has_contact = false
 
 var new_angle:float = 0
@@ -116,8 +118,28 @@ func rotate_shape(bit:bool):
 #		$CollisionShape.translate(Vector3(0,-.345,0))
 
 onready var initial_pos = global_transform.origin
+onready var feet_eye = load("res://resources/crash/feet_eye.tscn")
+onready var stream_woah = load("res://Sounds/crash/woah.wav") as AudioStream
 func die():
-	global_transform.origin = initial_pos
+	print("died")
+	$CollisionShape.disabled = true
+	SoundManager.layer_play(SoundManager.bus_player, stream_woah, global_transform.origin)
+	visible = false
+	input_enabled = false
+	var a = feet_eye.instance()
+	get_parent().add_child(a)
+	a.global_transform.origin = global_transform.origin + Vector3.UP * 10
+	
+	yield(get_tree().create_timer(3,false),"timeout")
+	a.queue_free()
+	
+	LevelManager.load_last_checkpoint()
+
+func ressurect():
+	$CollisionShape.disabled = false
+	
+	visible = true
+	input_enabled = true
 
 func calc_gravity(delta):
 	velocity.y += delta * gravity

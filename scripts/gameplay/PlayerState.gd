@@ -141,6 +141,7 @@ func st_init_FALL():
 func st_update_FALL():
 	cd_idle()
 	cd_walk()
+	cd_spin()
 	pass
 
 func st_exit_FALL():
@@ -159,10 +160,13 @@ func st_init_JUMP():
 func st_update_JUMP():
 	if hor_speed > 2 && velocity.y > 0:
 		animation.play("FrontFlip")
+		
+	if animation.current_animation != "FrontFlip":
+		cd_fall()
+	
 	cd_walk()
 	cd_idle()
 	cd_spin()
-	cd_fall()
 	pass
 
 func st_exit_JUMP():
@@ -173,6 +177,7 @@ func st_init_SPIN():
 	SoundManager.layer_play(SoundManager.bus_player,stream_spin,global_transform.origin )
 	$crash/CrashSpin.visible = true
 	$crash/CrashArmature001.visible = false
+	animation.playback_speed = 2
 	animation.play("CrashSpin1")
 	is_spinning = true #make crash rotate in adjust_direction()
 	pass
@@ -190,6 +195,7 @@ func st_exit_SPIN():
 	$crash/CrashSpin.visible = false
 	$crash/CrashArmature001.visible = true
 	is_spinning = false
+	animation.playback_speed = 1
 	pass
 
 var slide:bool = false

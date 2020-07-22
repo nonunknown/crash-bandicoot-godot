@@ -20,7 +20,7 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[node name="obj_crate_hide" type="StaticBody"]
+[node name="obj_crate_hide" type="KinematicBody"]
 script = ExtResource( 3 )
 activator_id = 0
 

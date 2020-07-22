@@ -1,8 +1,13 @@
 extends Crate
 class_name CrateTNT
 
+func _init():
+	._init()
+	add_to_group(str(Groups.C_TNT))
+
 func _ready():
 	._ready()
+	$ExplosionArea.add_to_group(str(Groups.EXPLOSION))
 	set_process(false)
 
 func event_destroy(player):
@@ -21,7 +26,8 @@ func event_reenable():
 
 var explosion = load("res://Sounds/crate/tnt_explosion.wav") as AudioStream
 func event_explode():
-	$P_Explosion.emitting = true
+	destroyed = true
+	$P_Explosion.fx_emit()
 	print("oi")
 	$sfx.stream = explosion
 	$sfx.play()
@@ -42,6 +48,15 @@ func _on_ExplosionArea_body_entered(body):
 	if body.is_in_group(str(Groups.PLAYER)):
 		body.die()
 	if body.is_in_group(str(Groups.CRATES)):
-		print("test")
+		print("loko")
 		body.event_destroy(null)
 	pass # Replace with function body.
+
+func _on_Area_entered(area):
+	if area.is_in_group(str(Groups.SPIN)):
+		event_explode()
+
+
+#		var c = area.get_parent()
+#		if c.gravity_type > 0:
+#			event_destroy(null)

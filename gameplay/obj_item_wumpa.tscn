@@ -1,12 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://model/Wumpa/Wumpa.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=2]
 [ext_resource path="res://model/Wumpa/mat_wumpa.material" type="Material" id=3]
+[ext_resource path="res://scripts/items/ItemWumpa.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/item/got_wumpa.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/item/wumpa_hud.wav" type="AudioStream" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+var t = 0
+
+func _process(delta):
+	t += delta
+#	global_transform.origin.y = sin(t) * 0.3
+"
 
 [node name="obj_item_wumpa" instance=ExtResource( 2 )]
+collision_mask = 4
+script = ExtResource( 4 )
+picked = ExtResource( 5 )
+added = ExtResource( 6 )
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0559381, 0.0382809 )
+
+[node name="Model" parent="." index="2"]
+script = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
-transform = Transform( 0.027, 0, 0, 0, 0.027, 0, 0, 0, 0.027, 0, -0.185593, 0 )
+transform = Transform( 0.0159508, 0, -8.88178e-16, 0, 0.0159508, 0, 8.88178e-16, 0, 0.0159508, 0, -0.185593, 0 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 0.973475, 0.228793, 0, -0.228793, 0.973475, 0, 0.515613, 1.3851 )
