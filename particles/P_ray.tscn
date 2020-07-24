@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://particles/rays_fx.png" type="Texture" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+gravity = Vector3( 0, 0, 0 )
+color = Color( 1, 1, 1, 0.690196 )
+anim_speed = 1.05
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 16
+particles_anim_v_frames = 1
+particles_anim_loop = true
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 1, 2 )
+
+[node name="Particles" type="Particles"]
+amount = 5
+visibility_aabb = AABB( -1.44671, -1.30224, -1.25689, 2.89341, 2.60448, 2.51377 )
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )

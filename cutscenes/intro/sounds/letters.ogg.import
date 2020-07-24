@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/letters.ogg-12ceaa5fa51ccd8f4a5f042aa388b4d4.oggstr"
+
+[deps]
+
+source_file="res://cutscenes/intro/sounds/letters.ogg"
+dest_files=[ "res://.import/letters.ogg-12ceaa5fa51ccd8f4a5f042aa388b4d4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

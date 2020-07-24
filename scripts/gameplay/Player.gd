@@ -81,6 +81,17 @@ func _update_physics(delta):
 		action_jump()
 	adjust_direction()
 	velocity = move_and_slide(velocity, Vector3.UP)
+	
+	if is_on_floor():
+		var col_data =move_and_collide(Vector3(0,-1,0))
+		if col_data != null:
+			collision_handler_floor(col_data)
+	elif is_on_ceiling():
+		var cold_data = move_and_collide(Vector3(0,1,0))
+		if cold_data != null:
+			collision_handler_ceilling(cold_data)
+			
+	
 	hor_speed = abs ( Vector2(velocity.x,velocity.z).length() )
 	
 	pass
@@ -145,3 +156,11 @@ func calc_gravity(delta):
 	velocity.y += delta * gravity
 	if velocity.y < 0.0 && velocity.y > -10.0:
 		velocity.y = -10.0
+
+func collision_handler_floor(data:KinematicCollision):
+	if data.collider.is_in_group(str(Groups.CRATES)):
+		data.collider.event_player_touched(self)
+
+func collision_handler_ceilling(data:KinematicCollision):
+	if data.collider.is_in_group(str(Groups.CRATES)):
+		data.collider.event_player_touched(self)

@@ -9,7 +9,7 @@ func _ready():
 	set_process(false)
 
 func event_touched(player):
-	SoundManager.layer_play_normal(SoundManager.bus_items,picked)
+	SoundManager.layer_play(SoundManager.bus_enemies,picked,global_transform.origin)
 	$Area/CollisionShape.disabled = true
 	print("touched")
 	set_process(true)

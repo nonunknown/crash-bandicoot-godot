@@ -48,7 +48,7 @@ func _implement(func_name:String):
 
 
 # == EVENTS == #
-func event_player_touched(player:Player):
+func event_player_touched(player):
 	event_destroy(player)
 	pass
 
@@ -56,7 +56,7 @@ func event_player_untouched(_body):
 	pass
 
 
-func event_destroy(player:Player):
+func event_destroy(player):
 	if is_animated: animation.play("Smash")
 	if !destroyable: return
 	destroyed = true
@@ -66,7 +66,7 @@ func event_destroy(player:Player):
 	$CollisionShape.disabled = true
 #	$ItmPowderBox.visible = false
 	$Model.visible = false
-	$Area/CollisionShape.disabled = true
+#	$Area/CollisionShape.disabled = true
 	$Particles.emitting = true
 	SoundManager.layer_play(SoundManager.bus_crates, stream_destroy, global_transform.origin)
 	
@@ -81,29 +81,31 @@ func event_reenable():
 #	$ItmPowderBox.visible = true
 	destroyed = false
 	$Model.visible = true
-	$Area/CollisionShape.disabled = false
+#	$Area/CollisionShape.disabled = false
 	pass
 
 # == LOCAL == #
-func _on_body_entered(body):
-	if body.is_in_group(str(Groups.PLAYER)):
-		event_player_touched(body)
-		return
+#func _on_body_entered(body):
+#	if body.is_in_group(str(Groups.PLAYER)):
+#		event_player_touched(body)
+#		return
+#
+#
+#func _on_Area_entered(area):
+#	if area.is_in_group(str(Groups.SPIN)) or area.is_in_group(str(Groups.EXPLOSION)) :
+#		print(area.name)
+#		event_destroy(area.get_parent())
+#
+##		emit_signal("ev_destroy")
+#	pass # Replace with function body.
+#
+#
+#func _on_body_exited(body):
+#	if body.is_in_group(str(Groups.PLAYER)):
+#		event_player_untouched(body)
+#	pass # Replace with function body.
 
 
-func _on_Area_entered(area):
-	if area.is_in_group(str(Groups.SPIN)) or area.is_in_group(str(Groups.EXPLOSION)) :
-		print(area.name)
-		event_destroy(area.get_parent())
-		
-#		emit_signal("ev_destroy")
+func _on_Area_area_entered(area):
+	print("crate got: "+area.name)
 	pass # Replace with function body.
-
-
-func _on_body_exited(body):
-	if body.is_in_group(str(Groups.PLAYER)):
-		event_player_untouched(body)
-	pass # Replace with function body.
-
-
-

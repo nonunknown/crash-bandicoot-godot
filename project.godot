@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "ArrayUtils",
+"language": "GDScript",
+"path": "res://addons/SIsilicon.3d.text/array_utils.gd"
+}, {
 "base": "SmartAudioStream",
 "class": "CrashAudio",
 "language": "GDScript",
@@ -135,6 +140,7 @@ _global_script_classes=[ {
 "path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"ArrayUtils": "",
 "CrashAudio": "",
 "Crate": "",
 "CrateActivator": "",
@@ -166,6 +172,9 @@ _global_script_class_icons={
 
 config/name="Crash Is Doomed"
 run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=16900
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [audio]
@@ -177,11 +186,11 @@ channel_disable_time=5.0
 
 [autoload]
 
-ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
 God="*res://scripts/GOD.gd"
 SoundManager="*res://scripts/Singletons/SoundManager.gd"
 LevelManager="*res://scripts/Singletons/LevelManager.gd"
 Groups="*res://scripts/Singletons/Groups.gd"
+ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
 
 [c++]
 
@@ -203,7 +212,6 @@ plugin/plugin_set_up=true
 [debug]
 
 settings/fps/force_fps=30
-gdscript/warnings/treat_warnings_as_errors=true
 gdscript/warnings/exclude_addons=false
 gdscript/warnings/unused_variable=false
 gdscript/warnings/shadowed_variable=false
@@ -215,10 +223,19 @@ gdscript/warnings/return_value_discarded=false
 window/size/width=720
 window/size/height=480
 window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "c++_helper", "screen_debugger", "smart_audio_stream" )
+enabled=PoolStringArray( "SIsilicon.3d.text", "c++_helper", "screen_debugger", "smart_audio_stream" )
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/gameplay/PlayerState.gd" type="Script" id=1]
 [ext_resource path="res://particles/mat_particle_smoke.tres" type="Material" id=2]
@@ -30,47 +30,44 @@ emission_energy = 0.04
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.72549, 0.72549, 0.72549, 1 )
-
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=3]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, -4.90909 ), 0.0, 0.0, 0, 0, Vector2( 1, 132.545 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
+[sub_resource type="CurveTexture" id=4]
 width = 512
-curve = SubResource( 4 )
+curve = SubResource( 3 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.518519, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0.00390625, 0.00379944, 0.00379944, 1 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 width = 32
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 2
 emission_box_extents = Vector3( 0.3, 0, 0 )
 direction = Vector3( 10, 0, 0 )
 spread = 88.45
 gravity = Vector3( 0, 2, 0 )
-angle_curve = SubResource( 5 )
+angle_curve = SubResource( 4 )
 scale = 46.48
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 6 )
 
-[sub_resource type="QuadMesh" id=9]
+[sub_resource type="QuadMesh" id=8]
 material = ExtResource( 2 )
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.716398, 0.114384, 0.785678 )
 
-[sub_resource type="BoxShape" id=11]
-extents = Vector3( 0.330862, 0.6184, 0.3627 )
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 0.270498, 0.690544, 0.205946 )
 
-[sub_resource type="BoxShape" id=12]
-extents = Vector3( 0.308235, 0.565954, 0.334854 )
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.189806, 0.649701, 0.221463 )
 
 [node name="obj_player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8132, 1.12181, 0 )
@@ -97,11 +94,7 @@ material/6 = ExtResource( 15 )
 material/7 = ExtResource( 16 )
 
 [node name="Bazooka" parent="crash" index="4"]
-transform = Transform( 0.0103608, 0.00332317, -0.00775806, 0.00119947, -0.0127389, -0.00385484, -0.00835418, 0.00229238, -0.010175, 0.0764031, -0.100458, -0.15902 )
 blend_shapes/LazerOn = 1.0
-
-[node name="CrashMesh001" parent="crash/CrashArmature001/Skeleton 3" index="0"]
-material/4 = SubResource( 3 )
 
 [node name="AnimationPlayer" parent="crash" index="12"]
 playback_process_mode = 1
@@ -117,29 +110,30 @@ lifetime = 0.77
 preprocess = 5.98
 randomness = 1.0
 fract_delta = false
-process_material = SubResource( 8 )
-draw_pass_1 = SubResource( 9 )
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 8 )
 
 [node name="SpinArea" type="Area" parent="."]
-monitoring = false
+monitorable = false
 collision_layer = 16
 collision_mask = 12
 
 [node name="CollisionShape" type="CollisionShape" parent="SpinArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662916, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="SpinArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537834, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 
 [node name="BodyArea" type="Area" parent="."]
 collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="BodyArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509198, 0 )
-shape = SubResource( 12 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.534492, 0 )
+shape = SubResource( 11 )
+[connection signal="body_entered" from="SpinArea" to="." method="_on_SpinArea_body_entered"]
 [connection signal="area_entered" from="BodyArea" to="." method="_on_BodyArea_area_entered"]
 
 [editable path="crash"]

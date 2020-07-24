@@ -53,6 +53,7 @@ func animation_almost_finished():
 	return animation.current_animation_position >= animation.current_animation_length - .05
 
 func emit_little_smoke():
+	
 	print("test")
 	p_smoke.emitting = true
 	yield(get_tree().create_timer(.1,false),"timeout")
@@ -85,6 +86,7 @@ func cd_spin():
 		machine.change_state(STATE.SPIN)
 
 func cd_dash():
+	return
 	if Input.is_action_just_pressed("cmd_dash"):
 		machine.change_state(STATE.DASH)
 
@@ -94,6 +96,7 @@ func st_init_IDLE():
 	if machine.last_state_was(STATE.FALL) or machine.last_state_was(STATE.JUMP):
 		animation.animation_set_next("Land","Idle1")
 		animation.play("Land")
+		$crash/sfx_step.emit_step()
 		emit_little_smoke()
 	else:
 		animation.play("Idle1")
@@ -117,8 +120,9 @@ func st_exit_IDLE():
 	pass
 
 func st_init_WALK():
-	if machine.last_state_was(STATE.JUMP):
+	if machine.last_state_was(STATE.FALL):
 		emit_little_smoke()
+		$crash/sfx_step.emit_step()
 	$crash/AnimationPlayer.play("Run")
 	pass
 
@@ -315,4 +319,10 @@ func st_exit_IDLE_EXTRA():
 
 func _on_BodyArea_area_entered(_area):
 	die()
+	pass # Replace with function body.
+
+
+func _on_SpinArea_body_entered(body):
+	if body.is_in_group(str(Groups.CRATES)):
+		body.event_destroy(self)
 	pass # Replace with function body.

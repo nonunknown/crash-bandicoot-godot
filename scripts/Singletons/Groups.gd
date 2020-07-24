@@ -2,6 +2,8 @@ extends Node
 
 enum {PLAYER,CRATES,SAVED,DESTROYABLE,C_NITRO,ITEMS,SPIN,HIDE,C_TNT,EXPLOSION}
 
+
+
 func get_first(group:int):
 	return get_tree().get_nodes_in_group(str(group))[0]
 

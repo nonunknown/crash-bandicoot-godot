@@ -21,7 +21,7 @@ func event_destroy(player:Player):
 	$CollisionShape.disabled = true
 	$Model.visible = false
 	particle.emitting = true
-	$Area/CollisionShape.disabled = true
+#w	$Area/CollisionShape.disabled = true
 	pass
 
 func event_reenable():

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/eh.ogg-28162a59635543194280ee2a6502db7f.oggstr"
+
+[deps]
+
+source_file="res://cutscenes/intro/sounds/eh.ogg"
+dest_files=[ "res://.import/eh.ogg-28162a59635543194280ee2a6502db7f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

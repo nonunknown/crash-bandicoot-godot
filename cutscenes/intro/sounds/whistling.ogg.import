@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/whistling.ogg-955fca2f021d6adffb54fa2c2e093449.oggstr"
+
+[deps]
+
+source_file="res://cutscenes/intro/sounds/whistling.ogg"
+dest_files=[ "res://.import/whistling.ogg-955fca2f021d6adffb54fa2c2e093449.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shok.ogg-d56e8018f1420a4b6e504f33bf9e18b2.oggstr"
+
+[deps]
+
+source_file="res://cutscenes/intro/sounds/shok.ogg"
+dest_files=[ "res://.import/shok.ogg-d56e8018f1420a4b6e504f33bf9e18b2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

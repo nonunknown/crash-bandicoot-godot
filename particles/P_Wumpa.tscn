@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://particles/bright.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.601942, 1 )
+colors = PoolColorArray( 0.674963, 0.274658, 0.976562, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 128
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.534091 ), 0.0, 0.0, 0, 0, Vector2( 0.515284, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 128
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 20 )
+initial_velocity = 6.67
+scale = 0.66
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
+
+[node name="Particles" type="Particles"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+emitting = false
+lifetime = 0.64
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
