@@ -28,8 +28,6 @@ emission_on_uv2 = false
 
 [node name="obj_crate_iron_bounce" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-destroyable = true
-is_animated = false
 stream = ExtResource( 3 )
 
 [node name="MeshInstance" parent="Model" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://crash_model/crash.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/crash/foot/iron/iron_foot1.wav" type="AudioStream" id=2]
@@ -6,9 +6,25 @@
 [ext_resource path="res://Sounds/walk/step_2.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/crash/foot/iron/iron_foot3.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/crash/foot/iron/iron_foot2.wav" type="AudioStream" id=6]
-[ext_resource path="res://crash_model/crash/CrashTexturedAlpha_001.material" type="Material" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.435294, 0.435294, 0.435294, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0.0156863, 0.992157, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.0401611, 0.0443359, 0.367188, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_vertex_lighting = true
+albedo_color = Color( 0.313726, 0.117647, 0.00392157, 1 )
+metallic_specular = 0.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_vertex_lighting = true
+albedo_color = Color( 0.733333, 0.733333, 0.733333, 1 )
+metallic_specular = 0.15
 
 [node name="crash" instance=ExtResource( 1 )]
 
@@ -62,12 +78,11 @@ visible = false
 visible = false
 
 [node name="CrashMesh001" parent="CrashArmature001/Skeleton 3" index="0"]
-material/7 = ExtResource( 7 )
-material/8 = SubResource( 1 )
-material/9 = SubResource( 1 )
-material/10 = SubResource( 1 )
-material/11 = SubResource( 1 )
-material/12 = SubResource( 1 )
+material/4 = SubResource( 1 )
+material/5 = SubResource( 2 )
+material/6 = SubResource( 3 )
+material/11 = SubResource( 4 )
+material/12 = SubResource( 5 )
 
 [node name="AnimationPlayer" parent="." index="12"]
 autoplay = "Idle1"

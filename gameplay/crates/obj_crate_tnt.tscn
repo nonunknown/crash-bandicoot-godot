@@ -13,7 +13,7 @@
 [ext_resource path="res://materials/crates/mat_tnt_top.tres" type="Material" id=11]
 [ext_resource path="res://particles/P_Explosion.tscn" type="PackedScene" id=12]
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -29,10 +29,10 @@ emission_energy = 0.06
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="QuadMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=3]
 resource_name = "activate"
 length = 4.0
 step = 0.01
@@ -63,23 +63,24 @@ tracks/1/keys = {
 "values": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ) ]
 }
 
-[sub_resource type="BoxShape" id=12]
-extents = Vector3( 1.84067, 1.23751, 2.00521 )
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.983864, 0.977201, 1.05861 )
 
 [node name="obj_crate_tnt" instance=ExtResource( 1 )]
+collision_layer = 9
 script = ExtResource( 10 )
 destroyable = true
 is_animated = false
 
 [node name="Particles" parent="." index="1"]
-draw_pass_1 = SubResource( 8 )
+draw_pass_1 = SubResource( 2 )
 
 [node name="MeshInstance" parent="Model" index="0"]
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-anims/activate = SubResource( 11 )
+anims/activate = SubResource( 3 )
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." index="4"]
 stream = ExtResource( 5 )
@@ -88,16 +89,12 @@ unit_db = 80.0
 [node name="P_Explosion" parent="." index="5" instance=ExtResource( 12 )]
 
 [node name="ExplosionArea" type="Area" parent="." index="6"]
-monitorable = false
 collision_layer = 512
 collision_mask = 31
 
 [node name="CollisionShape" type="CollisionShape" parent="ExplosionArea" index="0"]
-shape = SubResource( 12 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0 )
+shape = SubResource( 4 )
 disabled = true
-
-[node name="Area" parent="." index="7"]
-collision_mask = 0
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
-[connection signal="area_entered" from="ExplosionArea" to="." method="_on_ExplosionArea_area_entered"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_ExplosionArea_body_entered"]

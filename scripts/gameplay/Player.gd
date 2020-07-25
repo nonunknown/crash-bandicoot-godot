@@ -131,7 +131,11 @@ func rotate_shape(bit:bool):
 onready var initial_pos = global_transform.origin
 onready var feet_eye = load("res://resources/crash/feet_eye.tscn")
 onready var stream_woah = load("res://Sounds/crash/woah.wav") as AudioStream
+var dead:bool=false
+
 func die():
+	if dead: return
+	dead = true
 	print("died")
 	$CollisionShape.disabled = true
 	SoundManager.layer_play(SoundManager.bus_player, stream_woah, global_transform.origin)
@@ -148,7 +152,7 @@ func die():
 
 func ressurect():
 	$CollisionShape.disabled = false
-	
+	dead = false
 	visible = true
 	input_enabled = true
 

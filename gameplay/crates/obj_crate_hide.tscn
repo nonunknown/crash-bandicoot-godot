@@ -27,6 +27,8 @@ emission_on_uv2 = false
 
 [node name="obj_crate_hide" type="KinematicBody"]
 script = ExtResource( 3 )
+destroyable = false
+activator_id = 0
 activator_id = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

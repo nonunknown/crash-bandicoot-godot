@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "ActivatorCrateManager",
+"language": "GDScript",
+"path": "res://scripts/crates/ActivatorCrateManager.gd"
+}, {
+"base": "Reference",
 "class": "ArrayUtils",
 "language": "GDScript",
 "path": "res://addons/SIsilicon.3d.text/array_utils.gd"
@@ -48,11 +53,6 @@ _global_script_classes=[ {
 "class": "CrateEnforced",
 "language": "GDScript",
 "path": "res://scripts/crates/CrateEnforced.gd"
-}, {
-"base": "Crate",
-"class": "CrateHide",
-"language": "GDScript",
-"path": "res://scripts/crates/CrateHide.gd"
 }, {
 "base": "Crate",
 "class": "CrateIron",
@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/crates/GravityCrateManager.gd"
 }, {
+"base": "Control",
+"class": "HUDGameplay",
+"language": "GDScript",
+"path": "res://gameplay/HUD/HUD_Gameplay.gd"
+}, {
 "base": "",
 "class": "Hello",
 "language": "NativeScript",
@@ -140,6 +145,7 @@ _global_script_classes=[ {
 "path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"ActivatorCrateManager": "",
 "ArrayUtils": "",
 "CrashAudio": "",
 "Crate": "",
@@ -148,7 +154,6 @@ _global_script_class_icons={
 "CrateCheckpoint": "",
 "CrateCollection": "",
 "CrateEnforced": "",
-"CrateHide": "",
 "CrateIron": "",
 "CrateIronBounce": "",
 "CrateItem": "",
@@ -158,6 +163,7 @@ _global_script_class_icons={
 "CrateWumpa": "",
 "CustomHello": "",
 "GravityCrateManager": "",
+"HUDGameplay": "",
 "Hello": "",
 "Item": "",
 "ItemWumpa": "",
@@ -172,7 +178,6 @@ _global_script_class_icons={
 
 config/name="Crash Is Doomed"
 run/low_processor_mode=true
-run/low_processor_mode_sleep_usec=16900
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
@@ -220,8 +225,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=720
-window/size/height=480
+window/size/width=320
+window/size/height=240
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"

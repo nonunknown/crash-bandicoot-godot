@@ -1,9 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://gameplay/base_crate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://textures/crate/common/boxes-metal.png" type="Texture" id=2]
 [ext_resource path="res://textures/crate/common/boxes-metal-exclamation.png" type="Texture" id=3]
 [ext_resource path="res://scripts/crates/CrateActivator.gd" type="Script" id=4]
+[ext_resource path="res://textures/crate/rare/boxes-exicon.png" type="Texture" id=5]
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+resource_name = "mat_side"
+params_cull_mode = 2
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_name = "mat_side"
@@ -25,11 +37,43 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_vertex_lighting = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_billboard_mode = 3
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 5 )
+metallic_specular = 0.0
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 0.276, 0.56 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.0493274, 0.6, 0.663677, 0.748879, 0.847534, 0.910314, 0.991031 )
+colors = PoolColorArray( 0.992188, 0.98056, 0.98056, 1, 0.993527, 0.983893, 0.983893, 0.828571, 0.9952, 0.988057, 0.988057, 0.614357, 0.993005, 0.982596, 0.982596, 0.8953, 0.997884, 0.994736, 0.994736, 0.270806, 0.995769, 0.989471, 0.989471, 0.541612, 1, 1, 1, 0 )
+
 [node name="obj_crate_activator" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
-destroyable = true
 activator_id = 0
+mat_iron = SubResource( 3 )
 
 [node name="MeshInstance" parent="Model" index="0"]
 material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
+
+[node name="P_I" type="CPUParticles" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374963, 0 )
+emitting = false
+amount = 1
+lifetime = 0.69
+one_shot = true
+mesh = SubResource( 5 )
+gravity = Vector3( 0, 3.182, 0 )
+angular_velocity = 5.73
+color_ramp = SubResource( 6 )

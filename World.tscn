@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gameplay/crates/obj_crate_tnt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/crates/obj_crate_normal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/crates/obj_crate_iron.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Spatial"]
+
+[node name="obj_crate_tnt" parent="." instance=ExtResource( 1 )]
+activator_id = 4
+
+[node name="obj_crate_tnt2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6 )
+activator_id = 4
+
+[node name="obj_crate_tnt3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2 )
+activator_id = 4
+
+[node name="obj_crate_tnt4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8 )
+activator_id = 4
+
+[node name="obj_crate_tnt5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4 )
+activator_id = 4
+
+[node name="obj_crate_tnt6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.8 )
+
+[node name="obj_crate_tnt7" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.4 )
+
+[node name="obj_crate_tnt8" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9 )
+
+[node name="obj_crate_tnt9" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.6 )
+
+[node name="obj_crate_tnt10" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2 )
+
+[node name="obj_crate_tnt11" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.8 )
+
+[node name="obj_crate_normal" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 3 )
+
+[node name="obj_crate_normal2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3 )
+
+[node name="obj_crate_normal3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 3 )
+
+[node name="obj_crate_normal4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 3 )
+
+[node name="obj_crate_normal9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 11.4 )
+gravity_type = 1
+
+[node name="obj_crate_normal10" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 11.4 )
+gravity_type = 1
+
+[node name="obj_crate_normal11" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 11.4 )
+gravity_type = 1
+
+[node name="obj_crate_normal12" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 11.4 )
+gravity_type = 1
+
+[node name="obj_crate_normal13" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 11.4 )
+gravity_type = 1
+
+[node name="obj_crate_normal5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.8 )
+
+[node name="obj_crate_normal6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.4 )
+
+[node name="obj_crate_normal7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
+
+[node name="obj_crate_normal8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.6 )
+
+[node name="obj_crate_iron" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.2 )
+
+[node name="obj_crate_iron2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.4 )

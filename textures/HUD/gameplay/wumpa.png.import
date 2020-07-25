@@ -2,33 +2,33 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boxes-exicon.png-24cd0d736b2a496789af284bc0d03c3a.stex"
+path="res://.import/wumpa.png-bb0a2f0408a69bd812db9efd2c52be14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/crate/rare/boxes-exicon.png"
-dest_files=[ "res://.import/boxes-exicon.png-24cd0d736b2a496789af284bc0d03c3a.stex" ]
+source_file="res://textures/HUD/gameplay/wumpa.png"
+dest_files=[ "res://.import/wumpa.png-bb0a2f0408a69bd812db9efd2c52be14.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
-flags/filter=false
+flags/repeat=0
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

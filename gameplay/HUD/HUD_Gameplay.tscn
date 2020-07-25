@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gameplay/HUD/HUD_Gameplay.gd" type="Script" id=1]
+[ext_resource path="res://textures/HUD/gameplay/box.png" type="Texture" id=2]
+[ext_resource path="res://textures/crate/rare/item_life.png" type="Texture" id=3]
+[ext_resource path="res://textures/HUD/gameplay/wumpa.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/crash-a-like.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 75
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="HUD_Gameplay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_right = 344.0
+margin_bottom = 64.0
+rect_scale = Vector2( 0.468336, 0.468336 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 26
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wumpas" type="HBoxContainer" parent="Container"]
+margin_right = 154.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Container/Wumpas"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( -3, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Container/Wumpas"]
+margin_left = 68.0
+margin_right = 154.0
+margin_bottom = 63.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.92549, 0.541176, 0.0431373, 1 )
+text = "##"
+align = 2
+
+[node name="Boxes" type="HBoxContainer" parent="Container"]
+margin_left = 180.0
+margin_right = 484.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="Container/Boxes"]
+margin_right = 86.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.632812, 0.420205, 0.175507, 1 )
+text = "##"
+align = 2
+
+[node name="MAX" type="Label" parent="Container/Boxes"]
+margin_left = 86.0
+margin_right = 240.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.54902, 0.341176, 0.101961, 1 )
+text = "/###"
+
+[node name="TextureRect" type="TextureRect" parent="Container/Boxes"]
+margin_left = 240.0
+margin_right = 304.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( -3, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lifes" type="HBoxContainer" parent="Container"]
+margin_left = 510.0
+margin_right = 664.0
+margin_bottom = 64.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Container/Lifes"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( -3, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Container/Lifes"]
+margin_left = 68.0
+margin_right = 154.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.839844, 0.362254, 0.045929, 1 )
+text = "##"

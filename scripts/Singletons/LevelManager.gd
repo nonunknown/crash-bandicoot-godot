@@ -10,12 +10,15 @@ func _ready():
 	if get_tree().has_group(str(Groups.PLAYER)):
 		player = Groups.get_first(Groups.PLAYER)
 
+
+onready var stream_pop = load("res://Sounds/crate/pop.wav") as AudioStream
 func activate_hided_crates(id:int):
 	if id < 0: return
 	for crate in Groups.get_from(Groups.HIDE):
 		if crate.activator_id == id:
-			crate.enable()
-			yield(get_tree().create_timer(.35,false),"timeout")
+			crate.activator.activate()
+			SoundManager.layer_play(SoundManager.bus_enemies,stream_pop,crate.global_transform.origin)
+			yield(get_tree().create_timer(.4,false),"timeout")
 
 var checkpoint_data = {
 	position = Vector3(),

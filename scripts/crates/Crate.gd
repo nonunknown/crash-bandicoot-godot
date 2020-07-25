@@ -12,13 +12,15 @@ enum Gravity {None,Infinite,Crates,Bounce}
 
 export var destroyable:bool = true
 export var is_animated:bool = false
+export var activator_id:int = -1
 export(Gravity) var gravity_type:int = 0
 
 var animation:AnimationPlayer
 var destroyed:bool = false
 var particle:Particles
 var gravity_manager = null
-
+var hud_gameplay:HUDGameplay
+var activator:ActivatorCrateManager = null
 onready var stream_destroy:AudioStream = load("res://Sounds/crate/crate_break.wav") as AudioStream
 
 func _init():
@@ -34,6 +36,13 @@ func _ready():
 		print("checked type")
 		gravity_manager = GravityCrateManager.new(self)
 		set_physics_process(true)
+	hud_gameplay = Groups.try_get_first(Groups.HUD_GAMEPLAY)
+
+func _enter_tree():
+	if activator_id > -1: #initialize a Hided crate
+		activator = ActivatorCrateManager.new(activator_id,self)
+		print("crate")
+
 #	connect("ev_destroy",self,"_on_ev_destroy")
 	pass
 
@@ -59,10 +68,12 @@ func event_player_untouched(_body):
 func event_destroy(player):
 	if is_animated: animation.play("Smash")
 	if !destroyable: return
+	hud_gameplay.update_boxes(1)
 	destroyed = true
-	if player.global_transform.origin.y > global_transform.origin.y and !player.is_spinning:
-		player.machine.change_state(2) #force restart jump state
-		player.action_jump(1) # 1 means jump higher
+	if player != null:
+		if player.global_transform.origin.y > global_transform.origin.y and !player.is_spinning:
+			player.machine.change_state(2) #force restart jump state
+			player.action_jump(1) # 1 means jump higher
 	$CollisionShape.disabled = true
 #	$ItmPowderBox.visible = false
 	$Model.visible = false
@@ -76,12 +87,17 @@ onready var initial_pos = global_transform.origin
 
 func event_reenable():
 	global_transform.origin = initial_pos
+	if activator_id > -1:
+		activator.event_reenable()
 	if !destroyable: return
+	if destroyed:
+		hud_gameplay.update_boxes(-1)
 	$CollisionShape.disabled = false
 #	$ItmPowderBox.visible = true
 	destroyed = false
 	$Model.visible = true
 #	$Area/CollisionShape.disabled = false
+	
 	pass
 
 # == LOCAL == #
@@ -108,4 +124,9 @@ func event_reenable():
 
 func _on_Area_area_entered(area):
 	print("crate got: "+area.name)
+	pass # Replace with function body.
+
+
+func _on_Area_body_entered(body):
+	print("body: "+body.name)
 	pass # Replace with function body.

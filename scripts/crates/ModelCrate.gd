@@ -4,7 +4,6 @@ extends Spatial
 func _enter_tree():
 	if (get_parent().is_animated):
 		generate()
-		
 
 func generate():
 	var crate = LevelManager.CRATE.instance()

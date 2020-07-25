@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://models/crate/m_crate_static.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://textures/crate/rare/boxes-hide.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_texture = ExtResource( 2 )
+
+[node name="hide_crate" type="MeshInstance"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 1 )

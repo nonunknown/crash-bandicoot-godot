@@ -78,7 +78,7 @@ func cd_jump():
 		machine.change_state(STATE.JUMP)
 
 func cd_fall():
-	if velocity.y < 0 && !has_contact:
+	if velocity.y < -10 && !has_contact:
 		machine.change_state(STATE.FALL)
 
 func cd_spin():

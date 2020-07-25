@@ -16,17 +16,13 @@ emission_on_uv2 = false
 [node name="obj_crate_iron" instance=ExtResource( 1 )]
 is_animated = false
 
-[node name="Area" parent="." index="1"]
-visible = false
-collision_mask = 0
-
-[node name="CollisionShape" parent="Area" index="0"]
-disabled = true
-
-[node name="Particles" parent="." index="2"]
+[node name="Particles" parent="." index="1"]
 visible = false
 visibility_aabb = AABB( -0.133847, -0.204342, -0.150961, 0.267703, 0.408693, 0.301924 )
 
 [node name="MeshInstance" parent="Model" index="0"]
 material/0 = SubResource( 1 )
 material/1 = SubResource( 1 )
+
+[node name="Area" parent="." index="3"]
+visible = false

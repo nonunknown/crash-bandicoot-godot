@@ -6,13 +6,13 @@
 [ext_resource path="res://Sounds/item/got_wumpa.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/item/wumpa_hud.wav" type="AudioStream" id=6]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.177296, 0.203274, 0.104512 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.541164, 0.806892, 0.499418 )
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Spatial
 
 var t = 0
@@ -48,19 +48,21 @@ added = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0287281, 0.0382809 )
-shape = SubResource( 2 )
+visible = false
+shape = SubResource( 1 )
 disabled = true
 
 [node name="Area" type="Area" parent="."]
+visible = false
 monitorable = false
 collision_layer = 0
 collision_mask = 17
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Model" type="Spatial" parent="."]
-script = SubResource( 1 )
+script = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Model"]
 transform = Transform( 0.0279376, 0, 0, 0, 0.0279376, 0, 0, 0, 0.0279376, 0, -0.192067, 0 )
@@ -73,4 +75,5 @@ anims/Idle = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.973475, 0.228793, 0, -0.228793, 0.973475, 0, 0.515613, 1.3851 )
+visible = false
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

@@ -2,23 +2,27 @@ extends Crate
 class_name CrateActivator
 
 
-export var activator_id:int = -1
-
+export var to_activate_id:int = 0
 var activated:bool = false
 
+export var mat_iron:SpatialMaterial 
+
 onready var stream_sfx = load("res://Sounds/crate/activator.wav") as AudioStream
+onready var cube:MeshInstance = $Model/crate/Armature/Skeleton/Cube
 
 func event_destroy(player):
 	if activated: return
 	activated = true
 	print("test")
+	cube.material_override = mat_iron
 	animation.play("Smash")
-	SoundManager.layer_play(SoundManager.bus_step,stream_sfx,global_transform.origin)
-	LevelManager.activate_hided_crates(activator_id)
-#	$Area/Ca ollisionShape.disabled = true
-#	$Area/Ca ollisionShape.disabled = true
+	$P_I.emitting = true
+	SoundManager.layer_play(SoundManager.bus_crates,stream_sfx,global_transform.origin)
+	LevelManager.activate_hided_crates(to_activate_id)
 	pass
 
 func event_reenable():
-	.event_reenable()
 	activated = false
+	cube.material_override = null
+	
+	.event_reenable()

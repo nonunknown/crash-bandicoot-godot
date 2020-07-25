@@ -68,7 +68,7 @@ emission_on_uv2 = false
 
 [node name="base_crate" type="KinematicBody"]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 512
 script = ExtResource( 2 )
 destroyable = false
 is_animated = true
@@ -96,12 +96,3 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 mesh = ExtResource( 5 )
 material/0 = SubResource( 7 )
 material/1 = SubResource( 8 )
-
-[node name="Area" type="Area" parent="."]
-collision_layer = 8
-collision_mask = 512
-
-[node name="CollisionShape2" type="CollisionShape" parent="Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.308264, 0 )
-shape = SubResource( 1 )
-[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
