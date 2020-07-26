@@ -342,9 +342,22 @@ tracks/26/keys = {
 [sub_resource type="GDScript" id=2]
 script/source = "extends AnimationPlayer
 
+func _ready():
+	AdvancedBackgroundLoader.preload_scene(\"res://gameplay/Lev_Test.tscn\")
+
 func _process(delta):
 	if Input.is_action_just_pressed(\"ui_select\"):
 		seek(0,true)
+
+
+func _on_animation_finished(anim_name):
+	print(\"finished anim\")
+	while(!AdvancedBackgroundLoader.can_change):
+		print(\"loading\")
+		yield(get_tree().create_timer(1,false),\"timeout\")
+	print(\"done\")
+	AdvancedBackgroundLoader.change_scene_to_preloaded()
+	pass # Replace with function body.
 "
 
 [node name="Intro" type="Spatial"]
@@ -524,5 +537,6 @@ one_shot = true
 transform = Transform( 1.46648, 0, 0.639868, 0, 1.6, 0, -0.639868, 0, 1.46648, 1.58061, -0.652894, 11.2418 )
 emitting = false
 amount = 9
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 
 [editable path="crash"]

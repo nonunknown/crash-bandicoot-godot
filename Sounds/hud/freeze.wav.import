@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/freeze.wav-cc2fe2d2dd297c47ef9bd1af5d03eb08.sample"
+
+[deps]
+
+source_file="res://Sounds/hud/freeze.wav"
+dest_files=[ "res://.import/freeze.wav-cc2fe2d2dd297c47ef9bd1af5d03eb08.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -25,6 +25,7 @@ var checkpoint_data = {
 	first_save = false
 }
 func save_checkpoint():
+	if player == null: player = get_tree().get_nodes_in_group(str(Groups.PLAYER))[0]
 	checkpoint_data.first_save = true
 	checkpoint_data.position = player.global_transform.origin
 	for crate in Groups.get_from(Groups.DESTROYABLE):

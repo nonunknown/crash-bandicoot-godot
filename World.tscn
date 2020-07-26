@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://gameplay/crates/obj_crate_tnt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/crates/obj_crate_normal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gameplay/crates/obj_crate_iron.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Spatial"]
 
@@ -38,10 +37,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.6 )
 
 [node name="obj_crate_tnt10" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, -2.38419e-07, 10.2245 )
 
 [node name="obj_crate_tnt11" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, -2.38419e-07, 10.8245 )
 
 [node name="obj_crate_normal" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 3 )
@@ -56,24 +55,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 3 )
 
 [node name="obj_crate_normal9" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 11.4 )
-gravity_type = 1
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, 0.6, 11.4245 )
 
 [node name="obj_crate_normal10" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 11.4 )
-gravity_type = 1
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, 1.2, 11.4245 )
 
 [node name="obj_crate_normal11" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 11.4 )
-gravity_type = 1
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, 1.8, 11.4245 )
 
 [node name="obj_crate_normal12" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 11.4 )
-gravity_type = 1
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, 2.4, 11.4245 )
 
 [node name="obj_crate_normal13" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 11.4 )
-gravity_type = 1
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00199366, 3, 11.4245 )
 
 [node name="obj_crate_normal5" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.8 )
@@ -86,9 +80,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
 
 [node name="obj_crate_normal8" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.6 )
-
-[node name="obj_crate_iron" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.2 )
-
-[node name="obj_crate_iron2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.4 )

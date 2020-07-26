@@ -195,7 +195,7 @@ God="*res://scripts/GOD.gd"
 SoundManager="*res://scripts/Singletons/SoundManager.gd"
 LevelManager="*res://scripts/Singletons/LevelManager.gd"
 Groups="*res://scripts/Singletons/Groups.gd"
-ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
+AdvancedBackgroundLoader="*res://addons/Advanced Background Loader/background_load.gd"
 
 [c++]
 
@@ -225,15 +225,15 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=320
-window/size/height=240
+window/size/width=720
+window/size/height=480
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "SIsilicon.3d.text", "c++_helper", "screen_debugger", "smart_audio_stream" )
+enabled=PoolStringArray( "Advanced Background Loader", "SIsilicon.3d.text", "c++_helper", "smart_audio_stream" )
 
 [importer_defaults]
 

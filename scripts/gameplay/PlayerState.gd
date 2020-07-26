@@ -37,10 +37,10 @@ func _physics_process(delta):
 		Engine.time_scale = 0.1
 	else: Engine.time_scale = 1
 	
-	ScreenDebugger.dict["STATE"] = STATE.keys()[machine.get_current_state()]
+#	ScreenDebugger.dict["STATE"] = STATE.keys()[machine.get_current_state()]
 #	ScreenDebugger.dict["Machine_Idle"] = IDLE.keys()[m_idle.get_current_state()]
-	ScreenDebugger.dict["Y VEL"] = velocity.y
-	ScreenDebugger.dict["Dir"] = dir
+#	ScreenDebugger.dict["Y VEL"] = velocity.y
+#	ScreenDebugger.dict["Dir"] = dir
 #	ScreenDebugger.dict["idle_time"] = idle_time
 #	ScreenDebugger.dict["hor_speed"] = hor_speed
 #	ScreenDebugger.dict["contact"] = has_contact
