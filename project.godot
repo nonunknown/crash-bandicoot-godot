@@ -84,15 +84,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/crates/CrateTNT.gd"
 }, {
+"base": "Crate",
+"class": "CrateTime",
+"language": "GDScript",
+"path": "res://scripts/crates/CrateTime.gd"
+}, {
 "base": "CrateItem",
 "class": "CrateWumpa",
 "language": "GDScript",
 "path": "res://scripts/crates/CrateWumpa.gd"
 }, {
 "base": "",
-"class": "CustomHello",
+"class": "GameJolt",
 "language": "NativeScript",
-"path": "res://scripts/custom_hello.gdns"
+"path": "res://scripts/game_jolt.gdns"
 }, {
 "base": "Node",
 "class": "GravityCrateManager",
@@ -104,10 +109,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gameplay/HUD/HUD_Gameplay.gd"
 }, {
-"base": "",
-"class": "Hello",
-"language": "NativeScript",
-"path": "res://scripts/hello.gdns"
+"base": "Control",
+"class": "HUDTimeTrial",
+"language": "GDScript",
+"path": "res://gameplay/HUD/HUD_TimeTrial.gd"
 }, {
 "base": "KinematicBody",
 "class": "Item",
@@ -115,9 +120,19 @@ _global_script_classes=[ {
 "path": "res://scripts/items/Item.gd"
 }, {
 "base": "Item",
+"class": "ItemClock",
+"language": "GDScript",
+"path": "res://scripts/items/ItemClock.gd"
+}, {
+"base": "Item",
 "class": "ItemWumpa",
 "language": "GDScript",
 "path": "res://scripts/items/ItemWumpa.gd"
+}, {
+"base": "Reference",
+"class": "MenuManager",
+"language": "GDScript",
+"path": "res://addons/menu_maker/MenuManager.gd"
 }, {
 "base": "",
 "class": "NativeStateMachine",
@@ -143,6 +158,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/StateMachine.gd"
+}, {
+"base": "Reference",
+"class": "TimeCrateManager",
+"language": "GDScript",
+"path": "res://scripts/crates/TimeCrateManager.gd"
 } ]
 _global_script_class_icons={
 "ActivatorCrateManager": "",
@@ -160,23 +180,28 @@ _global_script_class_icons={
 "CrateNitro": "",
 "CrateNormal": "",
 "CrateTNT": "",
+"CrateTime": "",
 "CrateWumpa": "",
-"CustomHello": "",
+"GameJolt": "",
 "GravityCrateManager": "",
 "HUDGameplay": "",
-"Hello": "",
+"HUDTimeTrial": "",
 "Item": "",
+"ItemClock": "",
 "ItemWumpa": "",
+"MenuManager": "",
 "NativeStateMachine": "",
 "Player": "",
 "PlayerState": "",
 "SmartAudioStream": "",
-"StateMachine": ""
+"StateMachine": "",
+"TimeCrateManager": ""
 }
 
 [application]
 
 config/name="Crash Is Doomed"
+run/main_scene="res://gameplay/Lev_Test.tscn"
 run/low_processor_mode=true
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -233,7 +258,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Advanced Background Loader", "SIsilicon.3d.text", "c++_helper", "smart_audio_stream" )
+enabled=PoolStringArray( "Advanced Background Loader", "SIsilicon.3d.text", "c++_helper", "menu_maker", "smart_audio_stream" )
 
 [importer_defaults]
 

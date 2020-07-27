@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://textures/HUD/timer/fast-time.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/HUD/HUD_TimeTrial.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/hud/freeze.wav" type="AudioStream" id=3]
+[ext_resource path="res://gameplay/HUD/TimeTrialMenu.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/crash-a-like.ttf"
@@ -23,12 +24,126 @@ use_mipmaps = true
 use_filter = true
 font_data = SubResource( 1 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "Finish"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Label:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 524.693, -0.25, 0, 0.25, 0, 184.37, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Label:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 446, -0.25, 0, 0.25, 0, 209.021, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Label:rect_scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.99949, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Label:rect_scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.9884, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Best:custom_colors/font_color:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Best:custom_colors/font_outline_modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("TextureRect:rect_position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 486.4, -0.25, 0, 0.25, 0, 750, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Menu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Menu:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("Menu")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_process"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Idle"
+
 [node name="HUD_TimeTrial" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 freeze_color = Color( 0.682353, 0.760784, 0.960784, 1 )
@@ -45,6 +160,9 @@ grow_vertical = 0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
@@ -53,10 +171,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -195.307
 margin_top = -34.0
-margin_right = -87.3071
+margin_right = -23.3068
+margin_bottom = 0.00152588
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.909804, 0.54902, 0.0352941, 1 )
-text = "00:00:00"
+text = "00:00:000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Best" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -507.182
+margin_top = -336.436
+margin_right = -357.182
+margin_bottom = -302.436
+rect_scale = Vector2( 1.99949, 1.9884 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.909804, 0.54902, 0.0352941, 0 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
+text = "Best Time"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,9 +209,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -164.857
-margin_top = -58.1748
+margin_top = -68.0743
 margin_right = -128.857
-margin_bottom = -32.1748
+margin_bottom = -42.0743
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.956863, 0.0666667, 0.0235294, 1 )
 text = "-00"
@@ -78,5 +219,122 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Fast" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -384.59
+margin_top = -28.7751
+margin_right = -347.59
+margin_bottom = -2.77515
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.321569, 0.607843, 0.835294, 1 )
+text = "+00"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Finish = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="register" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -119.0
+margin_top = 64.6286
+margin_right = 103.0
+margin_bottom = 98.6286
+rect_pivot_offset = Vector2( 0, 17 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0.356863, 0.0509804, 1 )
+text = "Register score"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="restart" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = 98.6286
+margin_right = 47.0
+margin_bottom = 132.629
+rect_pivot_offset = Vector2( 0, 17 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0.356863, 0.0509804, 1 )
+text = "Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.59
+margin_top = 132.629
+margin_right = 17.41
+margin_bottom = 166.629
+rect_pivot_offset = Vector2( 0, 17 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0.356863, 0.0509804, 1 )
+text = "Exit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -189.39
+margin_top = 64.6286
+margin_right = -129.39
+margin_bottom = 98.6286
+rect_pivot_offset = Vector2( 28.8676, 19.414 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.866667, 0.0627451, 0.0627451, 1 )
+text = "<"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

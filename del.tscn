@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gameplay/obj_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/crates/obj_crate_tnt.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://gameplay/crates/obj_crate_activator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/crate/common/boxes-metal.png" type="Texture" id=6]
 [ext_resource path="res://gameplay/crates/obj_crate_normal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/items/obj_item_clock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://textures/crate/common/boxes-tnt-side.png" type="Texture" id=9]
 
 [sub_resource type="BoxShape" id=1]
@@ -80,6 +81,10 @@ far = 10000.0
 [node name="obj_crate_tnt" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0 )
 collision_mask = 0
+activator_id = -1
+timeable = false
+time = 0.0
+gravity_type = 0
 
 [node name="MeshInstance" parent="obj_crate_tnt/Model" index="0"]
 material/0 = SubResource( 3 )
@@ -88,22 +93,33 @@ material/1 = SubResource( 4 )
 [node name="obj_crate_tnt2" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, 0.33, 0 )
 collision_mask = 0
+activator_id = -1
+timeable = false
+time = 0.0
+gravity_type = 0
 
 [node name="obj_crate_activator" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 0.468, 0 )
 collision_mask = 0
 activator_id = -1
+timeable = false
+time = 0.0
+gravity_type = 0
 mat_iron = SubResource( 5 )
 
 [node name="obj_crate_activator2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 0.468, 0.996 )
 collision_mask = 0
-to_activate_id = 1
+timeable = false
+time = 0.0
+gravity_type = 0
 mat_iron = SubResource( 6 )
+to_activate_id = 1
 
 [node name="obj_crate_normal" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500851, 0.924802 )
 activator_id = 0
+time = 1.0
 
 [node name="obj_crate_normal3" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500851, 1.78636 )
@@ -111,6 +127,9 @@ activator_id = 1
 
 [node name="obj_crate_normal2" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776, 0.500851, 0.924802 )
-activator_id = 0
+time = -2.0
+
+[node name="obj_item_clock" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03045, 0.557078, 0 )
 
 [editable path="obj_crate_tnt"]

@@ -13,6 +13,8 @@ enum Gravity {None,Infinite,Crates,Bounce}
 export var destroyable:bool = true
 export var is_animated:bool = false
 export var activator_id:int = -1
+export var timeable:bool = false
+export var time:float = 0
 export(Gravity) var gravity_type:int = 0
 
 var animation:AnimationPlayer
@@ -21,12 +23,13 @@ var particle:Particles
 var gravity_manager = null
 var hud_gameplay:HUDGameplay
 var activator:ActivatorCrateManager = null
+var time_manager:TimeCrateManager = null
+
 onready var stream_destroy:AudioStream = load("res://Sounds/crate/crate_break.wav") as AudioStream
 
 func _init():
 	add_to_group(str(Groups.CRATES))
 	if destroyable: add_to_group(str(Groups.DESTROYABLE))
-	
 
 func _ready():
 	if has_node("Particles"): particle = $Particles
@@ -37,12 +40,14 @@ func _ready():
 		gravity_manager = GravityCrateManager.new(self)
 		set_physics_process(true)
 	hud_gameplay = Groups.try_get_first(Groups.HUD_GAMEPLAY)
+#	LevelManager.connect("event_start_tt",self,"_on_event_start_tt")
 
 func _enter_tree():
 	if activator_id > -1: #initialize a Hided crate
 		activator = ActivatorCrateManager.new(activator_id,self)
 		print("crate")
-
+	if timeable:
+		time_manager = TimeCrateManager.new(self)
 #	connect("ev_destroy",self,"_on_ev_destroy")
 	pass
 
@@ -68,7 +73,9 @@ func event_player_untouched(_body):
 func event_destroy(player):
 	if is_animated: animation.play("Smash")
 	if !destroyable: return
-	hud_gameplay.update_boxes(1)
+	if hud_gameplay != null:
+		hud_gameplay.update_boxes(1)
+	if time_manager != null: time_manager.event_destroy()
 	destroyed = true
 	if player != null:
 		if player.global_transform.origin.y > global_transform.origin.y and !player.is_spinning:
@@ -89,8 +96,10 @@ func event_reenable():
 	global_transform.origin = initial_pos
 	if activator_id > -1:
 		activator.event_reenable()
+	if timeable:
+		$Model.restore_textures()
 	if !destroyable: return
-	if destroyed:
+	if destroyed and hud_gameplay != null:
 		hud_gameplay.update_boxes(-1)
 	$CollisionShape.disabled = false
 #	$ItmPowderBox.visible = true
@@ -100,33 +109,23 @@ func event_reenable():
 	
 	pass
 
-# == LOCAL == #
-#func _on_body_entered(body):
-#	if body.is_in_group(str(Groups.PLAYER)):
-#		event_player_touched(body)
-#		return
+
+
+#func make_time_trial():
+#	print("making time trial")
+#	var crate_time = load("res://gameplay/crates/obj_crate_time.tscn").instance()
+#	crate_time.configure_time(time)
+#	get_parent().add_child(crate_time)
+#	crate_time.global_transform.origin = global_transform.origin
+#	event_destroy(null)
 #
-#
-#func _on_Area_entered(area):
-#	if area.is_in_group(str(Groups.SPIN)) or area.is_in_group(str(Groups.EXPLOSION)) :
-#		print(area.name)
-#		event_destroy(area.get_parent())
-#
-##		emit_signal("ev_destroy")
+#	pass
+
+#func _on_Area_area_entered(area):
+#	print("crate got: "+area.name)
 #	pass # Replace with function body.
 #
 #
-#func _on_body_exited(body):
-#	if body.is_in_group(str(Groups.PLAYER)):
-#		event_player_untouched(body)
+#func _on_Area_body_entered(body):
+#	print("body: "+body.name)
 #	pass # Replace with function body.
-
-
-func _on_Area_area_entered(area):
-	print("crate got: "+area.name)
-	pass # Replace with function body.
-
-
-func _on_Area_body_entered(body):
-	print("body: "+body.name)
-	pass # Replace with function body.

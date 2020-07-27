@@ -1,14 +1,20 @@
 extends Node
 
 signal event_restart
+signal event_start_tt
+signal event_level_finished
 
 const CRATE = preload("res://models/crate/rm_crate.tscn")
-
+var time_trial_mode:bool = false
 var player:Player
+func get_user_name() -> String: return "nonunknown"
 
 func _ready():
 	if get_tree().has_group(str(Groups.PLAYER)):
 		player = Groups.get_first(Groups.PLAYER)
+	connect("event_start_tt",self,"_on_event_start_tt")
+	connect("event_level_finished",self,"_on_level_finished")
+	connect("event_restart",self,"_on_event_restart")
 
 
 onready var stream_pop = load("res://Sounds/crate/pop.wav") as AudioStream
@@ -29,7 +35,7 @@ func save_checkpoint():
 	checkpoint_data.first_save = true
 	checkpoint_data.position = player.global_transform.origin
 	for crate in Groups.get_from(Groups.DESTROYABLE):
-		var c:Crate = crate
+		var c = crate
 		if c.destroyed:
 			c.add_to_group(str(Groups.SAVED))
 	
@@ -45,4 +51,28 @@ func load_last_checkpoint():
 		crate.event_reenable()
 	pass
 
+func _on_event_start_tt():
+	time_trial_mode = true
+	for crate in Groups.get_from(Groups.CRATES):
+		if !crate.timeable: continue
+		crate.time_manager.activate_time_behavior()
+		yield(get_tree(),"idle_frame")
+	pass
+	
 
+func _on_level_finished():
+	if Groups.get_first(Groups.TIME_TRIAL) == null:
+		yield(get_tree().create_timer(3,false),"timeout")
+		restart_scene()
+	
+	print("level finished")
+	pass
+
+func restart_scene():
+	get_tree().reload_current_scene()
+	emit_signal("event_restart")
+	
+	pass
+
+func _on_event_restart():
+	time_trial_mode = false

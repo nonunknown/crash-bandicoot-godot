@@ -7,12 +7,12 @@ reloadable=true
 
 [entry]
 
-X11.64="res://bin/x11/libgdexample.so"
-Windows.64="res://bin/win64/libgdexample.dll"
 OSX.64="res://bin/osx/libgdexample.dylib"
+Windows.64="res://bin/win64/libgdexample.dll"
+X11.64="res://bin/x11/libgdexample.so"
 
 [dependencies]
 
-X11.64=[  ]
-Windows.64=[  ]
 OSX.64=[  ]
+Windows.64=[  ]
+X11.64=[ "res://bin/x11/libGJ_API_example.so" ]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Electrolyzer Portal.obj-ee52a8d96905f17af061f9baf1688972.mesh"
+
+[deps]
+
+files=[ "res://.import/Electrolyzer Portal.obj-ee52a8d96905f17af061f9baf1688972.mesh" ]
+
+source_file="res://model/portal/Electrolyzer Portal.obj"
+dest_files=[ "res://.import/Electrolyzer Portal.obj-ee52a8d96905f17af061f9baf1688972.mesh", "res://.import/Electrolyzer Portal.obj-ee52a8d96905f17af061f9baf1688972.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

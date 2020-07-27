@@ -1,11 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://textures/crate/common/boxes-crate-top.png" type="Texture" id=1]
 [ext_resource path="res://scripts/crates/CrateNormal.gd" type="Script" id=2]
 [ext_resource path="res://gameplay/base_crate.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
 resource_name = "mat_side"
+params_cull_mode = 2
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+resource_name = "mat_top"
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )
 emission_enabled = true
@@ -18,7 +30,9 @@ emission_on_uv2 = false
 script = ExtResource( 2 )
 destroyable = true
 is_animated = false
+timeable = true
 amt_wumpa = 1
 
 [node name="MeshInstance" parent="Model" index="0"]
 material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )

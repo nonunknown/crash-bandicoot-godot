@@ -3,6 +3,6 @@
 [ext_resource path="res://library.gdnlib" type="GDNativeLibrary" id=1]
 
 [resource]
-class_name = "CustomHello"
+class_name = "GameJolt"
 library = ExtResource( 1 )
-script_class_name = "CustomHello"
+script_class_name = "GameJolt"

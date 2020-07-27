@@ -15,6 +15,7 @@ class NativeStateMachine : public godot::Reference {
 private:
     uint8_t current_state = -1;
     uint8_t last_state = -1;
+
     Node* target;
     String* states;
     // NativeStateMachine* child;

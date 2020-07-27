@@ -16,3 +16,16 @@ func generate():
 	get_parent().set_animation(crate.get_node("AnimationPlayer"))
 	print("is animations")
 	pass
+
+onready var initial_top_texture = $MeshInstance.get_surface_material(0).albedo_texture
+onready var initial_side_texture = $MeshInstance.get_surface_material(1).albedo_texture
+
+
+func change_texture(side:Texture, top:Texture):
+	$MeshInstance.get_surface_material(0).albedo_texture = side
+	$MeshInstance.get_surface_material(1).albedo_texture = top
+	pass
+
+func restore_textures():
+	$MeshInstance.get_surface_material(0).albedo_texture = initial_side_texture
+	$MeshInstance.get_surface_material(1).albedo_texture = initial_top_texture

@@ -148,7 +148,9 @@ target_include_directories(${PROJECT_NAME}
 	PUBLIC
 	include
 	include/core
+	include/core/game_jolt
 	include/gen
+	include/curl
 )
 
 # Put godot headers as SYSTEM PUBLIC to exclude warnings from irrelevant headers
@@ -156,6 +158,18 @@ target_include_directories(${PROJECT_NAME}
 	SYSTEM PUBLIC
 	${GODOT_HEADERS_DIR}
 )
+
+#if(WIN32)
+#    target_link_libraries(
+#      godot-cpp
+#      "${CMAKE_CURRENT_SOURCE_DIR}/libraries/windows/x86/libcurl.a"
+#    )
+#else()
+#    target_link_libraries(
+#      godot-cpp
+#      "${CMAKE_CURRENT_SOURCE_DIR}/libraries/linux/x64/libcurl.so"
+#    )
+#endif()
 
 # Add the compile flags
 set_property(TARGET ${PROJECT_NAME} APPEND_STRING PROPERTY COMPILE_FLAGS ${GODOT_COMPILE_FLAGS})

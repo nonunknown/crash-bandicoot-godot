@@ -81,6 +81,7 @@ func _update_physics(delta):
 		action_jump()
 	adjust_direction()
 	velocity = move_and_slide(velocity, Vector3.UP)
+	if !input_enabled: velocity = Vector3()
 	
 	if is_on_floor():
 		var col_data =move_and_collide(Vector3(0,-1,0))
@@ -144,13 +145,14 @@ func die():
 	var a = feet_eye.instance()
 	get_parent().add_child(a)
 	a.global_transform.origin = global_transform.origin + Vector3.UP * 10
-	
 	yield(get_tree().create_timer(3,false),"timeout")
 	a.queue_free()
 	
 	LevelManager.load_last_checkpoint()
 
 func ressurect():
+	LevelManager.emit_signal("event_restart")
+	
 	$CollisionShape.disabled = false
 	dead = false
 	visible = true
@@ -168,3 +170,6 @@ func collision_handler_floor(data:KinematicCollision):
 func collision_handler_ceilling(data:KinematicCollision):
 	if data.collider.is_in_group(str(Groups.CRATES)):
 		data.collider.event_player_touched(self)
+
+func call_level_end():
+	LevelManager.emit_signal("event_level_finished")

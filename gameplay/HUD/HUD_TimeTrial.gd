@@ -1,18 +1,25 @@
 extends Control
-
+class_name HUDTimeTrial
 export var freeze_color:Color
 onready var label:Label = $Label
 onready var counter:Label = $Counter
-
+onready var fast:Label = $Fast
 var label_color:Color
 var counter_initial_pos:Vector2
 var time:float = 0
 var stop:bool = false
 var stop_time:float = 0
+var advance_time:float = 0
+
 func _ready():
 	label_color = label.get_color("font_color")
 	counter_initial_pos = counter.rect_position
+	
 	pass
+
+func _enter_tree():
+	add_to_group(str(Groups.TIME_TRIAL))
+	LevelManager.connect("event_level_finished",self,"on_level_finished")
 
 func _process(delta):
 	if !stop:
@@ -25,17 +32,38 @@ func _process(delta):
 			unfreeze()
 		pass
 	
-	if Input.is_action_just_pressed("ui_accept") and !stop:
-		freeze(1)
-	
+	if advance_time > 0:
+		time += delta
+		advance_time -= delta
+		update_advance()
+		set_timer(time)
+	elif advance_time < 0:
+		fast.visible = false
+#	if Input.is_action_just_pressed("ui_accept") and !stop:
+#		freeze(1)
+#	if Input.is_action_just_pressed("ui_up"):
+#		advance(3)
+#	elif Input.is_action_just_pressed("ui_down"):
+#		freeze(-3)
+#
 
 func freeze(time:float):
+	time = abs(time)
 	counter.visible = true
-	stop_time = time
+	stop_time += time
 	label.set("custom_colors/font_color",freeze_color)
 	$sfx.play()
 	stop = true
 	
+func advance(time:float):
+	fast.visible = true
+	advance_time += time
+	
+
+func update_advance():
+	fast.text = "+%f" % advance_time
+	fast.rect_position += Vector2.RIGHT * ( -cos(advance_time) * 0.5 )
+
 
 func unfreeze():
 	counter.visible = false
@@ -51,9 +79,14 @@ func set_timer(value):
 	if mili.size() > 1: mili = str(mili[1])
 	else: mili = "0"
 	
-	label.text = "%02d:%02d:%06s" % [minutes,seconds,mili]
+	label.text = "%02d:%02d:%06d" % [minutes,seconds,float(mili) ]
 
 func set_counter():
 	var secs = stop_time 
 	counter.text = "-%02f" % secs
-	counter.rect_position += Vector2.UP * ( sin(stop_time) )
+	counter.rect_position += Vector2.UP * ( sin(stop_time) * 0.4 )
+
+func on_level_finished():
+	print("Called time")
+	set_process(false)
+	$AnimationPlayer.play("Finish")

@@ -1,0 +1,3 @@
+/home/nonunknown/Desktop/projects/crash_doomed/thirdparty/godot-cpp/CMakeFiles/rebuild_cache.dir
+/home/nonunknown/Desktop/projects/crash_doomed/thirdparty/godot-cpp/CMakeFiles/edit_cache.dir
+/home/nonunknown/Desktop/projects/crash_doomed/thirdparty/godot-cpp/CMakeFiles/godot-cpp.dir

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://model/clock/Texture.png" type="Texture" id=2]
+[ext_resource path="res://model/clock/Time Trial Stopwatch.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://scripts/items/ItemClock.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.917647, 0.909804, 0.356863, 1 )
+albedo_texture = ExtResource( 2 )
+
+[node name="obj_item_clock" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+throwable = false
+can_respawn = true
+
+[node name="CollisionShape" parent="Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.292976, 0 )
+
+[node name="Model" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
+transform = Transform( 0.0691744, 0, 0, 0, 0.0691744, 0, 0, 0, 0.0691744, 0, -0.274076, 0 )
+mesh = ExtResource( 3 )
+material/0 = SubResource( 1 )

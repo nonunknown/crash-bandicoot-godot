@@ -28,7 +28,6 @@ __meta__ = {
 anchor_right = 1.0
 margin_right = 344.0
 margin_bottom = 64.0
-rect_scale = Vector2( 0.468336, 0.468336 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 26
@@ -37,13 +36,13 @@ __meta__ = {
 }
 
 [node name="Wumpas" type="HBoxContainer" parent="Container"]
-margin_right = 154.0
+margin_right = 337.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect2" type="TextureRect" parent="Container/Wumpas"]
-margin_right = 64.0
+margin_right = 247.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( -3, 0 )
@@ -57,8 +56,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Container/Wumpas"]
-margin_left = 68.0
-margin_right = 154.0
+margin_left = 251.0
+margin_right = 337.0
 margin_bottom = 63.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -68,8 +67,8 @@ text = "##"
 align = 2
 
 [node name="Boxes" type="HBoxContainer" parent="Container"]
-margin_left = 180.0
-margin_right = 484.0
+margin_left = 363.0
+margin_right = 700.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,7 +93,7 @@ text = "/###"
 
 [node name="TextureRect" type="TextureRect" parent="Container/Boxes"]
 margin_left = 240.0
-margin_right = 304.0
+margin_right = 337.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( -3, 0 )
@@ -108,8 +107,8 @@ __meta__ = {
 }
 
 [node name="Lifes" type="HBoxContainer" parent="Container"]
-margin_left = 510.0
-margin_right = 664.0
+margin_left = 726.0
+margin_right = 880.0
 margin_bottom = 64.0
 size_flags_horizontal = 2
 size_flags_vertical = 3

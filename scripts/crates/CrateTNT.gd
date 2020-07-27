@@ -36,7 +36,8 @@ func event_explode():
 	destroyed = true
 	print("explode")
 	$AnimationPlayer.stop()
-	hud_gameplay.update_boxes(1)
+	if hud_gameplay != null:
+		hud_gameplay.update_boxes(1)
 	destroyed = true
 	$P_Explosion.fx_emit()
 	print("oi")

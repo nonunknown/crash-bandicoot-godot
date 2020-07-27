@@ -1,0 +1,278 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/crash-a-like.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Control
+
+signal done_patch
+signal data_got
+enum {GET,PATCH}
+
+var url:String = \"\" #Place link here
+var request_type:int = GET
+var show:bool = false
+var target:Node = null
+var online_time
+var cache:Dictionary = {}
+onready var http:HTTPRequest = $HTTPRequest
+
+func _get_user_url() -> String: return \"$s\" % [LevelManager.get_user_name()]
+
+func register(value:float):
+	$AnimationPlayer.play(\"Loading\")
+	show = true
+	update_data(value)
+	yield(self,\"done_patch\")
+	get_all_data()
+
+func get_all_data():
+	show = true
+	request_type = GET
+	http.request(url)
+	pass
+
+func compare_times(user_time:float):
+	request_type = GET
+	http.request(_get_user_url())
+	yield(self,\"data_got\")
+	print(\"comparing user time: %d, to online user time: %s\" % [user_time,online_time])
+	if online_time == null:
+		register(user_time)
+	elif user_time < online_time:
+		register(user_time)
+	else:
+		get_all_data()
+
+func update_data(value:float):
+	request_type = PATCH
+	var name = LevelManager.get_user_name()
+	var data = '{\"%s\":%s}' % [name,str(value) ]
+	print(str(data))
+	http.request(url,[],false,HTTPClient.METHOD_PATCH,data)
+
+func _on_request_completed(result, response_code, headers, body):
+	if response_code != 200:
+		print(\"error code: \"+str(response_code))
+		return
+	var json = JSON.parse(body.get_string_from_utf8())
+	if request_type == GET:
+		if show:
+			show_in_ui(json)
+		else:
+			online_time = json.result
+			emit_signal(\"data_got\")
+		
+	else:
+		emit_signal(\"done_patch\")
+	pass # Replace with function body.
+
+func show_in_ui(json):
+	show = false
+	var arr:Array = []
+	for key in json.result:
+			var value = json.result[key]
+			arr.append(value)
+	arr.sort()
+	print(\"done\")
+	for value in arr:
+		print(\"checking\"+str(value))
+		var a = $ScrollContainer/VBoxContainer/HBoxContainer.duplicate()
+		$ScrollContainer/VBoxContainer.add_child(a)
+		for key in json.result:
+			if json.result[key] == value:
+				a.get_child(0).text = str(key)
+				break
+		a.get_child(1).text = set_timer(value)
+		a.visible = true
+	$AnimationPlayer.play(\"Done\")
+
+func set_timer(value):
+	var time:String = \"\"
+	var minutes = value / 60;
+	var seconds = int(value) % 60;
+	var mili = str(value).split(\".\")
+	if mili.size() > 1: mili = str(mili[1])
+	else: mili = \"0\"
+	
+	time = \"%02d:%02d:%06s\" % [minutes,seconds,mili]
+	return time
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Label
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		LevelManager.restart_scene()
+"
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScrollContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Online LeaderBoard" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScrollContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScrollContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "Loading...", "Loading..." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScrollContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="OnlineLeader" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -88.7446
+margin_bottom = -54.7446
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.898039, 0.415686, 0.0666667, 1 )
+text = "Press Space to Restart"
+align = 1
+valign = 1
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 15.0
+margin_bottom = -94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 720.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 720, 100 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 720.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.898039, 0.415686, 0.0666667, 1 )
+text = "Online LeaderBoard"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+margin_left = 187.0
+margin_top = 52.0
+margin_right = 532.0
+margin_bottom = 86.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_constants/hseparation = 117
+columns = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 63.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.996078, 0.996078, 0.996078, 1 )
+text = "Test"
+valign = 1
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 180.0
+margin_right = 345.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.858824, 0.466667, 0.105882, 1 )
+text = "10:02:253614"
+align = 2
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Done = SubResource( 5 )
+anims/Loading = SubResource( 6 )
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
