@@ -1,18 +1,6 @@
-[gd_scene load_steps=2 format=2]
+extends Node
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Control
-
-var data = {
-	\"Robert\" : 900.1,
-	\"TestName\" : 900.1,
-	\"bot\" : 70.555222,
-	\"nonunknown\" : 0.733313,
-	\"test\": 10.52,
-	\"loko\": 0.1020
-  }
-
-func _ready():
+func sort_dict(data) -> Array:
 	var temp_arr:Array = []
 	var keys_arr:Array = []
 	var value_arr:Array = []
@@ -44,12 +32,11 @@ func _ready():
 			
 		temp_arr.append(_min)
 		moved_idx.append(value_arr.find(_min))
-#		print(\"Round %d: \\nTEMP: %s\\nVALUE: %s\\n\\n\" % [rounds, str(temp_arr), str(value_arr)])
+#		print("Round %d: \nTEMP: %s\nVALUE: %s\n\n" % [rounds, str(temp_arr), str(value_arr)])
 		
-		yield(get_tree(),\"idle_frame\")
 	
 #	print(str(moved_idx))
-#	print(\"expected: [3,1,2,0]\")
+#	print("expected: [3,1,2,0]")
 	
 	#return the organized dict
 	var result = []
@@ -59,14 +46,5 @@ func _ready():
 			time=temp_arr[i]
 			})
 	
-#	print(\"Final result: \"+ str(result))
+#	print("Final result: "+ str(result))
 	return result
-"
-
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

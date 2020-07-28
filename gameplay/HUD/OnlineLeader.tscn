@@ -23,18 +23,26 @@ func _enter_tree():
 	f.open(\"res://database.json\",File.READ)
 	var json = JSON.parse(f.get_as_text())
 	database = json.result
+	
 	f.close()
+	url = database[\"url\"]
 
-func _get_user_url() -> String: return \"$s\" % [LevelManager.get_user_name()]
+func _get_user_url() -> String:
+	var url = database[\"user_url\"] % LevelManager.get_user_name()
+	print(\"URL: %s\" % url)
+	return url#[LevelManager.get_user_name()]
 
 func register(value:float):
 	$AnimationPlayer.play(\"Loading\")
 	show = true
 	update_data(value)
+	print(\"waiting for done patch\")
 	yield(self,\"done_patch\")
+	print(\"entering here\")
 	get_all_data()
 
 func get_all_data():
+	print(\"getting all data\")
 	show = true
 	request_type = GET
 	http.request(url)
@@ -45,25 +53,29 @@ func compare_times(user_time:float):
 	http.request(_get_user_url())
 	yield(self,\"data_got\")
 	print(\"comparing user time: %d, to online user time: %s\" % [user_time,online_time])
-	if online_time == null:
-		register(user_time)
-	elif user_time < online_time:
+	if user_time < online_time:
+		print(\"lesst time\")
 		register(user_time)
 	else:
+		print(\"only show\")
 		get_all_data()
 
 func update_data(value:float):
 	request_type = PATCH
 	var name = LevelManager.get_user_name()
 	var data = '{\"%s\":%s}' % [name,str(value) ]
-	print(str(data))
-	http.request(url,[],false,HTTPClient.METHOD_PATCH,data)
+	print(\"sending: \"+str(data))
+	var err = http.request(url,[],false,HTTPClient.METHOD_PATCH,data)
+	if err != OK:
+		print(\"ops: \"+str(err))
 
 func _on_request_completed(result, response_code, headers, body):
+	print(\"request completed for %d\" % request_type)
 	if response_code != 200:
 		print(\"error code: \"+str(response_code))
 		return
 	var json = JSON.parse(body.get_string_from_utf8())
+	print(\"request: \"+str(json.result) )
 	if request_type == GET:
 		if show:
 			show_in_ui(json)
@@ -72,28 +84,41 @@ func _on_request_completed(result, response_code, headers, body):
 			emit_signal(\"data_got\")
 		
 	else:
+		print(\"emit done patch\")
 		emit_signal(\"done_patch\")
 	pass # Replace with function body.
 
 func show_in_ui(json):
 	show = false
-	var arr:Array = []
-	for key in json.result:
-			var value = json.result[key]
-			arr.append(value)
-	arr.sort()
-	print(\"done\")
-	for value in arr:
-		print(\"checking\"+str(value))
+	print(str(json.result))
+	var sorted_dict = Utils.sort_dict(json.result)
+	
+	for dict in sorted_dict:
 		var a = $ScrollContainer/VBoxContainer/HBoxContainer.duplicate()
 		$ScrollContainer/VBoxContainer.add_child(a)
-		for key in json.result:
-			if json.result[key] == value:
-				a.get_child(0).text = str(key)
-				break
-		a.get_child(1).text = set_timer(value)
+		
+		a.get_child(0).text = dict.name
+		a.get_child(1).text = set_timer(dict.time)
+		
 		a.visible = true
 	$AnimationPlayer.play(\"Done\")
+	
+#	for key in json.result:
+#			var value = json.result[key]
+#			arr.append(value)
+#	arr.sort()
+#	print(\"done\")
+#	for value in arr:
+#		print(\"checking\"+str(value))
+#		var a = $ScrollContainer/VBoxContainer/HBoxContainer.duplicate()
+#		$ScrollContainer/VBoxContainer.add_child(a)
+#		for key in json.result:
+#			if json.result[key] == value:
+#				a.get_child(0).text = str(key)
+#				break
+#		a.get_child(1).text = set_timer(value)
+#		a.visible = true
+#	$AnimationPlayer.play(\"Done\")
 
 func set_timer(value):
 	var time:String = \"\"

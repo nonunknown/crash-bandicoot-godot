@@ -15,4 +15,4 @@ X11.64="res://bin/x11/libgdexample.so"
 
 OSX.64=[  ]
 Windows.64=[  ]
-X11.64=[ "res://bin/x11/libGJ_API_example.so" ]
+X11.64="[]"

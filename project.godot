@@ -201,7 +201,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Crash Is Doomed"
-run/main_scene="res://gameplay/Lev_Test.tscn"
+run/main_scene="res://cutscenes/intro/Intro.tscn"
 run/low_processor_mode=true
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -221,6 +221,7 @@ SoundManager="*res://scripts/Singletons/SoundManager.gd"
 LevelManager="*res://scripts/Singletons/LevelManager.gd"
 Groups="*res://scripts/Singletons/Groups.gd"
 AdvancedBackgroundLoader="*res://addons/Advanced Background Loader/background_load.gd"
+Utils="*res://scripts/Singletons/Utils.gd"
 
 [c++]
 

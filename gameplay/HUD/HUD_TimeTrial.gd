@@ -28,6 +28,7 @@ func _process(delta):
 	else:
 		set_counter()
 		stop_time -= delta
+#		$sfx.pitch_scale = clamp(stop_time/3,0,1)#lerp($sfx.pitch_scale,.3,stop_time/1)
 		if stop_time <= 0.0: 
 			unfreeze()
 		pass
@@ -35,27 +36,34 @@ func _process(delta):
 	if advance_time > 0:
 		time += delta
 		advance_time -= delta
+#		$sfx.pitch_scale = lerp($sfx.pitch_scale,2,delta)
 		update_advance()
 		set_timer(time)
 	elif advance_time < 0:
 		fast.visible = false
+		if $sfx.pitch_scale > 1.5:
+			$sfx.stop()
+		
 #	if Input.is_action_just_pressed("ui_accept") and !stop:
 #		freeze(1)
 #	if Input.is_action_just_pressed("ui_up"):
 #		advance(3)
 #	elif Input.is_action_just_pressed("ui_down"):
 #		freeze(-3)
-#
+##
 
 func freeze(time:float):
 	time = abs(time)
 	counter.visible = true
 	stop_time += time
 	label.set("custom_colors/font_color",freeze_color)
+	$sfx.pitch_scale = .8
 	$sfx.play()
 	stop = true
 	
 func advance(time:float):
+	$sfx.pitch_scale = 2
+	$sfx.play()
 	fast.visible = true
 	advance_time += time
 	
@@ -70,7 +78,8 @@ func unfreeze():
 	counter.rect_position = counter_initial_pos
 	label.set("custom_colors/font_color",label_color)
 	stop = false
-	$sfx.stop()
+	if $sfx.pitch_scale < 1.5:
+		$sfx.stop()
 
 func set_timer(value):
 	var minutes = value / 60;
