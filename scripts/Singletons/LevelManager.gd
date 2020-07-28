@@ -3,11 +3,14 @@ extends Node
 signal event_restart
 signal event_start_tt
 signal event_level_finished
+signal can_start_scene
 
 const CRATE = preload("res://models/crate/rm_crate.tscn")
 var time_trial_mode:bool = false
 var player:Player
-func get_user_name() -> String: return "nonunknown"
+var UID = null
+
+func get_user_name() -> String: return UID
 
 func _ready():
 	if get_tree().has_group(str(Groups.PLAYER)):
@@ -76,3 +79,7 @@ func restart_scene():
 
 func _on_event_restart():
 	time_trial_mode = false
+
+var is_offline:bool = false
+func set_offline(mode:bool=false):
+	is_offline = mode

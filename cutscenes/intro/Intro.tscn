@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://cutscenes/intro/imgs/godot_eye.png" type="Texture" id=1]
 [ext_resource path="res://cutscenes/intro/imgs/godot.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://cutscenes/intro/sounds/crash_oh.ogg" type="AudioStream" id=10]
 [ext_resource path="res://particles/P_eye.tscn" type="PackedScene" id=11]
 [ext_resource path="res://particles/P_ray.tscn" type="PackedScene" id=12]
+[ext_resource path="res://resources/NameRegister.tscn" type="PackedScene" id=13]
 [ext_resource path="res://cutscenes/intro/imgs/intro_background.png" type="Texture" id=70]
 [ext_resource path="res://cutscenes/intro/sounds/wosh.ogg" type="AudioStream" id=71]
 [ext_resource path="res://cutscenes/intro/sounds/falling.ogg" type="AudioStream" id=72]
@@ -338,6 +339,20 @@ tracks/26/keys = {
 "method": "restart"
 } ]
 }
+tracks/27/type = "method"
+tracks/27/path = NodePath("AcceptDialog")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 11.89 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show"
+} ]
+}
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends AnimationPlayer
@@ -345,18 +360,17 @@ script/source = "extends AnimationPlayer
 func _ready():
 	AdvancedBackgroundLoader.preload_scene(\"res://gameplay/Lev_Test.tscn\")
 
-func _process(delta):
-	if Input.is_action_just_pressed(\"ui_select\"):
-		seek(0,true)
+#func _process(delta):
+#	if Input.is_action_just_pressed(\"ui_select\"):
+#		seek(0,true)
 
 
 func _on_animation_finished(anim_name):
 	print(\"finished anim\")
 	while(!AdvancedBackgroundLoader.can_change):
 		print(\"loading\")
-		yield(get_tree().create_timer(1,false),\"timeout\")
-	print(\"done\")
-	AdvancedBackgroundLoader.change_scene_to_preloaded()
+		yield(get_tree().create_timer(.5,false),\"timeout\")
+	LevelManager.emit_signal(\"can_start_scene\")
 	pass # Replace with function body.
 "
 
@@ -427,10 +441,13 @@ script = ExtResource( 73 )
 text = "G"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="O" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21083, -21.4427, 1.81781 )
@@ -438,10 +455,13 @@ script = ExtResource( 73 )
 text = "O"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="D" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.4427, 1.81781 )
@@ -449,10 +469,13 @@ script = ExtResource( 73 )
 text = "D"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="O2" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34901, -21.4427, 1.81781 )
@@ -460,10 +483,13 @@ script = ExtResource( 73 )
 text = "O"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="T" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42166, -21.4427, 1.81781 )
@@ -471,10 +497,13 @@ script = ExtResource( 73 )
 text = "T"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="crash" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1.36903, 0, 5.10928, 0, 5.28952, 0, -5.10928, 0, 1.36903, 5.91498, -7.62987, 5.75291 )
@@ -537,6 +566,8 @@ one_shot = true
 transform = Transform( 1.46648, 0, 0.639868, 0, 1.6, 0, -0.639868, 0, 1.46648, 1.58061, -0.652894, 11.2418 )
 emitting = false
 amount = 9
+
+[node name="AcceptDialog" parent="." instance=ExtResource( 13 )]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 
 [editable path="crash"]

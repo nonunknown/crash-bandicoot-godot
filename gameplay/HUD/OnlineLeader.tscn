@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/crash-a-like.ttf" type="DynamicFontData" id=1]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
 signal done_patch
@@ -16,6 +16,14 @@ var target:Node = null
 var online_time
 var cache:Dictionary = {}
 onready var http:HTTPRequest = $HTTPRequest
+var database
+
+func _enter_tree():
+	var f = File.new()
+	f.open(\"res://database.json\",File.READ)
+	var json = JSON.parse(f.get_as_text())
+	database = json.result
+	f.close()
 
 func _get_user_url() -> String: return \"$s\" % [LevelManager.get_user_name()]
 
@@ -105,7 +113,7 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Label
 
 func _process(delta):
@@ -113,7 +121,7 @@ func _process(delta):
 		LevelManager.restart_scene()
 "
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -153,7 +161,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScrollContainer/VBoxContainer/Label:text")
@@ -183,7 +191,7 @@ tracks/1/keys = {
 [node name="OnlineLeader" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 3 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -202,7 +210,7 @@ custom_colors/font_color = Color( 0.898039, 0.415686, 0.0666667, 1 )
 text = "Press Space to Restart"
 align = 1
 valign = 1
-script = SubResource( 4 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -273,6 +281,6 @@ align = 2
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Done = SubResource( 5 )
-anims/Loading = SubResource( 6 )
+anims/Done = SubResource( 4 )
+anims/Loading = SubResource( 5 )
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]

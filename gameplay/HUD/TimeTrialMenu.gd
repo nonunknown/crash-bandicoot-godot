@@ -6,12 +6,16 @@ onready var menu:MenuManager = MenuManager.new(self)
 
 func _ready():
 	set_process(false)
+	if LevelManager.is_offline: 
+		menu.enable[0] = false
+		$register.text = "DISABLED"
 	pass
 
 func _process(delta):
 	menu.update()
 
 func _on_menu_selected_register(enabled):
+	if !enabled: return
 	set_process(false)
 	var online = load("res://gameplay/HUD/OnlineLeader.tscn").instance()
 	get_parent().add_child(online)

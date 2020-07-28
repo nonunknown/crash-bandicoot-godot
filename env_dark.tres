@@ -1,0 +1,21 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+background_mode = 1
+ambient_light_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+ambient_light_sky_contribution = 0.0
+fog_color = Color( 0, 0, 0, 1 )
+fog_sun_amount = 0.06
+fog_depth_begin = 0.0
+fog_depth_end = 397.6
+fog_depth_curve = 7.21
+fog_transmit_curve = 2.29739
+fog_height_min = -1313.8
+fog_height_max = -505.4
+tonemap_mode = 2
+tonemap_exposure = 0.32
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.75
+adjustment_enabled = true
+adjustment_saturation = 0.31
