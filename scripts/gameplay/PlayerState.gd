@@ -324,5 +324,8 @@ func _on_BodyArea_area_entered(_area):
 
 func _on_SpinArea_body_entered(body):
 	if body.is_in_group(str(Groups.CRATES)):
-		body.event_destroy(self)
+		if body.is_in_group(str(Groups.C_TNT)) || body.is_in_group(str(Groups.C_NITRO)):
+			body.event_explode()
+		else:
+			body.event_destroy(self)
 	pass # Replace with function body.

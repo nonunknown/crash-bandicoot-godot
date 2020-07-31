@@ -33,6 +33,7 @@ func event_reenable():
 
 var explosion = load("res://Sounds/crate/tnt_explosion.wav") as AudioStream
 func event_explode():
+	if LevelManager.player_is_dead(): return
 	destroyed = true
 	print("explode")
 	$AnimationPlayer.stop()
@@ -64,7 +65,6 @@ func _on_ExplosionArea_body_entered(body):
 		if body.is_in_group(str(Groups.C_TNT)) or body.is_in_group(str(Groups.C_NITRO)):
 			yield(get_tree().create_timer(0.3,false),"timeout")
 			body.event_explode()
-			print("FUCKKKK")
 			return
 		body.event_destroy(null)
 

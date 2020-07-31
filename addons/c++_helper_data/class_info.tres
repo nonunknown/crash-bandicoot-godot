@@ -12,10 +12,10 @@ class_info = [ {
 "source_path": "res://src/native_state_machine.cpp",
 "subdir": ""
 }, {
-"header": "game_jolt.hpp",
+"header": "replay_system.hpp",
 "is_tool": false,
-"name": "GameJolt",
-"script_path": "res://scripts/game_jolt.gdns",
-"source_path": "res://src/game_jolt.cpp",
+"name": "ReplaySystem",
+"script_path": "res://scripts/replay_system.gdns",
+"source_path": "res://src/replay_system.cpp",
 "subdir": ""
 } ]

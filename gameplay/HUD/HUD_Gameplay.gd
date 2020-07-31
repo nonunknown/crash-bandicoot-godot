@@ -16,7 +16,7 @@ func add_lifes(side:int=1):
 var _boxes:int = 0
 func update_boxes(side:int=1):
 	_boxes += side
-	$Container/Boxes/Label.text = str(_boxes)
+	$Container/Boxes/Label.text = "%03d" % _boxes
 
 
 
@@ -33,7 +33,7 @@ func set_max_boxes():
 	for crate in Groups.get_from(Groups.CRATES):
 		if crate.destroyable == false: continue
 		_max += 1
-	$Container/Boxes/MAX.text = "/"+str(_max)
+	$Container/Boxes/MAX.text = "/"+"%03d" % _max
 	print(str(_max))
 
 func _zero_all_values():

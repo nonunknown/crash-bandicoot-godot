@@ -61,17 +61,17 @@ color_ramp = SubResource( 6 )
 material = ExtResource( 2 )
 
 [sub_resource type="BoxShape" id=9]
-extents = Vector3( 0.716398, 0.114384, 0.785678 )
+extents = Vector3( 0.566097, 0.114384, 0.462013 )
 
 [sub_resource type="BoxShape" id=10]
-extents = Vector3( 0.270498, 0.690544, 0.205946 )
+extents = Vector3( 0.248831, 0.65843, 0.184884 )
 
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.189806, 0.649701, 0.221463 )
 
 [node name="obj_player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8132, 1.12181, 0 )
-collision_mask = 15
+collision_mask = 63
 collision/safe_margin = 0.04
 script = ExtResource( 1 )
 stream_spin = ExtResource( 5 )

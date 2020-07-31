@@ -13,7 +13,7 @@ func _input(event):
 
 func reset_all_crates():
 	print("GOD SAYS: Reset all stuff")
-	var arr = [str(Groups.CRATES),str(Groups.ITEMS)]
+	var arr = [str(Groups.CRATES),str(Groups.ITEMS),str(Groups.ENEMIES)]
 	for group in arr:
 		var g = get_tree().get_nodes_in_group(group)
 		for stuff in g:

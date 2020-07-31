@@ -4,7 +4,7 @@ using namespace godot;
 
 // Project includes
 #include "native_state_machine.hpp"
-#include "game_jolt.hpp"
+#include "replay_system.hpp"
 
 
 // godot_gdnative_init
@@ -25,6 +25,6 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle)
     godot::Godot::nativescript_init(handle);
 
     register_class<NativeStateMachine>();
-    register_class<GameJolt>();
+    register_class<ReplaySystem>();
 
 }

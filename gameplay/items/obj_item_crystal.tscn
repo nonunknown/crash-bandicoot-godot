@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://model/Crystal/Power Crystal.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://model/Crystal/Crystal Texture Vertex Colors.png" type="Texture" id=2]
+[ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+params_line_width = 0.1
+albedo_color = Color( 1, 1, 1, 0.380392 )
+albedo_texture = ExtResource( 2 )
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture_channel = 2
+roughness = 0.13
+emission_enabled = true
+emission = Color( 0.584314, 0.101961, 0.886275, 1 )
+emission_energy = 0.48
+emission_operator = 0
+emission_on_uv2 = false
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = true
+ao_texture_channel = 0
+
+[node name="obj_item_crystal" instance=ExtResource( 3 )]
+throwable = false
+
+[node name="CollisionShape" parent="Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617131, 0 )
+
+[node name="Model" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.177806, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
+transform = Transform( 0.0122188, 0, -7.86531e-09, 0, 0.0122188, 0, 7.86531e-09, 0, 0.0122188, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )

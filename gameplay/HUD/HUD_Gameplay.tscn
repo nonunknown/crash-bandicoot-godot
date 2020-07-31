@@ -18,7 +18,6 @@ font_data = SubResource( 1 )
 
 [node name="HUD_Gameplay" type="Control"]
 anchor_right = 1.0
-anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -26,28 +25,30 @@ __meta__ = {
 
 [node name="Container" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_right = 344.0
-margin_bottom = 64.0
+margin_left = 16.0
+margin_top = 22.0
+margin_right = -25.0
+margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 26
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wumpas" type="HBoxContainer" parent="Container"]
-margin_right = 337.0
+margin_right = 154.0
 margin_bottom = 64.0
-size_flags_horizontal = 3
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_vertical = 3
 
 [node name="TextureRect2" type="TextureRect" parent="Container/Wumpas"]
-margin_right = 247.0
+margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( -3, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -56,8 +57,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Container/Wumpas"]
-margin_left = 251.0
-margin_right = 337.0
+margin_left = 68.0
+margin_right = 154.0
 margin_bottom = 63.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -67,8 +68,8 @@ text = "##"
 align = 2
 
 [node name="Boxes" type="HBoxContainer" parent="Container"]
-margin_left = 363.0
-margin_right = 700.0
+margin_left = 158.0
+margin_right = 521.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -76,28 +77,31 @@ custom_constants/separation = 0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Boxes"]
-margin_right = 86.0
+margin_left = 29.0
+margin_right = 115.0
 margin_bottom = 63.0
+size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.632812, 0.420205, 0.175507, 1 )
 text = "##"
 align = 2
 
 [node name="MAX" type="Label" parent="Container/Boxes"]
-margin_left = 86.0
-margin_right = 240.0
+margin_left = 115.0
+margin_right = 269.0
 margin_bottom = 63.0
+size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.54902, 0.341176, 0.101961, 1 )
 text = "/###"
 
 [node name="TextureRect" type="TextureRect" parent="Container/Boxes"]
-margin_left = 240.0
-margin_right = 337.0
+margin_left = 269.0
+margin_right = 333.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( -3, 0 )
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 size_flags_vertical = 2
 texture = ExtResource( 2 )
 expand = true
@@ -107,10 +111,9 @@ __meta__ = {
 }
 
 [node name="Lifes" type="HBoxContainer" parent="Container"]
-margin_left = 726.0
-margin_right = 880.0
+margin_left = 525.0
+margin_right = 679.0
 margin_bottom = 64.0
-size_flags_horizontal = 2
 size_flags_vertical = 3
 alignment = 2
 
@@ -119,7 +122,7 @@ margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( -3, 0 )
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 size_flags_vertical = 2
 texture = ExtResource( 3 )
 expand = true
@@ -132,6 +135,7 @@ __meta__ = {
 margin_left = 68.0
 margin_right = 154.0
 margin_bottom = 63.0
+size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.839844, 0.362254, 0.045929, 1 )
 text = "##"

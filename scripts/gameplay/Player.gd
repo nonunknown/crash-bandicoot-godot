@@ -25,12 +25,14 @@ var input_enabled:bool = true
 var time_to_jump = TIME_JUMP
 onready var _initial_speed = max_speed
 
+onready var menu_pause:HUDPause = load("res://gameplay/HUD/HUD_Pause.tscn").instance()
 
 func _init():
 	add_to_group(str(Groups.PLAYER))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().root.call_deferred("add_child",menu_pause)
 	$SpinArea.add_to_group(str(Groups.SPIN))
 	LevelManager.save_checkpoint()
 	
@@ -45,6 +47,10 @@ func _update_physics(delta):
 		dir = Vector3()
 		dir.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 		dir.z = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+		
+		if Input.is_action_just_pressed("cmd_pause"):
+			menu_pause.do_pause()
+		
 		last_dir = dir
 #	else: dir = last_dir
 	
@@ -132,6 +138,7 @@ func rotate_shape(bit:bool):
 onready var initial_pos = global_transform.origin
 onready var feet_eye = load("res://resources/crash/feet_eye.tscn")
 onready var stream_woah = load("res://Sounds/crash/woah.wav") as AudioStream
+
 var dead:bool=false
 
 func die():

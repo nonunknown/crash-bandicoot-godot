@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spd_dead.ogg-57ed3b08e1b8776f787a45210486a027.oggstr"
+
+[deps]
+
+source_file="res://Sounds/enemies/spider/spd_dead.ogg"
+dest_files=[ "res://.import/spd_dead.ogg-57ed3b08e1b8776f787a45210486a027.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

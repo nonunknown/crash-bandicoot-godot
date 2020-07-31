@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spd_voice_2.ogg-3f56ab71f17ed782ff0b93dc701e9532.oggstr"
+
+[deps]
+
+source_file="res://Sounds/enemies/spider/spd_voice_2.ogg"
+dest_files=[ "res://.import/spd_voice_2.ogg-3f56ab71f17ed782ff0b93dc701e9532.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

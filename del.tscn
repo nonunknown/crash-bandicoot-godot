@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://gameplay/obj_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/crates/obj_crate_tnt.tscn" type="PackedScene" id=2]
@@ -9,15 +9,19 @@
 [ext_resource path="res://gameplay/crates/obj_crate_normal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/items/obj_item_clock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://textures/crate/common/boxes-tnt-side.png" type="Texture" id=9]
+[ext_resource path="res://gameplay/enemies/obj_enemy_spider.tscn" type="PackedScene" id=10]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+"
+
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 6.18478, 0.219493, 4.30979 )
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="CubeMesh" id=3]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 resource_local_to_scene = true
-resource_name = "mat_side"
 params_cull_mode = 2
 albedo_texture = ExtResource( 9 )
 emission_enabled = true
@@ -26,17 +30,15 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
-resource_name = "mat_top"
 flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 3 )
 metallic_specular = 0.0
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=6]
 resource_local_to_scene = true
-resource_name = "mat_side"
 params_cull_mode = 2
 albedo_texture = ExtResource( 6 )
 emission_enabled = true
@@ -45,9 +47,8 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=7]
 resource_local_to_scene = true
-resource_name = "mat_side"
 params_cull_mode = 2
 albedo_texture = ExtResource( 6 )
 emission_enabled = true
@@ -58,17 +59,18 @@ emission_on_uv2 = false
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+script = SubResource( 1 )
 
 [node name="HUD_Gameplay" parent="." instance=ExtResource( 4 )]
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 7.83097, 0, 0, 0, 0.153726, 0, 0, 0, 4.70942, 0, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="obj_player" parent="." instance=ExtResource( 1 )]
@@ -81,40 +83,22 @@ far = 10000.0
 [node name="obj_crate_tnt" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0 )
 collision_mask = 0
-activator_id = -1
-timeable = false
-time = 0.0
-gravity_type = 0
 
 [node name="MeshInstance" parent="obj_crate_tnt/Model" index="0"]
-material/0 = SubResource( 3 )
-material/1 = SubResource( 4 )
-
-[node name="obj_crate_tnt2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, 0.33, 0 )
-collision_mask = 0
-activator_id = -1
-timeable = false
-time = 0.0
-gravity_type = 0
+material/0 = SubResource( 4 )
+material/1 = SubResource( 5 )
 
 [node name="obj_crate_activator" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 0.468, 0 )
 collision_mask = 0
 activator_id = -1
-timeable = false
-time = 0.0
-gravity_type = 0
-mat_iron = SubResource( 5 )
+mat_iron = SubResource( 6 )
 
 [node name="obj_crate_activator2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 0.468, 0.996 )
 collision_mask = 0
-timeable = false
-time = 0.0
-gravity_type = 0
-mat_iron = SubResource( 6 )
 to_activate_id = 1
+mat_iron = SubResource( 7 )
 
 [node name="obj_crate_normal" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500851, 0.924802 )
@@ -132,4 +116,9 @@ time = -2.0
 [node name="obj_item_clock" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03045, 0.557078, 0 )
 
+[node name="obj_enemy_spider" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150895, 0.348986, -1.56278 )
+
 [editable path="obj_crate_tnt"]
+
+[editable path="obj_enemy_spider"]

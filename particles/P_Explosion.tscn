@@ -15,7 +15,9 @@ direction = Vector3( 1, 10, 1 )
 spread = 180.0
 flatness = 0.17
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 5.0
+initial_velocity = 3.5
+radial_accel = 1.61
+tangential_accel = -22.58
 scale = 0.4
 color_ramp = SubResource( 2 )
 
@@ -24,6 +26,8 @@ flags_transparent = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
 params_billboard_mode = 3
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.18
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
@@ -60,9 +64,7 @@ material = SubResource( 7 )
 _data = [ Vector2( 0.00429185, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.502146, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="P_Explosion" type="Particles"]
-emitting = false
 amount = 12
-one_shot = true
 preprocess = 0.14
 explosiveness = 1.0
 randomness = 1.0

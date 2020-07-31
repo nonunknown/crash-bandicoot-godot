@@ -2,30 +2,28 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.s3tc.stex"
-path.etc2="res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.etc2.stex"
+path="res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/crate/common/boxes-nitro-side.png"
-dest_files=[ "res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.s3tc.stex", "res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.etc2.stex" ]
+dest_files=[ "res://.import/boxes-nitro-side.png-93ba0dcea2bcb474df87c5803980f4e0.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false

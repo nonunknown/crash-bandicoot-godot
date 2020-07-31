@@ -72,11 +72,11 @@ func event_player_untouched(_body):
 
 func event_destroy(player):
 	if is_animated: animation.play("Smash")
-	if !destroyable: return
+	if !destroyable or destroyed: return
+	destroyed = true
 	if hud_gameplay != null:
 		hud_gameplay.update_boxes(1)
-	if time_manager != null: time_manager.event_destroy()
-	destroyed = true
+	if LevelManager.game_mode == LevelManager.MODE.TIME_TRIAL: time_manager.event_destroy()
 	if player != null:
 		if player.global_transform.origin.y > global_transform.origin.y and !player.is_spinning:
 			player.machine.change_state(2) #force restart jump state

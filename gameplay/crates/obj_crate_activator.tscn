@@ -6,7 +6,7 @@
 [ext_resource path="res://scripts/crates/CrateActivator.gd" type="Script" id=4]
 [ext_resource path="res://textures/crate/rare/boxes-exicon.png" type="Texture" id=5]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
 resource_name = "mat_side"
 params_cull_mode = 2
@@ -17,8 +17,7 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=1]
-resource_name = "mat_side"
+[sub_resource type="SpatialMaterial" id=2]
 params_cull_mode = 2
 albedo_texture = ExtResource( 3 )
 emission_enabled = true
@@ -27,8 +26,7 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=2]
-resource_name = "mat_top"
+[sub_resource type="SpatialMaterial" id=3]
 params_cull_mode = 2
 albedo_texture = ExtResource( 2 )
 emission_enabled = true
@@ -61,11 +59,11 @@ colors = PoolColorArray( 0.992188, 0.98056, 0.98056, 1, 0.993527, 0.983893, 0.98
 [node name="obj_crate_activator" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 activator_id = 0
-mat_iron = SubResource( 3 )
+mat_iron = SubResource( 1 )
 
 [node name="MeshInstance" parent="Model" index="0"]
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+material/0 = SubResource( 2 )
+material/1 = SubResource( 3 )
 
 [node name="P_I" type="CPUParticles" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374963, 0 )

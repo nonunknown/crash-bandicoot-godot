@@ -1,0 +1,226 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://model/portal/m_portal.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://addons/shaderV/tools/TimeScaled.gd" type="Script" id=2]
+[ext_resource path="res://addons/shaderV/rgba/noise/simplex3d.gd" type="Script" id=3]
+
+[sub_resource type="VisualShaderNodeColorOp" id=1]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="VisualShaderNodeColorConstant" id=2]
+constant = Color( 0.178415, 0.0842285, 0.71875, 1 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=3]
+constant = Color( 0.710938, 0.0638733, 0.0638733, 1 )
+
+[sub_resource type="VisualShaderNodeCustom" id=4]
+default_input_values = [ 1, Vector3( 0, 0, 0 ), 2, 5, 3, 0 ]
+script = ExtResource( 3 )
+
+[sub_resource type="VisualShaderNodeInput" id=5]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeCustom" id=6]
+default_input_values = [ 0, 1.0 ]
+script = ExtResource( 2 )
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=7]
+
+[sub_resource type="VisualShaderNodeCustom" id=8]
+default_input_values = [ 0, 0.2 ]
+script = ExtResource( 2 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=9]
+constant = Color( 0.23183, 0.761719, 0.0624847, 1 )
+
+[sub_resource type="VisualShaderNodeColorOp" id=10]
+operator = 7
+
+[sub_resource type="VisualShader" id=11]
+code = "shader_type spatial;
+render_mode cull_disabled, unshaded, vertex_lighting;
+
+
+
+// SimplexNoise3D
+
+vec4 _permute_simplex3_n0ise(vec4 x) {
+	return ((x * 34.0) + 1.0) * x - floor(((x * 34.0) + 1.0) * x * (1.0 / 289.0)) * 289.0;
+}
+float simplex3dN0iseFunc(vec3 v) { 
+	vec2 C = vec2(1.0/6.0, 1.0/3.0) ;
+	vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+	
+	vec3 i  = floor(v + dot(v, vec3(C.y)));
+	vec3 x0 = v - i + dot(i, vec3(C.x)) ;
+	
+	vec3 g = step(x0.yzx, x0.xyz);
+	vec3 l = 1.0 - g;
+	vec3 i1 = min( g.xyz, l.zxy );
+	vec3 i2 = max( g.xyz, l.zxy );
+	
+	vec3 x1 = x0 - i1 + vec3(C.x);
+	vec3 x2 = x0 - i2 + vec3(C.y);
+	vec3 x3 = x0 - D.yyy;
+	
+	i = i - floor(i * (1.0 / 289.0)) * 289.0;
+	vec4 p = _permute_simplex3_n0ise(_permute_simplex3_n0ise(_permute_simplex3_n0ise(
+	 		i.z + vec4(0.0, i1.z, i2.z, 1.0))
+		+   i.y + vec4(0.0, i1.y, i2.y, 1.0))
+		+   i.x + vec4(0.0, i1.x, i2.x, 1.0));
+	
+	float n_ = 0.142857142857;
+	vec3  ns = n_ * D.wyz - D.xzx;
+	
+	vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+	
+	vec4 x_ = floor(j * ns.z);
+	vec4 y_ = floor(j - 7.0 * x_ );
+	
+	vec4 x = x_ *ns.x + vec4(ns.y);
+	vec4 y = y_ *ns.x + vec4(ns.y);
+	vec4 h = 1.0 - abs(x) - abs(y);
+	
+	vec4 b0 = vec4( x.xy, y.xy );
+	vec4 b1 = vec4( x.zw, y.zw );
+	
+	vec4 s0 = floor(b0)*2.0 + 1.0;
+	vec4 s1 = floor(b1)*2.0 + 1.0;
+	vec4 sh = -step(h, vec4(0.0));
+	
+	vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+	vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+	
+	vec3 p0 = vec3(a0.xy,h.x);
+	vec3 p1 = vec3(a0.zw,h.y);
+	vec3 p2 = vec3(a1.xy,h.z);
+	vec3 p3 = vec3(a1.zw,h.w);
+	
+	vec4 norm = 2.79284291400159 - 0.85373472095314 * vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3));
+	p0 *= norm.x;
+	p1 *= norm.y;
+	p2 *= norm.z;
+	p3 *= norm.w;
+	
+	vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), vec4(0.0));
+	m = m * m;
+	return 22.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );
+}
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:8
+	vec3 n_out8p0 = vec3(0.231830, 0.761719, 0.062485);
+	float n_out8p1 = 1.000000;
+
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// ScaledTIME:7
+	float n_in7p0 = 0.20000;
+	float n_out7p0;
+	{
+		n_out7p0 = n_in7p0 * TIME;
+	}
+
+// VectorCompose:6
+	float n_in6p1 = 0.00000;
+	float n_in6p2 = 0.00000;
+	vec3 n_out6p0 = vec3(n_out7p0, n_in6p1, n_in6p2);
+
+// ScaledTIME:4
+	float n_in4p0 = 1.00000;
+	float n_out4p0;
+	{
+		n_out4p0 = n_in4p0 * TIME;
+	}
+
+// SimplexNoise3D:2
+	float n_in2p2 = 5.00000;
+	float n_out2p0;
+	{
+		n_out2p0 = simplex3dN0iseFunc(vec3((n_out3p0.xy + n_out6p0.xy) * n_in2p2, n_out4p0));
+	}
+
+// ColorOp:9
+	vec3 n_out9p0;
+	{
+		float base = n_out8p0.x;
+		float blend = vec3(n_out2p0).x;
+		if (base < 0.5) {
+			n_out9p0.x = (base * (blend + 0.5));
+		} else {
+			n_out9p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out8p0.y;
+		float blend = vec3(n_out2p0).y;
+		if (base < 0.5) {
+			n_out9p0.y = (base * (blend + 0.5));
+		} else {
+			n_out9p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out8p0.z;
+		float blend = vec3(n_out2p0).z;
+		if (base < 0.5) {
+			n_out9p0.z = (base * (blend + 0.5));
+		} else {
+			n_out9p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+
+// Output:0
+	ALBEDO = n_out9p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -71, 118 )
+modes/cull = 2
+flags/unshaded = true
+flags/vertex_lighting = true
+nodes/fragment/0/position = Vector2( 480, 120 )
+nodes/fragment/2/node = SubResource( 4 )
+nodes/fragment/2/position = Vector2( 40, 120 )
+nodes/fragment/3/node = SubResource( 5 )
+nodes/fragment/3/position = Vector2( -220, 40 )
+nodes/fragment/4/node = SubResource( 6 )
+nodes/fragment/4/position = Vector2( -440, 300 )
+nodes/fragment/6/node = SubResource( 7 )
+nodes/fragment/6/position = Vector2( -200, 120 )
+nodes/fragment/7/node = SubResource( 8 )
+nodes/fragment/7/position = Vector2( -460, 160 )
+nodes/fragment/8/node = SubResource( 9 )
+nodes/fragment/8/position = Vector2( 100, 20 )
+nodes/fragment/9/node = SubResource( 10 )
+nodes/fragment/9/position = Vector2( 280, 40 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( 244, 323 )
+nodes/fragment/11/node = SubResource( 2 )
+nodes/fragment/11/position = Vector2( 40, 300 )
+nodes/fragment/12/node = SubResource( 3 )
+nodes/fragment/12/position = Vector2( 20, 420 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 2, 0, 4, 0, 2, 3, 6, 0, 2, 1, 7, 0, 6, 0, 2, 0, 9, 1, 8, 0, 9, 0, 9, 0, 0, 0, 12, 0, 10, 1, 11, 0, 10, 0 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.959982, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 12 )

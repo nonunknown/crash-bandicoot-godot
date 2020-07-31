@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scripts/cameras/CameraSide.gd" type="Script" id=1]
 [ext_resource path="res://OST/lev_dark.ogg" type="AudioStream" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://gameplay/obj_portal.tscn" type="PackedScene" id=20]
 [ext_resource path="res://OST/dragon_teeth.ogg" type="AudioStream" id=21]
 [ext_resource path="res://env_dark.tres" type="Environment" id=22]
+[ext_resource path="res://gameplay/items/obj_item_crystal.tscn" type="PackedScene" id=23]
+[ext_resource path="res://gameplay/enemies/obj_enemy_spider.tscn" type="PackedScene" id=24]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.299246, 0.302956, 0.312068 )
@@ -136,11 +138,22 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
+[sub_resource type="SpatialMaterial" id=14]
+resource_local_to_scene = true
+resource_name = "mat_side"
+params_cull_mode = 2
+albedo_texture = ExtResource( 12 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="Level_Test" type="Spatial"]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-09, -0.000871558, 0.00996195, 0, 0.00996195, 0.000871558, -0.01, 1.41995e-10, -1.62301e-09, 2.617, 2, -10.3832 )
+transform = Transform( -1.62921e-09, -0.000871558, 0.00996195, 0, 0.00996195, 0.000871558, -0.01, 1.41995e-10, -1.62301e-09, 3.72435, 2.08601, -1.73507 )
 current = true
 fov = 80.0
 far = 650.0
@@ -150,12 +163,12 @@ script = ExtResource( 1 )
 current = true
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
-transform = Transform( 0.97674, 0.0186887, -0.213613, -0.0186887, 0.999823, 0.00201958, 0.213613, 0.00201954, 0.976916, -52.9242, 3.2982, -3.50381 )
-light_energy = 2.27
+transform = Transform( 1, -8.88178e-16, -1.42109e-14, 0, 1, -7.45058e-09, 0, -2.30459e-15, 1, 20.181, -10.569, 154.999 )
+light_energy = 3.97
 light_specular = 0.97
 shadow_bias = 16.0
-spot_range = 447.752
-spot_angle = 56.2988
+spot_range = 529.756
+spot_angle = 50.3434
 
 [node name="DeathArea" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95731, 0 )
@@ -163,35 +176,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95731, 0 )
 [node name="CollisionShape" parent="DeathArea" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.0748 )
 
+[node name="DeathArea2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.77673, 0 )
+
+[node name="CollisionShape" parent="DeathArea2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.0748 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 22 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = 12.0
+volume_db = -8.537
 autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -13.846
+volume_db = -21.313
+pitch_scale = 1.1
 autoplay = true
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.00744287, 0.00431159, -0.00510038, 6.91403e-05, 0.00768623, 0.00639664, 0.00667824, 0.00472567, -0.00575057, 0, 2.98266, 0 )
-visible = false
-light_color = Color( 0.792157, 0.792157, 0.792157, 1 )
-light_energy = 1.5
-light_indirect_energy = 0.28
-light_specular = 0.24
-shadow_color = Color( 0.141176, 0.141176, 0.141176, 1 )
-shadow_bias = -7.24
-shadow_reverse_cull_face = true
-directional_shadow_mode = 0
-directional_shadow_blend_splits = true
-directional_shadow_normal_bias = 2.11
-directional_shadow_bias_split_scale = 0.23
-directional_shadow_depth_range = 1
-directional_shadow_max_distance = 10.9
 
 [node name="Base_Crates" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.2, 0, 0 )
@@ -332,62 +335,72 @@ transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0.6, 0, -
 [node name="obj_crate_iron72" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -9 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -12.702 )
 
 [node name="obj_crate_iron75" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.93403e-07, 0, -9 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 5.55223e-07, 0, -12.702 )
 
 [node name="obj_crate_iron78" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -9 )
-
-[node name="obj_crate_iron82" parent="Base_Crates" groups=[
-"C_CRATE",
-] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -8.4 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -12.702 )
 
 [node name="obj_crate_iron83" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.67176e-07, 0, -8.4 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 5.28996e-07, 0, -12.102 )
 
 [node name="obj_crate_iron84" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -8.4 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -12.102 )
+
+[node name="obj_crate_iron91" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -16.8, 0, -12.702 )
+
+[node name="obj_crate_iron92" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -16.8, 0, -13.302 )
+
+[node name="obj_crate_iron93" parent="Base_Crates" groups=[
+"C_CRATE",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -16.8, 0, -13.902 )
 
 [node name="obj_crate_iron85" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -7.8 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -11.502 )
 
 [node name="obj_crate_iron86" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.40949e-07, 0, -7.8 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 5.02769e-07, 0, -11.502 )
 
 [node name="obj_crate_iron87" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -7.8 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0, -11.502 )
 
 [node name="obj_crate_iron88" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -7.2 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0, -10.902 )
 
 [node name="obj_crate_iron89" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.14722e-07, 0, -7.2 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.76542e-07, 0, -10.902 )
 
 [node name="obj_crate_iron90" parent="Base_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.6, 0, -7.2 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.6, 0, -10.902 )
 
 [node name="obj_crate_iron9" parent="Base_Crates" groups=[
 "C_CRATE",
@@ -968,20 +981,13 @@ amt_wumpa = 5
 [node name="obj_crate_normal44" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.93403e-07, 0.6, -9 )
-time = -1.0
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 5.55223e-07, 0.6, -12.702 )
 amt_wumpa = 5
 
 [node name="obj_crate_normal45" parent="Dyncamic_Crates" groups=[
 "C_CRATE",
 ] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0.6, -9 )
-amt_wumpa = 5
-
-[node name="obj_crate_normal46" parent="Dyncamic_Crates" groups=[
-"C_CRATE",
-] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.599999, 0.6, -9 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.6, 0.6, -12.702 )
 amt_wumpa = 5
 
 [node name="obj_crate_checkpoint2" parent="Dyncamic_Crates" groups=[
@@ -1199,12 +1205,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55717, 0.839141, -46.0218 )
 transform = Transform( -3.02394e-06, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -3.02394e-06, 1.32181e-13, 0, 1.73862, 0 )
 
 [node name="obj_player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.169376, 0.693723, -0.825429 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635461, 0.801246, -0.697766 )
 
 [node name="World" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 0, -13.2 )
 
-[node name="obj_crate_normal4" parent="World" index="14"]
+[node name="obj_crate_normal4" parent="World" index="8"]
 time = -1.0
 
 [node name="obj_crate_normal5" parent="World" index="20"]
@@ -1213,16 +1219,32 @@ time = 3.0
 [node name="obj_crate_normal6" parent="World" index="21"]
 time = -1.0
 
+[node name="obj_crate_activator" parent="World" index="37"]
+activator_id = -1
+mat_iron = SubResource( 14 )
+
+[node name="obj_crate_activator2" parent="World" index="45"]
+activator_id = -1
+mat_iron = SubResource( 14 )
+
 [node name="obj_item_clock" parent="." instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0131, 0.867983, -0.0140767 )
 
 [node name="Spatial" parent="." instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.64197, 1.60044, -0.303873 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.344, 1.60044, -0.303873 )
 
 [node name="obj_portal" parent="." instance=ExtResource( 20 )]
-transform = Transform( -0.00647104, 0, 0.999979, 0, 1, 0, -0.999979, 0, -0.00647104, -6.52453, 0.506749, 2.17296 )
+transform = Transform( -0.00647104, 0, 0.999979, 0, 1, 0, -0.999979, 0, -0.00647104, -10.2265, 0.506749, 2.17296 )
+
+[node name="obj_item_crystal" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0842, 0.825839, 16.8 )
+
+[node name="obj_enemy_spider" parent="." instance=ExtResource( 24 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.564445, 0.724005, -24.8898 )
 
 [editable path="DeathArea"]
+
+[editable path="DeathArea2"]
 
 [editable path="Base_Crates/obj_crate_iron23"]
 
@@ -1233,3 +1255,5 @@ transform = Transform( -0.00647104, 0, 0.999979, 0, 1, 0, -0.999979, 0, -0.00647
 [editable path="obj_player/crash"]
 
 [editable path="World"]
+
+[editable path="obj_enemy_spider"]

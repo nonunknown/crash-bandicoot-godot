@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gameplay/base_item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://model/gem/Clear.png" type="Texture" id=2]
+[ext_resource path="res://model/gem/Gem.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 2 )
+metallic = 0.3
+metallic_specular = 1.0
+roughness = 0.18
+
+[node name="obj_item_gem" instance=ExtResource( 1 )]
+throwable = false
+
+[node name="CollisionShape" parent="Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.337747, 0 )
+
+[node name="Model" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Model" index="0"]
+transform = Transform( 0.0143172, 0, 8.88178e-16, 0, 0.0143172, 0, -8.88178e-16, 0, 0.0143172, 0, 0.312903, 0 )
+mesh = ExtResource( 3 )
+material/0 = SubResource( 1 )
