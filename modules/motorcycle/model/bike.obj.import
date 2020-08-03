@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bike.obj-0c6bca881172b2cb0bf89f6ab97c7d27.mesh"
+
+[deps]
+
+files=[ "res://.import/bike.obj-0c6bca881172b2cb0bf89f6ab97c7d27.mesh" ]
+
+source_file="res://modules/motorcycle/model/bike.obj"
+dest_files=[ "res://.import/bike.obj-0c6bca881172b2cb0bf89f6ab97c7d27.mesh", "res://.import/bike.obj-0c6bca881172b2cb0bf89f6ab97c7d27.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,34 @@
+{
+	"Warp Room 1": {
+		"name": "Warp Room 1",
+		"levels": [
+			{
+				"name": "Dragon's Teeth",
+				"gems" : ["default","purple"]
+			},
+			{
+				"name": "Drive'n Crash",
+				"gems" : ["default"]
+			}
+		],
+		"boss": 
+			{
+				"name": "Araceli Bandicoot",
+				"power" : 0
+			}
+	},
+	"Warp Room 2": {
+		"name": "Warp Room 2",
+		"levels": [
+			{
+				"name": "TODO",
+				"gems": ["default"]
+			}
+		],
+		"boss":
+			{
+				"name": "Unknown",
+				"power": 1
+			}
+	}
+}

@@ -48,6 +48,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "bitset": "cpp",
+        "list": "cpp"
     }
 }

@@ -13,6 +13,17 @@
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
+
+var s
+func _ready():
+	s = ReplaySystem.new()
+	get_parent().call_deferred(\"add_child\",s)
+	s.name = \"Replay\"
+
+func _process(delta):
+	s.register_frame()
+	if Input.is_action_just_pressed(\"cmd_time\"):
+		s.print_buffers();
 "
 
 [sub_resource type="BoxShape" id=2]

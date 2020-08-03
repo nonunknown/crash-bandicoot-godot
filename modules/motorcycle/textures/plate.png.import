@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex"
-path.etc2="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.stex"
+path.s3tc="res://.import/plate.png-0b3185818808fe1802ec1f4bf947dd79.s3tc.stex"
+path.etc2="res://.import/plate.png-0b3185818808fe1802ec1f4bf947dd79.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex", "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.stex" ]
+source_file="res://modules/motorcycle/textures/plate.png"
+dest_files=[ "res://.import/plate.png-0b3185818808fe1802ec1f4bf947dd79.s3tc.stex", "res://.import/plate.png-0b3185818808fe1802ec1f4bf947dd79.etc2.stex" ]
 
 [params]
 
@@ -22,8 +22,8 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=1
 process/fix_alpha_border=true

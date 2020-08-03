@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bikeLevel.obj-b950ee5259150615c98c8e204ff6bcc7.mesh"
+
+[deps]
+
+files=[ "res://.import/bikeLevel.obj-b950ee5259150615c98c8e204ff6bcc7.mesh" ]
+
+source_file="res://modules/motorcycle/model/level1/bikeLevel.obj"
+dest_files=[ "res://.import/bikeLevel.obj-b950ee5259150615c98c8e204ff6bcc7.mesh", "res://.import/bikeLevel.obj-b950ee5259150615c98c8e204ff6bcc7.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

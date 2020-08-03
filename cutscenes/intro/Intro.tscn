@@ -441,10 +441,13 @@ script = ExtResource( 73 )
 text = "G"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="O" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21083, -21.4427, 1.81781 )
@@ -452,10 +455,13 @@ script = ExtResource( 73 )
 text = "O"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="D" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.4427, 1.81781 )
@@ -463,10 +469,13 @@ script = ExtResource( 73 )
 text = "D"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="O2" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34901, -21.4427, 1.81781 )
@@ -474,10 +483,13 @@ script = ExtResource( 73 )
 text = "O"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="T" type="Spatial" parent="GDLetter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42166, -21.4427, 1.81781 )
@@ -485,10 +497,13 @@ script = ExtResource( 73 )
 text = "T"
 text_scale = 0.016
 extrude = 0.577
+font = null
 align = 2
 color = Color( 0.50415, 0.620185, 0.921875, 1 )
 metallic = 1.0
 roughness = 0.689
+max_steps = 256
+step_size = 1.0
 
 [node name="crash" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1.36903, 0, 5.10928, 0, 5.28952, 0, -5.10928, 0, 1.36903, 5.91498, -7.62987, 5.75291 )

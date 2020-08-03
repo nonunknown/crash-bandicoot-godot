@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+var pos:Vector2
+var velocity:Vector2
+var acc:Vector2
+var r:float
+var max_speed:float
+var max_force:float
+
+
+func _ready():
+	acc = Vector2.ZERO
+	var target_pos = Vector2(200,400)
+	velocity = target_pos
+	pos = position
+	r = 6
+	max_speed = 10
+	max_force = 0.5
+	
+	pass
+
+func _process(delta):
+	velocity += acc
+	velocity = velocity.clamped(max_speed)
+	position += velocity
+	acc *= 0
+	
+	seek(get_global_mouse_position())
+	pass
+
+func apply_force(force:Vector2):
+	acc += force
+
+func seek(target:Vector2):
+	var desired:Vector2 = target - position
+	desired.x = desired.x * max_speed / desired.length()
+	desired.y = desired.y * max_speed / desired.length()
+	var steer = desired - velocity
+	steer = steer.clamped(max_force)
+	
+	apply_force(steer)
+#new_vx = vx * New_Mag / Mag
+#new_vy = vy * New_Mag / Mag
+	
+"
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 24.2301, 17.0949 )
+
+[node name="car" type="Sprite" parent="."]
+script = SubResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="car"]
+scale = Vector2( 0.0310331, 0.202472 )
+texture = ExtResource( 1 )

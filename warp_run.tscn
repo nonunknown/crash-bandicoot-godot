@@ -6,3 +6,22 @@
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="Spatial" parent="." instance=ExtResource( 1 )]
+
+[node name="Grass" parent="Spatial/WindGrass" index="1"]
+extents = Vector2( 50, 50 )
+
+[node name="SpotLight" parent="Spatial" index="10"]
+light_cull_mask = 2147483647
+spot_range = 364.6
+
+[node name="SpotLight2" parent="Spatial" index="11"]
+light_cull_mask = 2147483647
+spot_range = 425.23
+
+[node name="SpotLight3" parent="Spatial" index="12"]
+light_cull_mask = 2147483647
+spot_range = 405.423
+
+[editable path="Spatial"]
+
+[editable path="Spatial/WindGrass"]

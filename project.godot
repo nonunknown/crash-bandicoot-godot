@@ -848,7 +848,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Advanced Background Loader", "SIsilicon.3d.text", "c++_helper", "enhanced_assetlib", "menu_maker", "smart_audio_stream" )
+enabled=PoolStringArray( "Advanced Background Loader", "CSGExport", "SIsilicon.3d.text", "c++_helper", "enhanced_assetlib", "menu_maker", "smart_audio_stream" )
 
 [importer_defaults]
 
@@ -921,14 +921,14 @@ common/physics_fps=30
 
 threads/thread_model=2
 quality/filters/anisotropic_filter_level=1
-quality/directional_shadow/size=256
-quality/directional_shadow/size.mobile=256
+quality/directional_shadow/size=1024
+quality/directional_shadow/size.mobile=1024
 quality/shadow_atlas/size=2046
 quality/shadow_atlas/size.mobile=256
-quality/shadow_atlas/quadrant_1_subdiv=1
-quality/shadow_atlas/quadrant_2_subdiv=2
-quality/shadow_atlas/quadrant_3_subdiv=3
-quality/shadows/filter_mode=0
+quality/shadow_atlas/quadrant_0_subdiv=3
+quality/shadow_atlas/quadrant_1_subdiv=4
+quality/shadow_atlas/quadrant_2_subdiv=5
+quality/shadow_atlas/quadrant_3_subdiv=6
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/reflections/irradiance_max_size=64
