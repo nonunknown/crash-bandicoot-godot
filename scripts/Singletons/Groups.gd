@@ -3,7 +3,7 @@ extends Node
 #NO_TT - No Time trial group (will no being turned into a time trial crate)
 
 enum {PLAYER,CRATES,SAVED,DESTROYABLE,C_NITRO,ITEMS,SPIN,HIDE,C_TNT,EXPLOSION,
-	HUD_GAMEPLAY,TIME_TRIAL,NO_TT,ENEMIES
+	HUD_GAMEPLAY,TIME_TRIAL,NO_TT,ENEMIES, HUD_WARP
 }
 
 

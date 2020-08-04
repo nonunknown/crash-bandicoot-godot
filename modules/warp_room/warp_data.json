@@ -4,11 +4,11 @@
 		"levels": [
 			{
 				"name": "Dragon's Teeth",
-				"gems" : ["default","purple"]
+				"gems" : ["default"]
 			},
 			{
 				"name": "Drive'n Crash",
-				"gems" : ["default"]
+				"gems" : ["default","purple"]
 			}
 		],
 		"boss": 

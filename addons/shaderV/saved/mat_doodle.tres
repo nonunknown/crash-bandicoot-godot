@@ -1,0 +1,131 @@
+[gd_resource type="ShaderMaterial" load_steps=11 format=2]
+
+[ext_resource path="res://addons/shaderV/uv/animated/doodleUV.gd" type="Script" id=1]
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=1]
+constant = 0.7
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=2]
+constant = 0.065
+
+[sub_resource type="VisualShaderNodeCustom" id=3]
+default_input_values = [ 1, 0.5, 2, 4.0, 3, 0.7, 4, 0.065, 5, 0 ]
+script = ExtResource( 1 )
+
+[sub_resource type="VisualShaderNodeInput" id=4]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeTexture" id=5]
+source = 2
+
+[sub_resource type="VisualShaderNodeInput" id=6]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=7]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=8]
+constant = 4.0
+
+[sub_resource type="VisualShader" id=9]
+code = "shader_type canvas_item;
+
+
+// DoodleUV
+
+float hash2D00dle(vec2 _p_hash_d00dle) {
+	return fract(1e4 * sin(17.0 * _p_hash_d00dle.x + _p_hash_d00dle.y * 0.1) * (0.1 + abs(sin(_p_hash_d00dle.y * 13.0 + _p_hash_d00dle.x))));
+}
+
+float noiseD00dle(vec2 _seed_noise_d00dle){
+	vec2 i = floor(_seed_noise_d00dle);
+	vec2 f = fract(_seed_noise_d00dle);
+	float _a = hash2D00dle(i);
+	float _b = hash2D00dle(i + vec2(1.0, 0.0));
+	float _c = hash2D00dle(i + vec2(0.0, 1.0));
+	float _d = hash2D00dle(i + vec2(1.0, 1.0));
+	vec2 u = f * f * (3.0 - 2.0 * f);
+	return mix(_a, _b, u.x) + (_c - _a) * u.y * (1.0 - u.x) + (_d - _b) * u.x * u.y;
+}
+
+vec2 d00dleUVFunc(vec2 _uv_d00dle, float _max_offset_d00dle, float _time_d00dle, float _frame_time_d00dle, int _frame_count_d00dle, float _scale_d00dle){
+	float timeValueD00dle = mod(floor(_time_d00dle / _frame_time_d00dle), float(_frame_count_d00dle)) + 1.0;
+	return _uv_d00dle + vec2(noiseD00dle((_uv_d00dle + timeValueD00dle) * _scale_d00dle) * 2.0 - 1.0) * _max_offset_d00dle;
+}
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// Scalar:8
+	float n_out8p0 = 0.500000;
+
+// Scalar:9
+	float n_out9p0 = 4.000000;
+
+// Scalar:10
+	float n_out10p0 = 0.700000;
+
+// Scalar:11
+	float n_out11p0 = 0.065000;
+
+// Input:7
+	float n_out7p0 = TIME;
+
+// DoodleUV:12
+	vec3 n_out12p0;
+	{
+		n_out12p0.xy = d00dleUVFunc(n_out3p0.xy, n_out11p0, n_out7p0, n_out8p0, int(n_out9p0), n_out10p0);
+	}
+
+// Texture:5
+	vec3 n_out5p0;
+	float n_out5p1;
+	{
+		vec4 _tex_read = texture(TEXTURE, n_out12p0.xy);
+		n_out5p0 = _tex_read.rgb;
+		n_out5p1 = _tex_read.a;
+	}
+
+// Output:0
+	COLOR.rgb = n_out5p0;
+	COLOR.a = n_out5p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+custom_defines = ""
+graph_offset = Vector2( -562, -94 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 540, 0 )
+nodes/fragment/3/node = SubResource( 4 )
+nodes/fragment/3/position = Vector2( -100, -160 )
+nodes/fragment/5/node = SubResource( 5 )
+nodes/fragment/5/position = Vector2( 340, 0 )
+nodes/fragment/7/node = SubResource( 6 )
+nodes/fragment/7/position = Vector2( -100, 240 )
+nodes/fragment/8/node = SubResource( 7 )
+nodes/fragment/8/position = Vector2( -120, -80 )
+nodes/fragment/9/node = SubResource( 8 )
+nodes/fragment/9/position = Vector2( -120, 0 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -120, 80 )
+nodes/fragment/11/node = SubResource( 2 )
+nodes/fragment/11/position = Vector2( -120, 160 )
+nodes/fragment/12/node = SubResource( 3 )
+nodes/fragment/12/position = Vector2( 140, 0 )
+nodes/fragment/connections = PoolIntArray( 5, 0, 0, 0, 5, 1, 0, 1, 3, 0, 12, 0, 8, 0, 12, 1, 9, 0, 12, 2, 10, 0, 12, 3, 11, 0, 12, 4, 7, 0, 12, 5, 12, 0, 5, 0 )
+
+[resource]
+shader = SubResource( 9 )

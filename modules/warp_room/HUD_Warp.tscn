@@ -1,0 +1,271 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/icons/crystal.png" type="Texture" id=1]
+[ext_resource path="res://sprites/icons/gem.png" type="Texture" id=2]
+[ext_resource path="res://sprites/icons/ara.png" type="Texture" id=3]
+[ext_resource path="res://fonts/crash-a-like.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://sprites/icons/relic.png" type="Texture" id=5]
+[ext_resource path="res://modules/warp_room/scripts/HUD_Warp.gd" type="Script" id=6]
+[ext_resource path="res://addons/shaderV/saved/mat_distort.tres" type="Material" id=7]
+[ext_resource path="res://addons/shaderV/saved/mat_doodle.tres" type="Material" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="VisualShader" id=3]
+graph_offset = Vector2( 25, 122 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[node name="HUD_Warp" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BossInfo" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 22.0
+margin_top = -159.0
+margin_right = 720.0
+margin_bottom = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="BossInfo"]
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="BossInfo"]
+margin_left = 132.0
+margin_top = 117.0
+margin_right = 698.0
+margin_bottom = 144.0
+size_flags_horizontal = 7
+size_flags_vertical = 8
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.968627, 0.529412, 0.0509804, 1 )
+text = "boss name"
+valign = 2
+
+[node name="LevelInfo" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 44.0
+margin_right = -60.0
+margin_bottom = 95.0
+custom_constants/separation = 28
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crystal" type="VBoxContainer" parent="LevelInfo"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.552941 )
+margin_right = 91.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="LevelInfo/Crystal"]
+material = ExtResource( 7 )
+margin_left = 13.0
+margin_right = 77.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="LevelInfo/Crystal"]
+modulate = Color( 0.917647, 0.882353, 0.0352941, 1 )
+margin_top = 68.0
+margin_right = 91.0
+margin_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Crystal"
+align = 1
+
+[node name="WhiteGem" type="VBoxContainer" parent="LevelInfo"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.552941 )
+margin_left = 119.0
+margin_right = 233.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="LevelInfo/WhiteGem"]
+material = ExtResource( 7 )
+margin_left = 25.0
+margin_right = 89.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="LevelInfo/WhiteGem"]
+margin_top = 68.0
+margin_right = 114.0
+margin_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0.976471, 0.976471, 1 )
+text = "White Gem"
+align = 1
+
+[node name="Level" type="VBoxContainer" parent="LevelInfo"]
+margin_left = 261.0
+margin_right = 389.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leve" type="Label" parent="LevelInfo/Level"]
+material = SubResource( 4 )
+margin_top = 15.0
+margin_right = 128.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 128, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.956863, 0.584314, 0, 1 )
+text = "Big name around "
+align = 1
+valign = 1
+autowrap = true
+
+[node name="SecondGem" type="VBoxContainer" parent="LevelInfo"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.552941 )
+margin_left = 417.0
+margin_right = 531.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="LevelInfo/SecondGem"]
+material = ExtResource( 7 )
+margin_left = 25.0
+margin_right = 89.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="LevelInfo/SecondGem"]
+margin_top = 68.0
+margin_right = 114.0
+margin_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.603922, 0.603922, 0.603922, 1 )
+text = "White Gem"
+align = 1
+
+[node name="Relic" type="VBoxContainer" parent="LevelInfo"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.552941 )
+margin_left = 559.0
+margin_right = 623.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="LevelInfo/Relic"]
+modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+material = ExtResource( 8 )
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="LevelInfo/Relic"]
+margin_left = 3.0
+margin_top = 68.0
+margin_right = 61.0
+margin_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.337255, 0.501961, 0.384314, 1 )
+text = "Relic"
+align = 1

@@ -8,7 +8,7 @@
 [ext_resource path="res://gameplay/obj_player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/crates/obj_crate_normal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/crates/obj_crate_checkpoint.tscn" type="PackedScene" id=8]
-[ext_resource path="res://World.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/DragonTeethPart2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gameplay/crates/obj_crate_activator.tscn" type="PackedScene" id=10]
 [ext_resource path="res://textures/crate/common/boxes-tnt-side.png" type="Texture" id=11]
 [ext_resource path="res://textures/crate/common/boxes-metal.png" type="Texture" id=12]
@@ -24,6 +24,8 @@
 [ext_resource path="res://env_dark.tres" type="Environment" id=22]
 [ext_resource path="res://gameplay/items/obj_item_crystal.tscn" type="PackedScene" id=23]
 [ext_resource path="res://gameplay/enemies/obj_enemy_spider.tscn" type="PackedScene" id=24]
+
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.299246, 0.302956, 0.312068 )

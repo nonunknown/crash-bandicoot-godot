@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/SIsilicon.3d.text/array_utils.gd"
 }, {
+"base": "Reference",
+"class": "BitFlag",
+"language": "GDScript",
+"path": "res://modules/warp_room/scripts/BitFlag.gd"
+}, {
 "base": "SmartAudioStream",
 "class": "CrashAudio",
 "language": "GDScript",
@@ -124,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gameplay/HUD/HUD_TimeTrial.gd"
 }, {
+"base": "Control",
+"class": "HUDWarp",
+"language": "GDScript",
+"path": "res://modules/warp_room/scripts/HUD_Warp.gd"
+}, {
 "base": "KinematicBody",
 "class": "Item",
 "language": "GDScript",
@@ -143,6 +153,11 @@ _global_script_classes=[ {
 "class": "ItemWumpa",
 "language": "GDScript",
 "path": "res://scripts/items/ItemWumpa.gd"
+}, {
+"base": "Spatial",
+"class": "LevelChecker",
+"language": "GDScript",
+"path": "res://modules/warp_room/scripts/LevelChecker.gd"
 }, {
 "base": "Reference",
 "class": "MenuManager",
@@ -168,6 +183,11 @@ _global_script_classes=[ {
 "class": "ReplaySystem",
 "language": "NativeScript",
 "path": "res://scripts/replay_system.gdns"
+}, {
+"base": "Resource",
+"class": "SaveResource",
+"language": "GDScript",
+"path": "res://scripts/resources/SaveResource.gd"
 }, {
 "base": "AudioStreamPlayer3D",
 "class": "SmartAudioStream",
@@ -657,6 +677,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ActivatorCrateManager": "",
 "ArrayUtils": "",
+"BitFlag": "",
 "CrashAudio": "",
 "Crate": "",
 "CrateActivator": "",
@@ -678,15 +699,18 @@ _global_script_class_icons={
 "HUDGameplay": "",
 "HUDPause": "",
 "HUDTimeTrial": "",
+"HUDWarp": "",
 "Item": "",
 "ItemClock": "",
 "ItemCrystal": "",
 "ItemWumpa": "",
+"LevelChecker": "",
 "MenuManager": "",
 "NativeStateMachine": "",
 "Player": "",
 "PlayerState": "",
 "ReplaySystem": "",
+"SaveResource": "",
 "SmartAudioStream": "",
 "StateMachine": "",
 "TimeCrateManager": "",
@@ -810,6 +834,7 @@ LevelManager="*res://scripts/Singletons/LevelManager.gd"
 Groups="*res://scripts/Singletons/Groups.gd"
 AdvancedBackgroundLoader="*res://addons/Advanced Background Loader/background_load.gd"
 Utils="*res://scripts/Singletons/Utils.gd"
+SaveManager="*res://scripts/Singletons/SaveManager.gd"
 
 [c++]
 
