@@ -7,7 +7,7 @@ var bus_crates:AudioStreamPlayer3D
 var bus_items:AudioStreamPlayer
 
 func _enter_tree():
-	var a = load("res://AudioStreamPlayer.tscn").instance()
+	var a = load("res://scenes/AudioStreamPlayer.tscn").instance()
 	add_child(a)
 	bus_player = a.get_child(0)
 	bus_step = a.get_child(1)

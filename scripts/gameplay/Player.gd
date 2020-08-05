@@ -7,7 +7,7 @@ class_name Player
 
 export var gravity:float = -2000
 export var max_speed = 300
-const JUMP_SPEED = 700
+export var JUMP_SPEED = 700
 const ACCELERATION = 2
 const DECELERATION = 4
 const MAX_SLOPE_ANGLE = 40

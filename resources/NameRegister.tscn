@@ -2,6 +2,8 @@
 
 [ext_resource path="res://fonts/crash-a-like.ttf" type="DynamicFontData" id=1]
 
+[sub_resource type="StyleBoxEmpty" id=1]
+
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=3]
@@ -12,14 +14,14 @@
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 0, 0, 0.12549 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=8]
 
 [sub_resource type="StyleBoxFlat" id=9]
 
@@ -30,32 +32,30 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxFlat" id=12]
 
 [sub_resource type="StyleBoxFlat" id=13]
-
-[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0, 0, 0, 0.133333 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=14]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=16]
-default_font = SubResource( 15 )
+[sub_resource type="Theme" id=15]
+default_font = SubResource( 14 )
 Button/colors/font_color = Color( 0.968627, 0.941176, 0.941176, 1 )
 Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0.92549, 0.403922, 0.0235294, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
-Button/styles/disabled = SubResource( 2 )
-Button/styles/focus = SubResource( 3 )
-Button/styles/hover = SubResource( 4 )
-Button/styles/normal = SubResource( 5 )
-Button/styles/pressed = SubResource( 6 )
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
 CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
@@ -219,8 +219,8 @@ LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 7 )
-LineEdit/styles/normal = SubResource( 8 )
+LineEdit/styles/focus = SubResource( 6 )
+LineEdit/styles/normal = SubResource( 7 )
 LineEdit/styles/read_only = null
 LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
 LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
@@ -258,7 +258,7 @@ OptionButton/styles/normal = null
 OptionButton/styles/pressed = null
 Panel/styles/panel = null
 PanelContainer/styles/panel = null
-PopupDialog/styles/panel = SubResource( 9 )
+PopupDialog/styles/panel = SubResource( 8 )
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
 PopupMenu/colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -274,10 +274,10 @@ PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = null
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = SubResource( 10 )
+PopupMenu/styles/panel = SubResource( 9 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
-PopupPanel/styles/panel = SubResource( 11 )
+PopupPanel/styles/panel = SubResource( 10 )
 ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null
@@ -317,7 +317,7 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 12 )
+TabContainer/styles/panel = SubResource( 11 )
 TabContainer/styles/tab_bg = null
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = null
@@ -336,7 +336,7 @@ Tabs/icons/increment = null
 Tabs/icons/increment_highlight = null
 Tabs/styles/button = null
 Tabs/styles/button_pressed = null
-Tabs/styles/panel = SubResource( 13 )
+Tabs/styles/panel = SubResource( 12 )
 Tabs/styles/tab_bg = null
 Tabs/styles/tab_disabled = null
 Tabs/styles/tab_fg = null
@@ -463,9 +463,9 @@ WindowDialog/constants/title_height = 40
 WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 14 )
+WindowDialog/styles/panel = SubResource( 13 )
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=16]
 script/source = "extends AcceptDialog
 
 enum {GET,PATCH}
@@ -583,11 +583,11 @@ margin_left = -0.280006
 margin_top = -0.12001
 margin_right = 0.279968
 margin_bottom = 0.160004
-theme = SubResource( 16 )
+theme = SubResource( 15 )
 popup_exclusive = true
 window_title = "Register Your Nickname"
 dialog_hide_on_ok = false
-script = SubResource( 1 )
+script = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

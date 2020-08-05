@@ -1,5 +1,7 @@
 extends Node
 
+var load_game_on_start:bool = false
+
 const save_path:String = "res://dat.res"
 
 func get_base_data() -> SaveResource:

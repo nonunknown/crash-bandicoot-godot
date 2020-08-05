@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://cutscenes/intro/imgs/godot_eye.png" type="Texture" id=1]
 [ext_resource path="res://cutscenes/intro/imgs/godot.png" type="Texture" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://cutscenes/intro/sounds/crash_oh.ogg" type="AudioStream" id=10]
 [ext_resource path="res://particles/P_eye.tscn" type="PackedScene" id=11]
 [ext_resource path="res://particles/P_ray.tscn" type="PackedScene" id=12]
-[ext_resource path="res://resources/NameRegister.tscn" type="PackedScene" id=13]
 [ext_resource path="res://cutscenes/intro/imgs/intro_background.png" type="Texture" id=70]
 [ext_resource path="res://cutscenes/intro/sounds/wosh.ogg" type="AudioStream" id=71]
 [ext_resource path="res://cutscenes/intro/sounds/falling.ogg" type="AudioStream" id=72]
@@ -21,7 +20,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Logo"
-length = 20.0
+length = 11.8
 step = 0.01
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Godot:translation:x")
@@ -339,26 +338,12 @@ tracks/26/keys = {
 "method": "restart"
 } ]
 }
-tracks/27/type = "method"
-tracks/27/path = NodePath("AcceptDialog")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/keys = {
-"times": PoolRealArray( 11.89 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "show"
-} ]
-}
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends AnimationPlayer
 
 func _ready():
-	AdvancedBackgroundLoader.preload_scene(\"res://gameplay/Lev_Test.tscn\")
+	AdvancedBackgroundLoader.preload_scene(\"res://cutscenes/menu/cut_menu.tscn\")
 
 #func _process(delta):
 #	if Input.is_action_just_pressed(\"ui_select\"):
@@ -366,11 +351,10 @@ func _ready():
 
 
 func _on_animation_finished(anim_name):
-	print(\"finished anim\")
 	while(!AdvancedBackgroundLoader.can_change):
 		print(\"loading\")
 		yield(get_tree().create_timer(.5,false),\"timeout\")
-	LevelManager.emit_signal(\"can_start_scene\")
+	AdvancedBackgroundLoader.change_scene_to_preloaded()
 	pass # Replace with function body.
 "
 
@@ -566,8 +550,6 @@ one_shot = true
 transform = Transform( 1.46648, 0, 0.639868, 0, 1.6, 0, -0.639868, 0, 1.46648, 1.58061, -0.652894, 11.2418 )
 emitting = false
 amount = 9
-
-[node name="AcceptDialog" parent="." instance=ExtResource( 13 )]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 
 [editable path="crash"]

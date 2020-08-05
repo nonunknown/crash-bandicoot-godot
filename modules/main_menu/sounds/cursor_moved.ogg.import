@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cursor_moved.ogg-9e4165103d0db2bef3c13efff25ba687.oggstr"
+
+[deps]
+
+source_file="res://modules/main_menu/sounds/cursor_moved.ogg"
+dest_files=[ "res://.import/cursor_moved.ogg-9e4165103d0db2bef3c13efff25ba687.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -22,7 +22,7 @@ func _thread_load(path):
 		# Update progress bar, use call deferred, which routes to main thread
 #		progress.call_deferred("set_value", ril.get_stage())
 		# Simulate a delay
-		OS.delay_msec(SIMULATED_DELAY_SEC * 1000.0)
+#		OS.delay_msec(SIMULATED_DELAY_SEC * 1000.0)
 		# Poll (does a load step)
 		var err = ril.poll()
 		# if OK, then load another one. If EOF, it' s done. Otherwise there was an error.
@@ -62,7 +62,7 @@ func preload_scene(path):
 	print(str('PRELOADING SCENE: ' + path + '...'))
 	thread = Thread.new()
 	thread.start( self, "_thread_load", path)
-	raise() # show on top
+	call_deferred("raise") # show on top
 #	progress.visible = true
 
 func change_scene_to_preloaded():

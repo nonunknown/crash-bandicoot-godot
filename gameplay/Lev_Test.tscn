@@ -25,8 +25,6 @@
 [ext_resource path="res://gameplay/items/obj_item_crystal.tscn" type="PackedScene" id=23]
 [ext_resource path="res://gameplay/enemies/obj_enemy_spider.tscn" type="PackedScene" id=24]
 
-
-
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.299246, 0.302956, 0.312068 )
 

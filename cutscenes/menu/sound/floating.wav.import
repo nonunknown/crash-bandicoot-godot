@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/floating.wav-8891126842717ab38413316dd7bdde74.sample"
+
+[deps]
+
+source_file="res://cutscenes/menu/sound/floating.wav"
+dest_files=[ "res://.import/floating.wav-8891126842717ab38413316dd7bdde74.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

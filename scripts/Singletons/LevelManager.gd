@@ -3,10 +3,10 @@ extends Node
 signal event_restart
 signal event_start_tt
 signal event_level_finished
-signal can_start_scene
+#signal can_start_scene
 signal player_died
 enum MODE {CRYSTAL,GEM,TIME_TRIAL}
-const CRATE = preload("res://models/crate/rm_crate.tscn")
+const CRATE = preload("res://model/crate/rm_crate.tscn")
 
 var game_mode:int = MODE.GEM
 var player:Player

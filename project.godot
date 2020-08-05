@@ -179,6 +179,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/gameplay/PlayerState.gd"
 }, {
+"base": "Resource",
+"class": "R_Game",
+"language": "GDScript",
+"path": "res://modules/warp_room/resources/R_Game.gd"
+}, {
+"base": "Resource",
+"class": "R_Level",
+"language": "GDScript",
+"path": "res://modules/warp_room/resources/R_Level.gd"
+}, {
+"base": "Resource",
+"class": "R_WarpRoom",
+"language": "GDScript",
+"path": "res://modules/warp_room/resources/R_WarpRoom.gd"
+}, {
 "base": "",
 "class": "ReplaySystem",
 "language": "NativeScript",
@@ -709,6 +724,9 @@ _global_script_class_icons={
 "NativeStateMachine": "",
 "Player": "",
 "PlayerState": "",
+"R_Game": "",
+"R_Level": "",
+"R_WarpRoom": "",
 "ReplaySystem": "",
 "SaveResource": "",
 "SmartAudioStream": "",
@@ -815,8 +833,9 @@ _global_script_class_icons={
 config/name="Crash Is Doomed"
 run/main_scene="res://cutscenes/intro/Intro.tscn"
 run/low_processor_mode=true
+boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
-boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [audio]
@@ -865,11 +884,13 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=720
-window/size/height=480
+window/size/width=1280
+window/size/height=720
 window/size/resizable=false
+window/size/test_width=720
+window/size/test_height=480
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -946,18 +967,18 @@ common/physics_fps=30
 
 threads/thread_model=2
 quality/filters/anisotropic_filter_level=1
-quality/directional_shadow/size=1024
+quality/directional_shadow/size=256
 quality/directional_shadow/size.mobile=1024
-quality/shadow_atlas/size=2046
 quality/shadow_atlas/size.mobile=256
 quality/shadow_atlas/quadrant_0_subdiv=3
 quality/shadow_atlas/quadrant_1_subdiv=4
 quality/shadow_atlas/quadrant_2_subdiv=5
 quality/shadow_atlas/quadrant_3_subdiv=6
+quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/reflections/irradiance_max_size=64
-quality/filters/use_nearest_mipmap_filter=true
 quality/subsurface_scattering/quality=0
 quality/reflections/atlas_subdiv=4
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

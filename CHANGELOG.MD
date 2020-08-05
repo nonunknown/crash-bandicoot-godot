@@ -1,8 +1,26 @@
 # CHANGELOG
 
 
+## 2.0.0
+
+- **MAJOR**
+
+* Added Menu for the game
+* Added Warp Room
+* Improved Loading time between scenes/levels
+* Added Options to Change Various graphics stuff
+
+
+
+- **MINOR**
+
+
+
+- **PATCH**
+
 
 ## 1.2.1
+
 
 - **MINOR**
 
